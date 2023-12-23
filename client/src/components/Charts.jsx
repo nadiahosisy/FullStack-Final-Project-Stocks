@@ -1,35 +1,11 @@
-import { useState, useEffect } from "react";
 import { LineChart } from "@mui/x-charts/LineChart";
-import apiServices from "../api/apiServices";
+import PropTypes from "prop-types";
 
-// eslint-disable-next-line react/prop-types
-export const Charts = ({ stockSymbol }) => {
-  const [chartData, setChartData] = useState({
-    closePricesArray: [],
-    datesArray: [],
-  });
-
-  useEffect(() => {
-    if (!stockSymbol) {
-      return; // Exit early if no stock symbol is provided
-    }
-
-    const fetchData = async () => {
-      try {
-        const data = await apiServices.fetchStockData(stockSymbol);
-        if (data && data.closePricesArray && data.datesArray) {
-          setChartData({
-            closePricesArray: data.closePricesArray,
-            datesArray: data.datesArray,
-          });
-        }
-      } catch (error) {
-        console.error("Error in component:", error);
-      }
-    };
-
-    fetchData();
-  }, [stockSymbol]);
+export const Charts = ({ stockSymbol, closePricesArray, datesArray }) => {
+  // Convert string data to numbers if necessary
+  const numericClosePricesArray = closePricesArray.map((price) =>
+    parseFloat(price)
+  );
 
   return (
     <LineChart
@@ -37,13 +13,13 @@ export const Charts = ({ stockSymbol }) => {
       height={300}
       series={[
         {
-          data: chartData.closePricesArray,
+          data: numericClosePricesArray,
           label: stockSymbol,
           area: true,
           showMark: false,
         },
       ]}
-      xAxis={[{ scaleType: "point", data: chartData.datesArray }]}
+      xAxis={[{ scaleType: "point", data: datesArray }]}
       sx={{
         ".MuiLineElement-root": {
           display: "none",
@@ -51,4 +27,12 @@ export const Charts = ({ stockSymbol }) => {
       }}
     />
   );
+};
+
+Charts.propTypes = {
+  stockSymbol: PropTypes.string,
+  closePricesArray: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+  ),
+  datesArray: PropTypes.arrayOf(PropTypes.string),
 };

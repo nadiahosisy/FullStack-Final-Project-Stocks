@@ -1,12 +1,40 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Input from "@mui/joy/Input";
 import Button from "@mui/material/Button";
-import { Charts } from "./Charts"; // Adjust the import path as needed
 import { Stack } from "@mui/material";
+import { Charts } from "./Charts"; // Adjust the import path as needed
+import StockContent from "./StockContent"; // Import the StockContent component
+import apiServices from "../api/apiServices"; // Adjust the import path as needed
 
 export const StockDataViewer = () => {
   const [inputValue, setInputValue] = useState("");
   const [stockSymbol, setStockSymbol] = useState("");
+  const [chartData, setChartData] = useState({
+    closePricesArray: [],
+    datesArray: [],
+    content: "",
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (stockSymbol) {
+        try {
+          const data = await apiServices.fetchStockData(stockSymbol);
+          if (data) {
+            setChartData({
+              closePricesArray: data.closePricesArray || [],
+              datesArray: data.datesArray || [],
+              content: data.content || "", // Assuming 'content' is part of your API response
+            });
+          }
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      }
+    };
+
+    fetchData();
+  }, [stockSymbol]);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -17,16 +45,24 @@ export const StockDataViewer = () => {
   };
 
   return (
-    <Stack width={150}>
+    <Stack spacing={2}>
       <Input
         placeholder="Enter Stock Symbol…"
         value={inputValue}
         onChange={handleInputChange}
       />
       <Button variant="contained" onClick={handleButtonClick}>
-        Load Chart
+        Load Data
       </Button>
-      {stockSymbol && <Charts stockSymbol={stockSymbol} />}
+      {stockSymbol && (
+        <>
+          <Charts
+            closePricesArray={chartData.closePricesArray}
+            datesArray={chartData.datesArray}
+          />
+          <StockContent content={chartData.content} />
+        </>
+      )}
     </Stack>
   );
 };
