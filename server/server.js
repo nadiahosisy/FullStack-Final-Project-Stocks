@@ -5,10 +5,13 @@ import morgan from "morgan";
 import colors from "colors";
 import openai from "./routers/openai.js";
 import yahoo from "./routers/yahoo.js";
+import cors from "cors";
 
 dotenv.config({ path: "./config/config.env" });
 
 const app = express();
+
+app.use(cors());
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));

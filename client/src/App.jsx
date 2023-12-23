@@ -1,14 +1,12 @@
-import { useState } from "react";
-
 import "./App.css";
 import { NavBar } from "./components/NavBar";
+import { Charts } from "./components/Charts";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       <NavBar />
+      <Charts />
     </>
   );
 }

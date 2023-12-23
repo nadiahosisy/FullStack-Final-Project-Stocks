@@ -25,7 +25,11 @@ export const NavBar = () => {
     setAnchorNav(null);
   };
   return (
-    <AppBar position="static" enableColorOnDark>
+    <AppBar
+      style={{ backgroundColor: "gray" }}
+      position="static"
+      enableColorOnDark
+    >
       <Toolbar>
         <IconButton
           size="small"
