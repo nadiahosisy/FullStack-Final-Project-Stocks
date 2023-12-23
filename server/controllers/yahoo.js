@@ -1,12 +1,30 @@
 import yahooFinance from "yahoo-finance2";
 export const getStockCharts = async (req, res) => {
   try {
-    const query = "CAMT";
+    const query = req.params.yahooStock;
     const queryOptions = { period1: "2021-05-08", period2: "2023-12-22" };
-    const result = await yahooFinance.chart(query, queryOptions);
+    const resultFromYahoo = await yahooFinance.chart(query, queryOptions);
 
-    res.json({ result });
+    const closePricesArray = [];
+    const datesArray = [];
+
+    resultFromYahoo.quotes.forEach((quote) => {
+      //Extract close prices
+      const formattedClosePrice = quote.close.toFixed(3);
+      closePricesArray.push(formattedClosePrice);
+
+      // Extract and format the date
+      const formattedDate = formatDateHelperFunction(quote.date);
+      datesArray.push(formattedDate);
+    });
+
+    res.json({ closePricesArray, datesArray });
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
 };
+
+function formatDateHelperFunction(dateString) {
+  const date = new Date(dateString);
+  return date.toISOString().split("T")[0].slice(2);
+}
