@@ -1,40 +1,35 @@
 import { useState, useEffect } from "react";
 import { LineChart } from "@mui/x-charts/LineChart";
-import axios from "axios";
+import apiServices from "../api/apiServices";
 
-export const Charts = () => {
+// eslint-disable-next-line react/prop-types
+export const Charts = ({ stockSymbol }) => {
   const [chartData, setChartData] = useState({
     closePricesArray: [],
     datesArray: [],
   });
 
   useEffect(() => {
-    // Function to fetch data from the API
+    if (!stockSymbol) {
+      return; // Exit early if no stock symbol is provided
+    }
+
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:5000/api/v1/yahoo/CAMT"
-        );
-
-        console.log(response);
-        // Assuming the response structure is { uData: [...], xLabels: [...] }
-        if (
-          response.data &&
-          response.data.closePricesArray &&
-          response.data.datesArray
-        ) {
+        const data = await apiServices.fetchStockData(stockSymbol);
+        if (data && data.closePricesArray && data.datesArray) {
           setChartData({
-            closePricesArray: response.data.closePricesArray,
-            datesArray: response.data.datesArray,
+            closePricesArray: data.closePricesArray,
+            datesArray: data.datesArray,
           });
         }
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error in component:", error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [stockSymbol]);
 
   return (
     <LineChart
@@ -43,7 +38,7 @@ export const Charts = () => {
       series={[
         {
           data: chartData.closePricesArray,
-          label: "uv",
+          label: stockSymbol,
           area: true,
           showMark: false,
         },

@@ -1,4 +1,3 @@
-import * as React from "react";
 import { CssVarsProvider, extendTheme } from "@mui/joy/styles";
 import Sheet from "@mui/joy/Sheet";
 import Chip from "@mui/joy/Chip";

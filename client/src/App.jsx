@@ -1,12 +1,12 @@
 import "./App.css";
 import { NavBar } from "./components/NavBar";
-import { Charts } from "./components/Charts";
+import { StockDataViewer } from "./components/StockDataViewer";
 
 function App() {
   return (
     <>
       <NavBar />
-      <Charts />
+      <StockDataViewer />
     </>
   );
 }
