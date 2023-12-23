@@ -59,4 +59,33 @@ export const predictPrices = async (stockName, priceArray, dateArray) => {
   }
 };
 
+export const stockInfo = async (stockName) => {
+  const openai = getOpenAiInstance();
+
+  // Formulating a prompt for regression analysis
+  const prompt = `Give me information about this stock ${stockName}`;
+
+  try {
+    const response = await openai.chat.completions.create({
+      model: "gpt-4",
+      max_tokens: 150,
+      messages: [
+        {
+          role: "system",
+          content: "You know everything about stock market and companies",
+        },
+        {
+          role: "user",
+          content: prompt,
+        },
+      ],
+    });
+
+    // Return the predicted values or the full response
+    return response.choices[0].message.content;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 //

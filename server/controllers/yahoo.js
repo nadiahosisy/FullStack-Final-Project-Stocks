@@ -1,5 +1,5 @@
 import yahooFinance from "yahoo-finance2";
-import { predictPrices } from "./openai.js";
+import { stockInfo } from "./openai.js";
 export const getStockCharts = async (req, res) => {
   try {
     const query = req.params.yahooStock;
@@ -20,8 +20,8 @@ export const getStockCharts = async (req, res) => {
     });
 
     //const predicted = await predictPrices(query, closePricesArray, datesArray);
-
-    res.json({ closePricesArray, datesArray, content: "sdfasdfasdf" });
+    const stockInfoData = await stockInfo(query);
+    res.json({ closePricesArray, datesArray, stockInfoData });
   } catch (error) {
     res.status(500).send({ error: error.message });
   }

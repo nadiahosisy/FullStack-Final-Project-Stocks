@@ -24,7 +24,7 @@ export const StockDataViewer = () => {
             setChartData({
               closePricesArray: data.closePricesArray || [],
               datesArray: data.datesArray || [],
-              content: data.content || "", // Assuming 'content' is part of your API response
+              content: data.stockInfoData || "", // Assuming 'content' is part of your API response
             });
           }
         } catch (error) {
