@@ -2,9 +2,9 @@ import yahooFinance from "yahoo-finance2";
 import { stockInfo } from "./openai.js";
 export const getStockCharts = async (req, res) => {
   try {
-    const query = req.params.yahooStock;
+    const stockName = req.params.yahooStock;
     const queryOptions = { period1: "2021-05-08", period2: "2023-12-22" };
-    const resultFromYahoo = await yahooFinance.chart(query, queryOptions);
+    const resultFromYahoo = await yahooFinance.chart(stockName, queryOptions);
 
     const closePricesArray = [];
     const datesArray = [];
@@ -20,7 +20,7 @@ export const getStockCharts = async (req, res) => {
     });
 
     //const predicted = await predictPrices(query, closePricesArray, datesArray);
-    const stockInfoData = await stockInfo(query);
+    const stockInfoData = await stockInfo(stockName);
     res.json({ closePricesArray, datesArray, stockInfoData });
   } catch (error) {
     res.status(500).send({ error: error.message });
