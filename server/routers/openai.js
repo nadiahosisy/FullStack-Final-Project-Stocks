@@ -1,6 +1,6 @@
 import express from "express";
 
-import { getStockNews } from "../controllers/stocks.js";
+import { getStockNews } from "../controllers/openai.js";
 
 const router = express.Router();
 

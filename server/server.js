@@ -3,7 +3,8 @@ import nodemon from "nodemon";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import colors from "colors";
-import stocks from "./routers/stocks.js";
+import openai from "./routers/openai.js";
+import yahoo from "./routers/yahoo.js";
 
 dotenv.config({ path: "./config/config.env" });
 
@@ -18,7 +19,8 @@ app.get("/", (req, res) => {
 });
 
 // Routers
-app.use("/api/v1/stocks", stocks);
+app.use("/api/v1/openai", openai);
+app.use("/api/v1/yahoo", yahoo);
 
 const PORT = process.env.PORT || 5000;
 
