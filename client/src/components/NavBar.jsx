@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 import {
   AppBar,
@@ -53,7 +54,15 @@ export const NavBar = () => {
           sx={{ display: { xs: "none", md: "flex" } }}
         >
           {pages.map((page, index) => (
-            <Button key={index} color="inherit">
+            <Button
+              key={index}
+              color="inherit"
+              component={NavLink}
+              to={`/${page.toLowerCase().replace(/\s+/g, "")}`}
+              style={({ isActive }) => ({
+                backgroundColor: isActive ? "#4a4a4a" : "inherit",
+              })}
+            >
               {page}
             </Button>
           ))}
@@ -68,12 +77,24 @@ export const NavBar = () => {
             <MenuRoundedIcon />
           </IconButton>
           <Menu
+            anchorEl={anchorNav}
             open={Boolean(anchorNav)}
             onClose={closeMenu}
             sx={{ display: { xs: "flex", md: "none" } }}
           >
             {pages.map((page, index) => (
-              <MenuItem key={index}>{page}</MenuItem>
+              <MenuItem
+                key={index}
+                onClick={closeMenu}
+                component={NavLink}
+                to={
+                  page === "Home"
+                    ? "/home"
+                    : `/${page.toLowerCase().replace(/\s+/g, "")}`
+                }
+              >
+                {page}
+              </MenuItem>
             ))}
           </Menu>
         </Stack>
