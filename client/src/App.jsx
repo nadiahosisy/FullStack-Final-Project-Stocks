@@ -2,17 +2,18 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./components/Home Page/Home";
 import About from "./components/About Page/About";
-import MyStocks from "./components/My Stocks/MyStocks";
+// import MyStocks from "./components/MyStocks/MyStocks";
 import Login from "./components/Login page/Login";
+import { Charts } from "./components/Charts";
 
 function App() {
   return (
     <Router>
       <Layout>
         <Routes>
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/mystocks" element={<MyStocks />} />
+          <Route path="/mystocks" element={<Charts />} />
           <Route path="/login" element={<Login />} />
         </Routes>
       </Layout>

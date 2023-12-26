@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-
 import {
   AppBar,
   Toolbar,
@@ -13,24 +12,17 @@ import {
 } from "@mui/material";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import ShowChartRoundedIcon from "@mui/icons-material/ShowChartRounded";
-const pages = ["Home", "About", "My Stocks", "Login"];
-
-// eslint-disable-next-line no-undef
 
 export const NavBar = () => {
   const [anchorNav, setAnchorNav] = useState(null);
-  const openMenu = (event) => {
-    setAnchorNav(event.currentTarget);
-  };
-  const closeMenu = () => {
-    setAnchorNav(null);
-  };
+  const openMenu = (event) => setAnchorNav(event.currentTarget);
+  const closeMenu = () => setAnchorNav(null);
+
+  const pages = ["Home", "About", "My Stocks", "Login"];
+  const pagePaths = ["/", "/about", "/mystocks", "/login"];
+
   return (
-    <AppBar
-      style={{ backgroundColor: "gray" }}
-      position="static"
-      enableColorOnDark
-    >
+    <AppBar style={{ backgroundColor: "gray" }} position="static">
       <Toolbar>
         <IconButton
           size="small"
@@ -58,9 +50,10 @@ export const NavBar = () => {
               key={index}
               color="inherit"
               component={NavLink}
-              to={`/${page.toLowerCase().replace(/\s+/g, "")}`}
+              to={pagePaths[index]}
               style={({ isActive }) => ({
                 backgroundColor: isActive ? "#4a4a4a" : "inherit",
+                color: isActive ? "#ffffff" : "inherit",
               })}
             >
               {page}
@@ -87,11 +80,7 @@ export const NavBar = () => {
                 key={index}
                 onClick={closeMenu}
                 component={NavLink}
-                to={
-                  page === "Home"
-                    ? "/home"
-                    : `/${page.toLowerCase().replace(/\s+/g, "")}`
-                }
+                to={pagePaths[index]}
               >
                 {page}
               </MenuItem>
