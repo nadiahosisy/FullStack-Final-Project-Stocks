@@ -4,7 +4,7 @@ import Home from "./components/Home Page/Home";
 import About from "./components/About Page/About";
 // import MyStocks from "./components/MyStocks/MyStocks";
 import Login from "./components/Login page/Login";
-import { Charts } from "./components/Charts";
+import StockInfoComponent from "./components/My Stocks/StockInfoComponent";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/mystocks" element={<Charts />} />
+          <Route path="/mystocks" element={<StockInfoComponent />} />
           <Route path="/login" element={<Login />} />
         </Routes>
       </Layout>
