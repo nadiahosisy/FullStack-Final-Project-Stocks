@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import { Stack } from "@mui/material";
 import { Charts } from "./Charts"; // Adjust the import path as needed
 import StockContent from "./StockContent"; // Import the StockContent component
-import apiServices from "../api/apiServices"; // Adjust the import path as needed
+import apiServices from "../../api/apiServices"; // Adjust the import path as needed
 
 export const StockDataViewer = () => {
   const [inputValue, setInputValue] = useState("");

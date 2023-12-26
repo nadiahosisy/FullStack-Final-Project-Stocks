@@ -1,5 +1,7 @@
+import { StockDataViewer } from "./StockDataViewer";
+
 const MyStocks = () => {
-  return <div>MyStocks</div>;
+  return <StockDataViewer></StockDataViewer>;
 };
 
 export default MyStocks;
