@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import Input from "@mui/joy/Input";
 import Button from "@mui/material/Button";
 import { Stack } from "@mui/material";
-import { Charts } from "./Charts"; // Adjust the import path as needed
-import StockContent from "./StockContent"; // Import the StockContent component
-import apiServices from "../../api/apiServices"; // Adjust the import path as needed
+import { Charts } from "./Charts";
+import StockContent from "./StockContent";
+import StockPredictionContent from "./StockPredictionContent";
+
+import apiServices from "../../api/apiServices";
 
 export const StockDataViewer = () => {
   const [inputValue, setInputValue] = useState("");
@@ -12,7 +14,8 @@ export const StockDataViewer = () => {
   const [chartData, setChartData] = useState({
     closePricesArray: [],
     datesArray: [],
-    content: "",
+    stockInfo: "",
+    predictedContent: "",
   });
 
   useEffect(() => {
@@ -24,7 +27,8 @@ export const StockDataViewer = () => {
             setChartData({
               closePricesArray: data.closePricesArray || [],
               datesArray: data.datesArray || [],
-              content: data.tmpInfoData || "", // Assuming 'content' is part of your API response
+              stockInfo: data.tmpInfoData || "",
+              predictedContent: data.predictedData || "",
             });
           }
         } catch (error) {
@@ -60,7 +64,8 @@ export const StockDataViewer = () => {
             closePricesArray={chartData.closePricesArray}
             datesArray={chartData.datesArray}
           />
-          <StockContent content={chartData.content} />
+          <StockContent content={chartData.stockInfo} />
+          <StockPredictionContent content={chartData.predictedContent} />
         </>
       )}
     </Stack>
