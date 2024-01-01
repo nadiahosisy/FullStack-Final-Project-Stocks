@@ -4,7 +4,7 @@ import Home from "./components/Home Page/Home";
 import About from "./components/About Page/About";
 import "./App.css";
 // import MyStocks from "./components/MyStocks/MyStocks";
-import Login from "./components/Login page/Login";
+import Login from "./components/Auth/Login";
 import StockInfoComponent from "./components/My Stocks/StockInfoComponent";
 import Dashboard from "./components/Dashboard/Dashboard";
 

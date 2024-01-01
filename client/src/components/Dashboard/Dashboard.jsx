@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Header from "./Header/Header";
 import Body from "../Dashboard/Body";
 
-import apiServices from "../../api/apiServices";
+import { fetchStockData } from "../../api/apiServices";
 
 const Dashboard = () => {
   const [inputValue, setInputValue] = useState("");
@@ -29,7 +29,7 @@ const Dashboard = () => {
     const fetchData = async () => {
       if (stockName) {
         try {
-          const data = await apiServices.fetchStockData(stockName);
+          const data = await fetchStockData(stockName);
           if (data) {
             setPredictedData({
               closePricesArray: data.closePricesArray || [],
