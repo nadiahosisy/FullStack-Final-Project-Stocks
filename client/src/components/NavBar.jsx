@@ -22,28 +22,42 @@ export const NavBar = () => {
   const pagePaths = ["/", "/about", "/mystocks", "/login"];
 
   return (
-    <AppBar style={{ backgroundColor: "gray" }} position="static">
+    <AppBar
+      style={{ background: "rgba(40, 45, 71, 0.5)", fontFamily: "Normal" }}
+      position="static"
+    >
       <Toolbar>
         <IconButton
           size="small"
           edge="start"
-          color="inherit"
+          // color="inherit"
           aria-label="logo"
-          sx={{ display: { xs: "none", md: "flex" } }}
+          sx={{
+            display: {
+              xs: "none",
+              md: "flex",
+              color: "rgb(103, 58, 183)",
+              fontFamily: "Normal",
+            },
+          }}
         >
           <ShowChartRoundedIcon />
         </IconButton>
         <Typography
           variant="h6"
           component="div"
-          sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
+          sx={{
+            flexGrow: 1,
+            display: { xs: "none", md: "flex" },
+            fontFamily: "Normal",
+          }}
         >
           Stock Prediction App
         </Typography>
         <Stack
           direction="row"
           spacing={2}
-          sx={{ display: { xs: "none", md: "flex" } }}
+          sx={{ display: { xs: "none", md: "flex" }, fontFamily: "Normal" }}
         >
           {pages.map((page, index) => (
             <Button
@@ -52,8 +66,9 @@ export const NavBar = () => {
               component={NavLink}
               to={pagePaths[index]}
               style={({ isActive }) => ({
-                backgroundColor: isActive ? "#4a4a4a" : "inherit",
+                backgroundColor: isActive ? "rgba(40, 45, 71, 0.5)" : "inherit",
                 color: isActive ? "#ffffff" : "inherit",
+                fontFamily: "Normal",
               })}
             >
               {page}

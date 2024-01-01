@@ -6,10 +6,18 @@ import colors from "colors";
 import openai from "./routers/openai.js";
 import yahoo from "./routers/yahoo.js";
 import cors from "cors";
+import connectDB from "./config/db.js";
 
 dotenv.config({ path: "./config/config.env" });
 
+import auth from "./routers/auth.js";
+import users from "./routers/users.js";
+
+connectDB();
+
 const app = express();
+
+app.use(express.json());
 
 app.use(cors());
 
@@ -24,6 +32,9 @@ app.get("/", (req, res) => {
 // Routers
 app.use("/api/v1/openai", openai);
 app.use("/api/v1/yahoo", yahoo);
+
+app.use("/api/v1/auth", auth);
+app.use("/api/v1/users", users);
 
 const PORT = process.env.PORT || 5000;
 

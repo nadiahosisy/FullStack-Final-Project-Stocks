@@ -1,12 +1,18 @@
 import Footer from "./Footer";
 import { NavBar } from "./NavBar";
+import Sidebar from "./Sidebar/Sidebar";
 
 const Layout = ({ children }) => {
   return (
     <>
       <>
         <NavBar />
-        <main>{children}</main>
+        <main>
+          <div className="grid-container">
+            <Sidebar />
+            {children}
+          </div>
+        </main>
         <Footer />
       </>
     </>

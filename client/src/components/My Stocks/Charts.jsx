@@ -2,10 +2,18 @@ import { LineChart } from "@mui/x-charts/LineChart";
 import PropTypes from "prop-types";
 
 export const Charts = ({ stockSymbol, closePricesArray, datesArray }) => {
-  // Convert string data to numbers if necessary
-  const numericClosePricesArray = closePricesArray.map((price) =>
-    parseFloat(price)
-  );
+  if (
+    !closePricesArray ||
+    !datesArray ||
+    closePricesArray.length !== datesArray.length
+  ) {
+    return <div>No data available or data is invalid</div>;
+  }
+
+  const numericClosePricesArray = closePricesArray.map((price) => {
+    const number = parseFloat(price);
+    return isNaN(number) ? 0 : number; // Fallback to 0 if not a number
+  });
 
   return (
     <LineChart
