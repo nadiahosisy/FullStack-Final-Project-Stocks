@@ -1,3 +1,4 @@
+import React from "react";
 import {
   BsFillArchiveFill,
   BsFillGrid3X3GapFill,
@@ -5,27 +6,32 @@ import {
   BsFillBellFill,
 } from "react-icons/bs";
 import {
-  BarChart,
-  Bar,
-  Cell,
+  LineChart,
+  Line,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
   Legend,
   ResponsiveContainer,
-  LineChart,
-  Line,
 } from "recharts";
 
 function Body({ predictedData }) {
-  // eslint-disable-next-line react/prop-types
   const { closePricesArray, datesArray } = predictedData;
 
-  const data = datesArray.map((date, index) => ({
-    date: date,
-    price: closePricesArray[index],
-  }));
+  // Check if there is data
+  const hasData =
+    datesArray &&
+    datesArray.length > 0 &&
+    closePricesArray &&
+    closePricesArray.length > 0;
+
+  const data = hasData
+    ? datesArray.map((date, index) => ({
+        date: date,
+        price: closePricesArray[index],
+      }))
+    : [];
 
   return (
     <main className="main-container">
@@ -41,6 +47,7 @@ function Body({ predictedData }) {
           </div>
           <h1>300</h1>
         </div>
+
         <div className="card">
           <div className="card-inner">
             <h3>CATEGORIES</h3>
@@ -48,6 +55,7 @@ function Body({ predictedData }) {
           </div>
           <h1>12</h1>
         </div>
+
         <div className="card">
           <div className="card-inner">
             <h3>CUSTOMERS</h3>
@@ -55,6 +63,7 @@ function Body({ predictedData }) {
           </div>
           <h1>33</h1>
         </div>
+
         <div className="card">
           <div className="card-inner">
             <h3>ALERTS</h3>
@@ -65,33 +74,37 @@ function Body({ predictedData }) {
       </div>
 
       <div className="charts">
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart
-            width={500}
-            height={300}
-            data={data}
-            margin={{
-              top: 5,
-              right: 30,
-              left: 20,
-              bottom: 5,
-            }}
-          >
-            <CartesianGrid strokeDasharray="1 10" />
-            <XAxis dataKey="date" />
-            <YAxis tickCount={15} />
-            <Tooltip />
-            <Legend />
-            <Line
-              type="natural"
-              dataKey="price"
-              stroke="#8884d8"
-              activeDot={{ r: 8 }}
-              strokeWidth={2}
-              dot={false}
-            />
-          </LineChart>
-        </ResponsiveContainer>
+        {hasData ? (
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart
+              width={500}
+              height={300}
+              data={data}
+              margin={{
+                top: 5,
+                right: 30,
+                left: 20,
+                bottom: 5,
+              }}
+            >
+              <CartesianGrid strokeDasharray="1 10" />
+              <XAxis dataKey="date" />
+              <YAxis tickCount={10} tickFormatter={(value) => `$ ${value}`} />
+              <Tooltip formatter={(value) => `$${value}`} />
+              <Legend />
+              <Line
+                type="natural"
+                dataKey="price"
+                stroke="#8884d8"
+                activeDot={{ r: 8 }}
+                strokeWidth={2}
+                dot={false}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        ) : (
+          <p>No data available to display the chart.</p>
+        )}
       </div>
     </main>
   );
