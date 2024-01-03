@@ -8,10 +8,7 @@ const Layout = ({ children }) => {
       <>
         <NavBar />
         <main>
-          <div className="grid-container">
-            <Sidebar />
-            {children}
-          </div>
+          <div className="grid-container">{children}</div>
         </main>
         <Footer />
       </>

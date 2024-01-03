@@ -4,6 +4,7 @@ import Header from "./Header/Header";
 import Body from "../Dashboard/Body";
 
 import { fetchStockData } from "../../api/apiServices";
+import Sidebar from "../Sidebar/Sidebar";
 
 const Dashboard = () => {
   const [inputValue, setInputValue] = useState("");
@@ -51,6 +52,7 @@ const Dashboard = () => {
         onInputChangeDashboard={handleInputChange}
         onButtonClick={handleButtonClick}
       />
+      <Sidebar />
       <Body predictedData={predictedData} />
     </>
   );
