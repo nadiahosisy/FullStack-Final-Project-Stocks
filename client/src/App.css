@@ -1,9 +1,17 @@
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
 /* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
+
+
+
 
 .logo {
   height: 6em;
@@ -62,12 +70,21 @@
     format("truetype");
 }
 
+html {
+  min-height: 100%;
+  margin: 0;
+}
+
 body {
   margin: 0;
+  display: block;
   padding: 0;
   color: #9e9ea4;
   font-family: "Normal";
   background-color: rgb(7, 12, 39);
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden; /* Optional, to disable scrolling */
 }
 
 .icon {
@@ -99,9 +116,10 @@ body {
   grid-template-areas:
     "sidebar header header header"
     "sidebar main main main";
-  height: 93vh;
+  min-height: 100vh;
+  width: auto;
+  overflow: auto;
 }
-
 /* Header  */
 .header {
   grid-area: header;
@@ -292,16 +310,38 @@ body {
 }
 
 /* Login */
+
+.main-div-img-login {
+  display: flex;
+  align-content: end;
+  align-items: end;
+  justify-content: center;
+  gap: 10rem;
+  max-width: 30rem;
+  /* width: 60rem; */
+}
+.login-img {
+  width: 100%;
+}
+
+.main-div-login {
+  display: flex;
+  flex-direction: row;
+  gap: 8rem;
+  justify-content: space-between;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
 .login-container {
-  grid-area: main;
+  display: flex;
   height: 650px;
+  flex-direction: column;
   width: 390px;
   display: flex;
-
   align-items: center;
   border-radius: 1rem;
   justify-content: center;
-  margin-top: 100px;
   background-color: #ffff;
 }
 
@@ -448,12 +488,67 @@ body {
   background-color: hsla(261, 51%, 50%, 1);
 }
 
-.login-container {
+/* Modal.css */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 30rem;
+  z-index: 1000;
 }
+
+.modal {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+  width: 490px;
+  /* height: 90px; */
+  text-align: center;
+  overflow: hidden;
+}
+
+.modal h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+}
+
+.close-btn-modal {
+  color: #373a3c;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  background: none;
+  cursor: pointer;
+  margin: 0 0 0 5px;
+  background-image: none;
+  border: 1px solid #ccc;
+  padding: 0.375rem 1rem;
+  border-radius: 4px;
+  line-height: normal;
+  white-space: nowrap;
+}
+.close-btn-modal:hover {
+  background-color: #e6e6e6;
+}
+
+.close-btn:hover {
+  background-color: #0056b3;
+}
+
+/* .login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
 
 @media (max-width: 768px) {
   .login-container {
@@ -613,4 +708,169 @@ body {
   min-height: 2.25rem;
   width: 40%;
   background-color: hsla(261, 51%, 50%, 1);
+}
+
+.img-login-page {
+  width: 200px;
+}
+
+/* Home */
+
+.home-container {
+  display: flex;
+  justify-content: center;
+
+  align-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.content-wrapper {
+  display: flex;
+  align-content: center;
+  flex-direction: row;
+  gap: 5rem;
+  max-width: 100vw;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-container {
+  max-width: 100vw;
+}
+
+.image-container img {
+  width: 800px;
+  border-radius: 20px;
+}
+.text-container {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  gap: 0.5rem;
+  height: 600px;
+}
+
+.pargraph-home-page {
+  text-align: justify;
+  width: 800px;
+  hyphens: auto;
+  font-size: 22px;
+  font-family: Normal;
+  color: #ffff;
+  margin: 1em 0;
+  overflow-wrap: break-word;
+}
+
+.highlight {
+  color: hsla(261, 51%, 50%, 1);
+  font-family: Normal;
+}
+
+.header-home-page {
+  color: #ffff;
+  font-size: 40px;
+  font-family: Normal;
+}
+
+.main-div-button-home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.login-button-home {
+  box-align: center;
+  align-items: center;
+  border: 0px;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: Normal;
+  margin-top: 2rem;
+  border-radius: 0.375rem;
+  font-size: 0.7875rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  min-height: 2.25rem;
+  width: 40%;
+  background-color: hsla(261, 51%, 50%, 1);
+}
+
+@media screen and (max-width: 1024px) {
+  .content-wrapper {
+    flex-direction: column;
+  }
+
+  .image-container,
+  .text-container {
+    width: 100px;
+  }
+}
+
+/* Landscape phones and smaller devices */
+@media screen and (max-width: 768px) {
+  .text-container {
+    width: 5px;
+  }
+
+  .header-home-page {
+    font-size: 2rem;
+  }
+
+  .pargraph-home-page {
+    font-size: 1.2rem;
+  }
+}
+
+/* iPhones and smaller devices */
+@media screen and (max-width: 576px) {
+  .header-home-page {
+    font-size: 1.5rem;
+  }
+
+  .pargraph-home-page {
+    font-size: 1rem;
+  }
+
+  .image-container,
+  .text-container {
+    width: 1200px;
+  }
+}
+
+/* Specific adjustments for iPhones */
+@media screen and (max-width: 375px) {
+  .header-home-page {
+    font-size: 1.2rem;
+  }
+
+  .pargraph-home-page {
+    font-size: 0.9rem;
+  }
+
+  .home-container,
+  .text-container {
+    width: 80px;
+  }
+  .image-containe {
+    width: 100px;
+  }
+}
+/* Footer */
+
+.footer-app-bar {
+  height: 60px;
+  display: flex;
+  background: rgba(40, 45, 71, 0.5);
+}
+
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
 }

@@ -48,12 +48,14 @@ const Dashboard = () => {
 
   return (
     <>
-      <Header
-        onInputChangeDashboard={handleInputChange}
-        onButtonClick={handleButtonClick}
-      />
-      <Sidebar />
-      <Body predictedData={predictedData} />
+      <div className="grid-container">
+        <Header
+          onInputChangeDashboard={handleInputChange}
+          onButtonClick={handleButtonClick}
+        />
+        <Sidebar />
+        <Body predictedData={predictedData} />
+      </div>
     </>
   );
 };

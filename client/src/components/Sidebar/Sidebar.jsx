@@ -17,7 +17,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
     >
       <div className="sidebar-title">
         <div className="sidebar-brand" style={{ alignItems: "center" }}>
-          <BsFillBarChartFill className="icon_header" /> SHOP
+          <BsFillBarChartFill className="icon_header" /> My Dashboard
         </div>
         <span className="icon close_icon" onClick={OpenSidebar}>
           X

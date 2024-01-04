@@ -1,0 +1,83 @@
+.row1{
+    display:flex;
+    align-items:center;
+    flex-direction:row;
+    justify-content:space-evenly;
+    margin:10px;
+
+}
+.row2{
+    display:flex;
+    align-items:center;
+    flex-direction:row;
+    justify-content:space-between;
+    margin:10px; 
+    flex-basis: 100%;
+}
+.row3{
+    display:flex;
+    align-items:start;
+    flex-direction:row;
+    justify-content:space-between;
+    margin:10px; 
+    flex-basis: 100%;
+}
+
+.row4{
+    display:flex;
+    align-items:start;
+    flex-direction:row;
+    justify-content:start;
+    margin:10px; 
+    flex-basis: 100%;
+}
+
+.quote{
+    width:200px;
+    color: black;
+    background-color:#f77f00;
+    border-radius:5px;
+    display: flex;
+    align-items:center;
+    flex-direction:column;
+    justify-content:center;
+    padding:1px;
+}
+
+.prediction{
+    margin-top:10px;
+    width:500px;
+    color: black;
+    background-color:#f77f00;
+    border-radius:5px;
+    display: flex;
+    align-items:center;
+    flex-direction:column;
+    justify-content:center;
+    padding:1px;
+    padding: 10px;
+}
+
+.twitter{
+    margin-top:10px;
+    color: black;
+    background-color:#f77f00;
+    border-radius:5px;
+    display: flex;
+    align-items:center;
+    flex-direction:column;
+    justify-content:center;
+    padding:10px;
+}
+
+.call_to_action{
+    margin: 10px;
+    color: black;
+    background-color:#f77f00;
+    border-radius:5px;
+    display: flex;
+    align-items:center;
+    flex-direction:column;
+    justify-content:center;
+    padding:10px;  
+}

@@ -1,28 +1,57 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import { loginUser } from "../../api/apiServices";
 import ShowChartRoundedIcon from "@mui/icons-material/ShowChartRounded";
-import { size } from "@floating-ui/core";
+import { useAuth } from "../../context/AuthProvider";
+import Modal from "../Modal/Modal";
 
 const LoginForm = ({ onToggle }) => {
+  const { updateUserData } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [modalInfo, setModalInfo] = useState({
+    show: false,
+    message: "",
+    iconType: null,
+  });
+  const navigate = useNavigate();
+
+  const handleModalClose = () => {
+    setModalInfo({ show: false, message: "", iconType: null });
+    if (modalInfo.message === "Login Successful!") {
+      navigate("/mystocks");
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const response = await loginUser({ email, password });
-      console.log("Login successful:", response);
+      updateUserData(response);
+      localStorage.setItem("userData", JSON.stringify(response));
+      setModalInfo({
+        show: true,
+        message: "Login Successful!",
+        iconType: "success",
+      });
     } catch (error) {
-      console.error("Login failed:", error);
+      setModalInfo({
+        show: true,
+        message: "Please Enter valid Email or Password",
+        iconType: "error",
+      });
     }
   };
 
   return (
     <div className="login-form-container">
       <ShowChartRoundedIcon
-        style={{ color: "rgb(102, 59, 181)", fontSize: 30, marginLeft: "5px" }}
-      />{" "}
-      {/* Flex container */}
+        style={{
+          color: "rgb(102, 59, 181)",
+          fontSize: 30,
+          marginLeft: "5px",
+        }}
+      />
       <div>
         <h2 className="main-div-header">Sign in</h2>
       </div>
@@ -53,6 +82,12 @@ const LoginForm = ({ onToggle }) => {
         <button className="login-button" type="submit">
           Login
         </button>
+        <Modal
+          show={modalInfo.show}
+          message={modalInfo.message}
+          onClose={handleModalClose}
+          iconType={modalInfo.iconType}
+        />
       </form>
       <p className="register-pargraph">Don't have an account? </p>
       <button className="login-register-button" onClick={onToggle}>

@@ -49,25 +49,27 @@ export const StockDataViewer = () => {
   };
 
   return (
-    <Stack spacing={2}>
-      <Input
-        placeholder="Enter Stock Symbol…"
-        value={inputValue}
-        onChange={handleInputChange}
-      />
-      <Button variant="contained" onClick={handleButtonClick}>
-        Load Data
-      </Button>
-      {stockSymbol && (
-        <>
-          <Charts
-            closePricesArray={chartData.closePricesArray}
-            datesArray={chartData.datesArray}
-          />
-          <StockContent content={chartData.stockInfo} />
-          <StockPredictionContent content={chartData.predictedContent} />
-        </>
-      )}
-    </Stack>
+    <>
+      <Stack spacing={2}>
+        <Input
+          placeholder="Enter Stock Symbol…"
+          value={inputValue}
+          onChange={handleInputChange}
+        />
+        <Button variant="contained" onClick={handleButtonClick}>
+          Load Data
+        </Button>
+        {stockSymbol && (
+          <>
+            <Charts
+              closePricesArray={chartData.closePricesArray}
+              datesArray={chartData.datesArray}
+            />
+            <StockContent content={chartData.stockInfo} />
+            <StockPredictionContent content={chartData.predictedContent} />
+          </>
+        )}
+      </Stack>
+    </>
   );
 };
