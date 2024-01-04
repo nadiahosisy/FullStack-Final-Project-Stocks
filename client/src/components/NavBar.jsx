@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
   AppBar,
@@ -7,6 +7,8 @@ import {
   Typography,
   Button,
   Stack,
+  Avatar,
+  Popover,
 } from "@mui/material";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import ShowChartRoundedIcon from "@mui/icons-material/ShowChartRounded";
@@ -15,11 +17,24 @@ import { useAuth } from "../context/AuthProvider";
 export const NavBar = () => {
   const { userData, logout } = useAuth();
   const navigate = useNavigate();
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleLogout = () => {
     logout();
     navigate("/login");
   };
+
+  const handleAvatarClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
+
   const capitalizeFirstLetter = (string) => {
     if (!string) return "";
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -37,9 +52,11 @@ export const NavBar = () => {
         <IconButton
           size="large"
           edge="start"
-          color="inherit"
           aria-label="logo"
-          sx={{ display: { xs: "none", md: "flex" } }}
+          sx={{
+            display: { xs: "none", md: "flex" },
+            color: "hsla(261, 51%, 50%, 1)",
+          }}
         >
           <ShowChartRoundedIcon />
         </IconButton>
@@ -54,23 +71,43 @@ export const NavBar = () => {
           direction="row"
           spacing={2}
           sx={{ display: { xs: "none", md: "flex" } }}
+          alignItems="center"
         >
           {userData && (
-            <Typography
-              sx={{
-                display: "flex",
-                flexGrow: 0,
-                fontSize: "22px",
-                textAlign: "center",
-                alignItems: "center",
-                alignContent: "center",
-                justifyContent: "center",
-                color: "yellow",
-                fontFamily: "Normal",
-              }}
-            >
-              Hello, {capitalizeFirstLetter(userData.name)}
-            </Typography>
+            <>
+              <Avatar
+                alt={capitalizeFirstLetter(userData.name)}
+                src={userData.imageUrl}
+                sx={{
+                  width: 40,
+                  height: 40,
+                  marginRight: 1,
+                  cursor: "pointer",
+                }}
+                onClick={handleAvatarClick}
+              />
+              <Popover
+                id={id}
+                open={open}
+                anchorEl={anchorEl}
+                onClose={handlePopoverClose}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
+              >
+                <Typography
+                  sx={{
+                    p: 2,
+                    color: "black",
+                    fontFamily: "Bold",
+                    backgroundColor: "#fff7f6",
+                  }}
+                >
+                  Hello, {capitalizeFirstLetter(userData.name)} 👋
+                </Typography>
+              </Popover>
+            </>
           )}
           {pages.map((page, index) => (
             <Button
@@ -82,7 +119,6 @@ export const NavBar = () => {
               {page}
             </Button>
           ))}
-
           <Button onClick={handleLogout} size="large" style={{ color: "red" }}>
             {userData ? "Logout" : "Login"}
           </Button>
