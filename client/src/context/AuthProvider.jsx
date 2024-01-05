@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
     return storedUserData ? JSON.parse(storedUserData) : null;
   });
 
+  console.log(userData);
   async function logout() {
     try {
       setUserData(null);
@@ -24,8 +25,6 @@ export const AuthProvider = ({ children }) => {
     setUserData(newData);
     if (newData) {
       localStorage.setItem("userData", JSON.stringify(newData));
-    } else {
-      localStorage.removeItem("userData");
     }
   };
 

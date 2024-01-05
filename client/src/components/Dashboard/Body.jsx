@@ -1,9 +1,10 @@
 import React from "react";
+import { useAuth } from "../../context/AuthProvider";
 import {
   BsFillArchiveFill,
   BsFillGrid3X3GapFill,
   BsPeopleFill,
-  BsFillBellFill,
+  BsSearch,
 } from "react-icons/bs";
 import {
   LineChart,
@@ -18,6 +19,8 @@ import {
 
 function Body({ predictedData }) {
   const { closePricesArray, datesArray } = predictedData;
+
+  const { userData } = useAuth();
 
   // Check if there is data
   const hasData =
@@ -66,10 +69,25 @@ function Body({ predictedData }) {
 
         <div className="card">
           <div className="card-inner">
-            <h3>ALERTS</h3>
-            <BsFillBellFill className="card_icon" />
+            <h3>Recent Searches</h3>
+            <BsSearch className="card_icon" />
           </div>
-          <h1>42</h1>
+          <div className="card-content">
+            {userData &&
+            userData.searchedStocks &&
+            userData.searchedStocks.length > 0 ? (
+              <ul>
+                {[...userData.searchedStocks]
+                  .slice(-5)
+                  .reverse()
+                  .map((stock, index) => (
+                    <li key={index}>{stock}</li>
+                  ))}
+              </ul>
+            ) : (
+              <p>No recent searches</p>
+            )}
+          </div>
         </div>
       </div>
 

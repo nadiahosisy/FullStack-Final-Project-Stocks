@@ -1,9 +1,14 @@
 import { useState, useEffect } from "react";
 
+import { useAuth } from "../../context/AuthProvider";
+
 import Header from "./Header/Header";
 import Body from "../Dashboard/Body";
 
-import { fetchStockData } from "../../api/apiServices";
+import {
+  fetchStockData,
+  sendStockDataUserHistory,
+} from "../../api/apiServices";
 import Sidebar from "../Sidebar/Sidebar";
 
 const Dashboard = () => {
@@ -15,14 +20,13 @@ const Dashboard = () => {
     stockInfo: "",
     predictedContent: "",
   });
+  const { userData } = useAuth();
 
   const handleInputChange = (value) => {
     setInputValue(value);
   };
 
   const handleButtonClick = async (value) => {
-    // Logic to handle button click, possibly making a request
-    // Replace with your actual logic
     setstockName(value);
   };
 
@@ -40,6 +44,11 @@ const Dashboard = () => {
         } catch (error) {
           console.error("Error fetching data:", error);
         }
+        const respHistory = await sendStockDataUserHistory(
+          stockName,
+          userData._id
+        );
+        console.log("Data was stock", respHistory);
       }
     };
 

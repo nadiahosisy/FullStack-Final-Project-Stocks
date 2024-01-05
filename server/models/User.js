@@ -35,6 +35,10 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  searchedStocks: {
+    type: [String],
+    default: [],
+  },
 });
 
 //Encrypt password using bcrypt

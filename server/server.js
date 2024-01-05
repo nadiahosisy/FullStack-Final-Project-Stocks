@@ -12,6 +12,7 @@ dotenv.config({ path: "./config/config.env" });
 
 import auth from "./routers/auth.js";
 import users from "./routers/users.js";
+import userHistoryUpdate from "./routers/userHistoryUpdate.js";
 
 connectDB();
 
@@ -32,6 +33,7 @@ app.get("/", (req, res) => {
 // Routers
 app.use("/api/v1/openai", openai);
 app.use("/api/v1/yahoo", yahoo);
+app.use("/api/v1/updateHistory", userHistoryUpdate);
 
 app.use("/api/v1/auth", auth);
 app.use("/api/v1/users", users);

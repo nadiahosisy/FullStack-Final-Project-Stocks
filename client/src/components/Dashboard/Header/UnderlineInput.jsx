@@ -4,16 +4,15 @@ import Stack from "@mui/joy/Stack";
 import Button from "@mui/material/Button";
 import axios from "axios";
 
-// eslint-disable-next-line react/prop-types
 export default function UnderlineInput({ onInputChange, onButtonClick }) {
   const [inputValue, setInputValue] = useState("");
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
-    onInputChange(event.target.value); // Call the callback with the new value
+    onInputChange(event.target.value);
   };
   const handleButtonClick = () => {
-    onButtonClick(inputValue); // Call the button click callback with input value
+    onButtonClick(inputValue);
   };
 
   return (
@@ -44,7 +43,7 @@ export default function UnderlineInput({ onInputChange, onButtonClick }) {
           },
           "&:focus-within::before": {
             transform: "scaleX(1)",
-            borderColor: "rgb(103, 58, 183)", // Changing underline color on focus
+            borderColor: "rgb(103, 58, 183)",
           },
         }}
       />

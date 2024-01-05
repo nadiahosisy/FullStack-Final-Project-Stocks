@@ -7,7 +7,6 @@ import {
 } from "react-icons/bs";
 import UnderlineInput from "./UnderLineInput";
 
-// eslint-disable-next-line react/prop-types
 function Header({ OpenSidebar, onInputChangeDashboard, onButtonClick }) {
   return (
     <header className="header">

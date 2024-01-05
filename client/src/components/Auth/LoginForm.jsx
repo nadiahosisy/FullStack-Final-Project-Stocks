@@ -27,8 +27,8 @@ const LoginForm = ({ onToggle }) => {
     event.preventDefault();
     try {
       const response = await loginUser({ email, password });
-      updateUserData(response);
-      localStorage.setItem("userData", JSON.stringify(response));
+      updateUserData(response.user);
+      localStorage.setItem("userData", JSON.stringify(response.user));
       setModalInfo({
         show: true,
         message: "Login Successful!",
