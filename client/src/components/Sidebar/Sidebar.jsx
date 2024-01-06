@@ -8,8 +8,15 @@ import {
   BsMenuButtonWideFill,
   BsFillGearFill,
 } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 function Sidebar({ openSidebarToggle, OpenSidebar }) {
+  const navigate = useNavigate();
+
+  const handleNavigateProfile = () => {
+    navigate("/myStocks/profile");
+  };
+
   return (
     <aside
       id="sidebar"
@@ -30,10 +37,8 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
             <BsGrid1X2Fill className="icon" /> Dashboard
           </a>
         </li>
-        <li className="sidebar-list-item">
-          <a href="">
-            <BsFillArchiveFill className="icon" /> Products
-          </a>
+        <li className="sidebar-list-item" onClick={handleNavigateProfile}>
+          <BsFillArchiveFill className="icon" /> Profile
         </li>
         <li className="sidebar-list-item">
           <a href="">
