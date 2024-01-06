@@ -5,6 +5,8 @@ import {
   BsFillGrid3X3GapFill,
   BsPeopleFill,
   BsSearch,
+  BsHandThumbsUp,
+  BsHandThumbsDown,
 } from "react-icons/bs";
 import {
   LineChart,
@@ -55,7 +57,7 @@ function Body({ predictedData }) {
         <div className="card">
           <div className="card-inner">
             <h3>Pros</h3>
-            <BsFillGrid3X3GapFill className="card_icon" />
+            <BsHandThumbsUp className="card_icon" />
           </div>
           <h1>{pros}</h1>
         </div>
@@ -63,7 +65,7 @@ function Body({ predictedData }) {
         <div className="card">
           <div className="card-inner">
             <h3>Cons</h3>
-            <BsPeopleFill className="card_icon" />
+            <BsHandThumbsDown className="card_icon" />
           </div>
           <h1>{cons}</h1>
         </div>
