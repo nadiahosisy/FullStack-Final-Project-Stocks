@@ -1,12 +1,20 @@
 import axios from "axios";
 
 const API_YAHOO_STOCKS = "http://localhost:5000/api/v1/yahoo/";
-const API_UPDATE_STOCK_USER_HISTORY =
-  "http://localhost:5000/api/v1/updateHistory/";
+const API_STOCK_USER_HISTORY = "http://localhost:5000/api/v1/stockHistory/";
 const API_LOGIN = "http://localhost:5000/api/v1/auth/login/";
 const API_REGISTER = "http://localhost:5000/api/v1/auth/register/";
 
 const fetchStockData = async (stockSymbol) => {
+  try {
+    const response = await axios.get(`${API_YAHOO_STOCKS}${stockSymbol}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching stock data:", error);
+    throw error;
+  }
+};
+const fetchHistorykData = async (stockSymbol) => {
   try {
     const response = await axios.get(`${API_YAHOO_STOCKS}${stockSymbol}`);
     return response.data;
@@ -22,7 +30,7 @@ const sendStockDataUserHistory = async (stockSymbol, userId) => {
     };
 
     const response = await axios.put(
-      `${API_UPDATE_STOCK_USER_HISTORY}${userId}`,
+      `${API_STOCK_USER_HISTORY}${userId}`,
       payload
     );
 
@@ -49,7 +57,7 @@ const registerUser = async (credentials) => {
     const response = await axios.post(API_REGISTER, credentials);
     return response.data;
   } catch (error) {
-    console.error("Error logging in:", error);
+    console.error("Error registering user :", error);
     throw error;
   }
 };

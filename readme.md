@@ -1,5 +1,8 @@
 # Stock Price Predictor
 
+//
+//
+
 ## Overview
 
 Stock Price Predictor is an advanced analytics tool designed to predict future stock prices based on historical data. The tool provides investors and financial analysts with insights to make informed decisions in the stock market.

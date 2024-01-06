@@ -18,7 +18,10 @@ const Dashboard = () => {
     closePricesArray: [],
     datesArray: [],
     stockInfo: "",
-    predictedContent: "",
+    predictionScore: "",
+    pros: "",
+    cons: "",
+    recommendation: "",
   });
   const { userData } = useAuth();
 
@@ -39,6 +42,10 @@ const Dashboard = () => {
             setPredictedData({
               closePricesArray: data.closePricesArray || [],
               datesArray: data.datesArray || [],
+              predictionScore: data.predictionScore,
+              pros: data.pros,
+              cons: data.cons,
+              recommendation: data.recommendation,
             });
           }
         } catch (error) {
