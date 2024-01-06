@@ -57,6 +57,7 @@ const Dashboard = () => {
         );
 
         updateUserData(respHistory.data);
+        console.log(respHistory);
       }
     };
 
