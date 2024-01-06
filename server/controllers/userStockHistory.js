@@ -21,7 +21,7 @@ export const updateUserStockHistory = asyncHandler(async (req, res, next) => {
 
     res.status(200).json({
       success: true,
-      data: user.searchedStocks,
+      data: user,
     });
   } catch (error) {
     next(error);

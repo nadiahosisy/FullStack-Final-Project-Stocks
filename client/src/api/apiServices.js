@@ -14,9 +14,9 @@ const fetchStockData = async (stockSymbol) => {
     throw error;
   }
 };
-const fetchHistorykData = async (stockSymbol) => {
+const fetchHistorykData = async (userId) => {
   try {
-    const response = await axios.get(`${API_YAHOO_STOCKS}${stockSymbol}`);
+    const response = await axios.get(`${API_YAHOO_STOCKS}${userId}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching stock data:", error);

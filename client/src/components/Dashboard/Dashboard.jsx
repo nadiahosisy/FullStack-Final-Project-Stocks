@@ -23,7 +23,7 @@ const Dashboard = () => {
     cons: "",
     recommendation: "",
   });
-  const { userData } = useAuth();
+  const { userData, setUserData } = useAuth();
 
   const handleInputChange = (value) => {
     setInputValue(value);
@@ -56,6 +56,7 @@ const Dashboard = () => {
           userData._id
         );
         console.log("Data was stock", respHistory);
+        setUserData(respHistory.data);
       }
     };
 
