@@ -1,18 +1,27 @@
+import React, { useState } from "react";
 import Input from "@mui/joy/Input";
-import { useState } from "react";
 import Stack from "@mui/joy/Stack";
 import Button from "@mui/material/Button";
-import axios from "axios";
+import Spinner from "../../spinner/Spinner"; // Import your Spinner component
 
 export default function UnderlineInput({ onInputChange, onButtonClick }) {
   const [inputValue, setInputValue] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // State to track loading status
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
     onInputChange(event.target.value);
   };
-  const handleButtonClick = () => {
-    onButtonClick(inputValue);
+
+  const handleButtonClick = async () => {
+    setIsLoading(true); // Start loading
+    try {
+      await onButtonClick(inputValue); // Assuming onButtonClick is a function that returns a Promise
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setIsLoading(false); // Stop loading
+    }
   };
 
   return (
@@ -51,8 +60,10 @@ export default function UnderlineInput({ onInputChange, onButtonClick }) {
         variant="contained"
         onClick={handleButtonClick}
         style={{ backgroundColor: "rgb(103, 58, 183)" }}
+        disabled={isLoading} // Disable button when loading
       >
-        Get Data
+        {isLoading ? <Spinner /> : "Get Data"}{" "}
+        {/* Show spinner or button text */}
       </Button>
     </Stack>
   );

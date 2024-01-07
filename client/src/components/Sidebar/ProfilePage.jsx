@@ -10,15 +10,19 @@ import {
 import { deepPurple } from "@mui/material/colors";
 import { useAuth } from "../../context/AuthProvider";
 import svgImage from "../../../public/images/profile-user.svg";
+import { updateUserData } from "../../api/apiServices";
+import Modal from "../Modal/Modal"; // Import the Modal component
 
 const ProfilePage = () => {
-  const { userData } = useAuth();
+  const { userData, setUserData } = useAuth();
   const [isEditMode, setIsEditMode] = useState(false);
   const [editData, setEditData] = useState({
     name: userData?.name || "",
+    lastName: userData?.lastName || "",
     email: userData?.email || "",
     bio: userData?.bio || "",
   });
+  const [showModal, setShowModal] = useState(false);
 
   const handleEditToggle = () => {
     setIsEditMode(!isEditMode);
@@ -28,44 +32,58 @@ const ProfilePage = () => {
     setEditData({ ...editData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = () => {
-    console.log("Updated Data:", editData);
-    setIsEditMode(false);
+  const handleSubmit = async () => {
+    try {
+      const updatedData = await updateUserData(userData._id, editData);
+      setUserData(updatedData.data);
+      setShowModal(true);
+    } catch (error) {
+      console.error("Error updating user data", error);
+    } finally {
+      setIsEditMode(false);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
   };
 
   const formatName = (name, lastName) => {
     const formattedFirstName = name
       ? name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()
       : "";
-
-    if (!lastName) {
-      return formattedFirstName;
-    }
-
-    const formattedLastName =
-      lastName.charAt(0).toUpperCase() + lastName.slice(1).toLowerCase();
+    const formattedLastName = lastName
+      ? lastName.charAt(0).toUpperCase() + lastName.slice(1).toLowerCase()
+      : "";
     return `${formattedFirstName} ${formattedLastName}`;
   };
+
+  const paperStyle = isEditMode
+    ? { padding: "10px", borderRadius: "15px", maxHeight: "auto" }
+    : { padding: "50px", borderRadius: "15px", maxHeight: "30%" };
+
   return (
     <Grid
       container
       spacing={2}
-      gap="4rem"
+      display={"flex"}
       justifyContent="center"
+      alignContent={"center"}
+      gap={"2rem"}
       alignItems="center"
-      style={{ maxWidth: "2000px", margin: "auto" }}
+      style={{ maxWidth: "1500px", margin: "auto" }}
     >
-      <Grid item>
+      <Grid item display={"flex"} justifyContent="center">
         <img src={svgImage} alt="Profile Icon" style={{ maxHeight: "400px" }} />
       </Grid>
       <Grid item xs={12} md={3}>
-        <Paper elevation={4} style={{ padding: "40px", borderRadius: "15px" }}>
+        <Paper elevation={4} style={paperStyle}>
           <Grid container direction="column" alignItems="center" spacing={3}>
             <Grid item>
               <Avatar
                 src={userData?.avatarUrl}
                 alt={`${userData?.name} ${userData?.lastName}`}
-                sx={{ bgcolor: deepPurple[500], width: 80, height: 80 }}
+                sx={{ bgcolor: deepPurple[500], width: 70, height: 70 }}
               />
             </Grid>
             <Grid item xs style={{ textAlign: "center" }}>
@@ -75,6 +93,13 @@ const ProfilePage = () => {
                     label="Name"
                     name="name"
                     value={editData.name}
+                    onChange={handleInputChange}
+                    fullWidth
+                  />
+                  <TextField
+                    label="Last Name"
+                    name="lastName"
+                    value={editData.lastName}
                     onChange={handleInputChange}
                     margin="dense"
                     fullWidth
@@ -94,14 +119,14 @@ const ProfilePage = () => {
                     onChange={handleInputChange}
                     margin="dense"
                     multiline
-                    rows={4}
+                    rows={3}
                     fullWidth
                   />
                 </>
               ) : (
                 <>
                   <Typography
-                    variant="h4"
+                    variant="h5"
                     style={{ fontFamily: "Normal", fontWeight: "bold" }}
                   >
                     {userData
@@ -123,27 +148,38 @@ const ProfilePage = () => {
                 </>
               )}
             </Grid>
-            <Button
-              variant="contained"
-              color="primary"
-              sx={{ marginTop: "20px", borderRadius: "20px" }}
-              onClick={isEditMode ? handleSubmit : handleEditToggle}
-            >
-              {isEditMode ? "Save Changes" : "Edit Profile"}
-            </Button>
-            {isEditMode && (
+            <Grid item>
               <Button
-                variant="outlined"
-                color="secondary"
-                sx={{ marginTop: "10px", borderRadius: "20px" }}
-                onClick={() => setIsEditMode(false)}
+                variant="contained"
+                color="primary"
+                sx={{ marginTop: "20px", borderRadius: "20px" }}
+                onClick={isEditMode ? handleSubmit : handleEditToggle}
               >
-                Cancel
+                {isEditMode ? "Save Changes" : "Edit Profile"}
               </Button>
+            </Grid>
+            {isEditMode && (
+              <Grid item>
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  sx={{ borderRadius: "20px" }}
+                  onClick={() => setIsEditMode(false)}
+                >
+                  Cancel
+                </Button>
+              </Grid>
             )}
           </Grid>
         </Paper>
       </Grid>
+
+      <Modal
+        show={showModal}
+        message="Profile Updated Successfully!"
+        onClose={handleCloseModal}
+        iconType="success"
+      />
     </Grid>
   );
 };

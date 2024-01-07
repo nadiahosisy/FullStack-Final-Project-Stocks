@@ -11,6 +11,9 @@ const UserSchema = new mongoose.Schema({
   lastName: {
     type: String,
   },
+  bio: {
+    type: String,
+  },
 
   email: {
     type: String,

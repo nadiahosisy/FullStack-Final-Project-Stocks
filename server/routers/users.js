@@ -17,8 +17,9 @@ const router = express.Router({
 import advancedResult from "../middleware/advancedResult.js";
 import { protect, authorize } from "../middleware/auth.js";
 
-router.use(protect);
-router.use(authorize("admin"));
+//router.use(protect);
+//router.use(authorize("admin"));
+//router.use(authorize("user"));
 
 router.route("/").get(advancedResult(User), getUsers).post(createUser);
 
