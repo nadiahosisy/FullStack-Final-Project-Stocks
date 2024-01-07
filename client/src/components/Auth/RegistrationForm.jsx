@@ -66,11 +66,26 @@ const RegistrationForm = ({ onToggle }) => {
   return (
     <div className="main-div-register">
       <ShowChartRoundedIcon
-        style={{ color: "rgb(102, 59, 181)", fontSize: 30, marginLeft: "5px" }}
+        style={{ color: "#6c63ff", fontSize: 30, marginLeft: "10px" }}
       />{" "}
       <h2 className="register-header">Create your account</h2>
       <form className="register-form" onSubmit={handleSubmit}>
-        <div></div>
+        <div className="main-div-role">
+          <label htmlFor="register-role">Role:</label>
+        </div>
+        <select
+          className="input-register-role"
+          id="register-role"
+          required
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
+        >
+          <option value="" disabled>
+            Select your role
+          </option>
+          <option value="User">User</option>
+          <option value="Investor">Investor</option>
+        </select>
         <div className="main-div-name">
           <label htmlFor="register-name">Name:</label>
         </div>
@@ -115,22 +130,12 @@ const RegistrationForm = ({ onToggle }) => {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
-        <div className="main-div-role">
-          <label htmlFor="register-role">Role:</label>
-        </div>
-        <input
-          className="input-register-role"
-          type="text"
-          id="register-role"
-          required
-          value={role}
-          onChange={(e) => setRole(e.target.value)}
-        />
+
         <button className="register-button" type="submit">
           Register
         </button>
       </form>
-      <p>
+      <p className="pargraph-register-page">
         Already have an account?{" "}
         <button className="login-btn" onClick={onToggle}>
           Login

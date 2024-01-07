@@ -41,7 +41,7 @@ export const NavBar = () => {
   };
 
   const pages = ["Home", "About", "My Stocks"];
-  const pagePaths = ["/", "/about", "/mystocks"];
+  const pagePaths = ["/", "/About", "/mystocks"];
 
   return (
     <AppBar

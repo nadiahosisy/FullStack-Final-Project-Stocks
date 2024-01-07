@@ -7,6 +7,7 @@ import ProfilePage from "./components/Sidebar/ProfilePage";
 import Login from "./components/Auth/Login";
 import Dashboard from "./components/Dashboard/Dashboard";
 import { AuthProvider } from "./context/AuthProvider";
+import ProtectedRoute from "./components/Auth/ProtectedRoute"; // Import the ProtectedRoute component
 import "./App.css";
 
 function App() {
@@ -16,12 +17,24 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/mystocks" element={<Dashboard />} />
-            <Route path="/mystocks/profile" element={<ProfilePage />} />{" "}
-            {/* Profile Page as a sub-route */}
+            <Route path="/About" element={<About />} />
+            <Route
+              path="/mystocks"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/mystocks/profile"
+              element={
+                <ProtectedRoute>
+                  <ProfilePage />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/login" element={<Login />} />
-            {/* Keep the original profile route if needed */}
             <Route path="/profile" element={<ProfilePage />} />
             {/* Add other routes as needed */}
           </Routes>

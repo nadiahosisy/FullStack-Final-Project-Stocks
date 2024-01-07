@@ -6,7 +6,7 @@ import { useAuth } from "../../context/AuthProvider";
 import Modal from "../Modal/Modal";
 
 const LoginForm = ({ onToggle }) => {
-  const { updateUserData } = useAuth();
+  const { updateUserData, setIsLoggedIn } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [modalInfo, setModalInfo] = useState({
@@ -28,6 +28,7 @@ const LoginForm = ({ onToggle }) => {
     try {
       const response = await loginUser({ email, password });
       updateUserData(response.user);
+      setIsLoggedIn(true);
       localStorage.setItem("userData", JSON.stringify(response.user));
       setModalInfo({
         show: true,
@@ -47,7 +48,7 @@ const LoginForm = ({ onToggle }) => {
     <div className="login-form-container">
       <ShowChartRoundedIcon
         style={{
-          color: "rgb(102, 59, 181)",
+          color: "#6c63ff",
           fontSize: 30,
           marginLeft: "5px",
         }}

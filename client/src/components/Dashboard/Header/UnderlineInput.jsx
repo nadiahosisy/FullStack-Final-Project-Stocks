@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Input from "@mui/joy/Input";
 import Stack from "@mui/joy/Stack";
 import Button from "@mui/material/Button";
-import Spinner from "../../spinner/Spinner"; // Import your Spinner component
+import Spinner from "../../Spinner/Spinner"; // Import your Spinner component
 
 export default function UnderlineInput({ onInputChange, onButtonClick }) {
   const [inputValue, setInputValue] = useState("");

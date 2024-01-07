@@ -40,31 +40,6 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
         <li className="sidebar-list-item" onClick={handleNavigateProfile}>
           <BsFillArchiveFill className="icon" /> Profile
         </li>
-        <li className="sidebar-list-item">
-          <a href="">
-            <BsFillGrid3X3GapFill className="icon" /> Categories
-          </a>
-        </li>
-        <li className="sidebar-list-item">
-          <a href="">
-            <BsPeopleFill className="icon" /> Customers
-          </a>
-        </li>
-        <li className="sidebar-list-item">
-          <a href="">
-            <BsListCheck className="icon" /> Inventory
-          </a>
-        </li>
-        <li className="sidebar-list-item">
-          <a href="">
-            <BsMenuButtonWideFill className="icon" /> Reports
-          </a>
-        </li>
-        <li className="sidebar-list-item">
-          <a href="">
-            <BsFillGearFill className="icon" /> Setting
-          </a>
-        </li>
       </ul>
     </aside>
   );
