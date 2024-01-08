@@ -12,6 +12,8 @@ import { useAuth } from "../../context/AuthProvider";
 import svgImage from "../../../public/images/profile-user.svg";
 import { updateUserData } from "../../api/apiServices";
 import Modal from "../Modal/Modal";
+import Sidebar from "./Sidebar";
+import { motion } from "framer-motion";
 
 const ProfilePage = () => {
   const { userData, setUserData } = useAuth();
@@ -63,139 +65,156 @@ const ProfilePage = () => {
     : { padding: "50px", borderRadius: "15px", maxHeight: "30%" };
 
   return (
-    <Grid
-      container
-      spacing={2}
-      display={"flex"}
-      justifyContent="center"
-      alignContent={"center"}
-      gap={"2rem"}
-      alignItems="center"
-      style={{ maxWidth: "1500px", margin: "auto" }}
+    <motion.div
+      className="grid-container"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, transition: { duration: 0.01 } }}
     >
-      <Grid item display={"flex"} justifyContent="center">
-        <img src={svgImage} alt="Profile Icon" style={{ maxHeight: "400px" }} />
-      </Grid>
-      <Grid item xs={12} md={3}>
-        <Paper elevation={4} style={paperStyle}>
-          <Grid container direction="column" alignItems="center" spacing={3}>
-            <Grid item>
-              <Avatar
-                src={userData?.avatarUrl}
-                alt={`${userData?.name} ${userData?.lastName}`}
-                sx={{ bgcolor: "#6c63ff", width: 70, height: 70 }}
-              />
-            </Grid>
-            <Grid item xs style={{ textAlign: "center" }}>
-              {isEditMode ? (
-                <>
-                  <TextField
-                    label="Name"
-                    name="name"
-                    value={editData.name}
-                    onChange={handleInputChange}
-                    fullWidth
-                  />
-                  <TextField
-                    label="Last Name"
-                    name="lastName"
-                    value={editData.lastName}
-                    onChange={handleInputChange}
-                    margin="dense"
-                    fullWidth
-                  />
-                  <TextField
-                    label="Email"
-                    name="email"
-                    value={editData.email}
-                    onChange={handleInputChange}
-                    margin="dense"
-                    fullWidth
-                  />
-                  <TextField
-                    label="Bio"
-                    name="bio"
-                    value={editData.bio}
-                    onChange={handleInputChange}
-                    margin="dense"
-                    multiline
-                    rows={3}
-                    fullWidth
-                  />
-                </>
-              ) : (
-                <>
-                  <Typography
-                    variant="h5"
-                    style={{ fontFamily: "Normal", fontWeight: "bold" }}
-                  >
-                    {userData
-                      ? formatName(userData.name, userData.lastName)
-                      : "N/A"}
-                  </Typography>
-                  <Typography
-                    variant="subtitle1"
-                    style={{ fontFamily: "Normal" }}
-                  >
-                    {userData?.email || "N/A"}
-                  </Typography>
-                  <Typography
-                    variant="body1"
-                    style={{ fontFamily: "Normal", marginTop: "20px" }}
-                  >
-                    {userData?.bio || "No bio available"}
-                  </Typography>
-                </>
-              )}
-            </Grid>
-            <Grid item>
-              <Button
-                variant="contained"
-                color="primary"
-                sx={{
-                  marginTop: "20px",
-                  borderRadius: "20px",
-                  bgcolor: "#6c63ff",
-                  "&:hover": {
-                    bgcolor: "#6c63ff",
-                  },
-                }}
-                onClick={isEditMode ? handleSubmit : handleEditToggle}
-              >
-                {isEditMode ? "Save Changes" : "Edit Profile"}
-              </Button>
-            </Grid>
-            {isEditMode && (
+      <Sidebar />
+      <Grid
+        container
+        spacing={2}
+        display={"flex"}
+        justifyContent="center"
+        alignContent={"center"}
+        gap={"2rem"}
+        alignItems="center"
+        style={{
+          maxWidth: "1300px",
+          margin: "auto",
+          marginTop: "70px",
+          marginRight: "700px",
+        }}
+      >
+        <Grid item display={"flex"} justifyContent="center">
+          <img
+            src={svgImage}
+            alt="Profile Icon"
+            style={{ maxHeight: "400px" }}
+          />
+        </Grid>
+        <Grid item xs={12} md={3}>
+          <Paper elevation={4} style={paperStyle}>
+            <Grid container direction="column" alignItems="center" spacing={3}>
+              <Grid item>
+                <Avatar
+                  src={userData?.avatarUrl}
+                  alt={`${userData?.name} ${userData?.lastName}`}
+                  sx={{ bgcolor: "#6c63ff", width: 70, height: 70 }}
+                />
+              </Grid>
+              <Grid item xs style={{ textAlign: "center" }}>
+                {isEditMode ? (
+                  <>
+                    <TextField
+                      label="Name"
+                      name="name"
+                      value={editData.name}
+                      onChange={handleInputChange}
+                      fullWidth
+                    />
+                    <TextField
+                      label="Last Name"
+                      name="lastName"
+                      value={editData.lastName}
+                      onChange={handleInputChange}
+                      margin="dense"
+                      fullWidth
+                    />
+                    <TextField
+                      label="Email"
+                      name="email"
+                      value={editData.email}
+                      onChange={handleInputChange}
+                      margin="dense"
+                      fullWidth
+                    />
+                    <TextField
+                      label="Bio"
+                      name="bio"
+                      value={editData.bio}
+                      onChange={handleInputChange}
+                      margin="dense"
+                      multiline
+                      rows={3}
+                      fullWidth
+                    />
+                  </>
+                ) : (
+                  <>
+                    <Typography
+                      variant="h5"
+                      style={{ fontFamily: "Normal", fontWeight: "bold" }}
+                    >
+                      {userData
+                        ? formatName(userData.name, userData.lastName)
+                        : "N/A"}
+                    </Typography>
+                    <Typography
+                      variant="subtitle1"
+                      style={{ fontFamily: "Normal" }}
+                    >
+                      {userData?.email || "N/A"}
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      style={{ fontFamily: "Normal", marginTop: "20px" }}
+                    >
+                      {userData?.bio || "No bio available"}
+                    </Typography>
+                  </>
+                )}
+              </Grid>
               <Grid item>
                 <Button
-                  variant="outlined"
-                  color="secondary"
+                  variant="contained"
+                  color="primary"
                   sx={{
+                    marginTop: "20px",
                     borderRadius: "20px",
-                    borderColor: "#6c63ff",
-                    color: "#6c63ff",
+                    bgcolor: "#6c63ff",
                     "&:hover": {
-                      bgcolor: "transparent",
-                      borderColor: "#6c63ff",
+                      bgcolor: "#6c63ff",
                     },
                   }}
-                  onClick={() => setIsEditMode(false)}
+                  onClick={isEditMode ? handleSubmit : handleEditToggle}
                 >
-                  Cancel
+                  {isEditMode ? "Save Changes" : "Edit Profile"}
                 </Button>
               </Grid>
-            )}
-          </Grid>
-        </Paper>
-      </Grid>
+              {isEditMode && (
+                <Grid item>
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    sx={{
+                      borderRadius: "20px",
+                      borderColor: "#6c63ff",
+                      color: "#6c63ff",
+                      "&:hover": {
+                        bgcolor: "transparent",
+                        borderColor: "#6c63ff",
+                      },
+                    }}
+                    onClick={() => setIsEditMode(false)}
+                  >
+                    Cancel
+                  </Button>
+                </Grid>
+              )}
+            </Grid>
+          </Paper>
+        </Grid>
 
-      <Modal
-        show={showModal}
-        message="Profile Updated Successfully!"
-        onClose={handleCloseModal}
-        iconType="success"
-      />
-    </Grid>
+        <Modal
+          show={showModal}
+          message="Profile Updated Successfully!"
+          onClose={handleCloseModal}
+          iconType="success"
+        />
+      </Grid>
+    </motion.div>
   );
 };
 

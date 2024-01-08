@@ -33,6 +33,9 @@ const Dashboard = () => {
   const handleButtonClick = async (value) => {
     setstockName(value);
   };
+  const handleButtonClickHist = async (value) => {
+    setstockName(value);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -69,7 +72,7 @@ const Dashboard = () => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      exit={{ opacity: 0, transition: { duration: 0.01 } }}
     >
       <div className="grid-container">
         <Header
@@ -77,7 +80,10 @@ const Dashboard = () => {
           onButtonClick={handleButtonClick}
         />
         <Sidebar />
-        <Body predictedData={predictedData} />
+        <Body
+          predictedData={predictedData}
+          onHistoryButtonClick={handleButtonClickHist}
+        />
       </div>
     </motion.div>
   );

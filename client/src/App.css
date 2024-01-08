@@ -264,17 +264,14 @@ body {
 
 .balance-display {
   display: flex;
-  flex-direction: column;
-  position: static;
-  top: 63px;
-  width: 10%;
-  right: 50px;
-  background-color: rgba(40, 45, 71, 0.5);
+  flex-direction: row;
+  background-color: rgba(40, 45, 71, 0.01);
   color: white;
   font-family: Normal;
-  height: 18%;
   border-radius: 5px;
   align-items: center;
+  gap: 15px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .balance-icon {
@@ -290,7 +287,6 @@ body {
   align-items: center;
   font-family: Normal;
   gap: 1rem;
-
   flex-direction: row;
 }
 
@@ -1017,4 +1013,10 @@ ul {
 li.search-item {
   margin-bottom: 3px;
   text-transform: uppercase;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }

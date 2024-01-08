@@ -18,9 +18,8 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { FaBalanceScale } from "react-icons/fa";
 
-function Body({ predictedData }) {
+function Body({ predictedData, onHistoryButtonClick }) {
   const { closePricesArray, datesArray, predictionScore, pros, cons } =
     predictedData;
 
@@ -40,7 +39,13 @@ function Body({ predictedData }) {
       }))
     : [];
 
-  const userBalance = userData ? userData.balance : 0;
+  const handleGetStockData = async (stockName) => {
+    try {
+      await onHistoryButtonClick(stockName);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   return (
     <div>
@@ -84,28 +89,26 @@ function Body({ predictedData }) {
               {userData &&
               userData.searchedStocks &&
               userData.searchedStocks.length > 0 ? (
-                <ul>
-                  {[...userData.searchedStocks]
-                    .slice(-4)
-                    .reverse()
-                    .map((stock, index) => (
-                      <li className="search-item" key={index}>
-                        {stock}
-                      </li>
-                    ))}
-                </ul>
+                <React.Fragment>
+                  <ul>
+                    {[...userData.searchedStocks]
+                      .slice(-4)
+                      .reverse()
+                      .map((stock, index) => (
+                        <li
+                          className="search-item"
+                          key={index}
+                          onClick={() => handleGetStockData(stock)}
+                        >
+                          {stock}
+                        </li>
+                      ))}
+                  </ul>
+                </React.Fragment>
               ) : (
                 <p>No recent searches</p>
               )}
             </div>
-          </div>
-          <div className="balance-display">
-            <div className="balance-div">
-              <h3>Balance</h3>
-              <FaBalanceScale className="balance-icon" />
-            </div>
-
-            <h1 className="balance-amount">${userBalance}</h1>
           </div>
         </div>
 

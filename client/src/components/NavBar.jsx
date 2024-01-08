@@ -10,7 +10,7 @@ import {
   Avatar,
   Popover,
 } from "@mui/material";
-import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
+
 import ShowChartRoundedIcon from "@mui/icons-material/ShowChartRounded";
 import { useAuth } from "../context/AuthProvider";
 
