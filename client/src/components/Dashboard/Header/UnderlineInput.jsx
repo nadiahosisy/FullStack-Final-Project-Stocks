@@ -52,18 +52,17 @@ export default function UnderlineInput({ onInputChange, onButtonClick }) {
           },
           "&:focus-within::before": {
             transform: "scaleX(1)",
-            borderColor: "rgb(103, 58, 183)",
+            borderButtom: "#6c63ff",
           },
         }}
       />
       <Button
         variant="contained"
         onClick={handleButtonClick}
-        style={{ backgroundColor: "rgb(103, 58, 183)" }}
-        disabled={isLoading} // Disable button when loading
+        style={{ backgroundColor: "#6c63ff" }}
+        disabled={isLoading}
       >
         {isLoading ? <Spinner /> : "Get Data"}{" "}
-        {/* Show spinner or button text */}
       </Button>
     </Stack>
   );

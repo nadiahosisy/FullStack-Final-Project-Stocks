@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth } from "../../context/AuthProvider";
 import {
   BsFillArchiveFill,
-  BsFillGrid3X3GapFill,
-  BsPeopleFill,
-  BsSearch,
   BsHandThumbsUp,
   BsHandThumbsDown,
+  BsSearch,
 } from "react-icons/bs";
+import { FaBalanceScale } from "react-icons/fa";
 import {
   LineChart,
   Line,
@@ -18,26 +17,36 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { fetchStockData } from "../../api/apiServices"; // Update with the correct path
 
 function Body({ predictedData }) {
-  const { closePricesArray, datesArray, predictionScore, pros, cons } =
-    predictedData;
-
   const { userData } = useAuth();
+  const [chartData, setChartData] = useState([]);
 
-  // Check if there is data
-  const hasData =
-    datesArray &&
-    datesArray.length > 0 &&
-    closePricesArray &&
-    closePricesArray.length > 0;
+  useEffect(() => {
+    if (
+      predictedData &&
+      predictedData.datesArray &&
+      predictedData.closePricesArray
+    ) {
+      setChartData(
+        predictedData.datesArray.map((date, index) => ({
+          date: date,
+          price: predictedData.closePricesArray[index],
+        }))
+      );
+    }
+  }, [predictedData]);
 
-  const data = hasData
-    ? datesArray.map((date, index) => ({
-        date: date,
-        price: closePricesArray[index],
-      }))
-    : [];
+  const handleStockClick = async (stockSymbol) => {
+    try {
+      const newStockData = await fetchStockData(stockSymbol);
+      // Transform newStockData to the format needed by your chart if necessary
+      setChartData(newStockData);
+    } catch (error) {
+      console.error("Error fetching new stock data:", error);
+    }
+  };
 
   return (
     <main className="main-container">
@@ -46,30 +55,34 @@ function Body({ predictedData }) {
       </div>
 
       <div className="main-cards">
+        {/* Prediction Score Card */}
         <div className="card">
           <div className="card-inner">
-            <h3>Predicion Score</h3>
+            <h3>Prediction Score</h3>
             <BsFillArchiveFill className="card_icon" />
           </div>
-          <h1>{predictionScore}</h1>
+          <h1>{predictedData.predictionScore}</h1>
         </div>
 
+        {/* Pros Card */}
         <div className="card">
           <div className="card-inner">
             <h3>Pros</h3>
-            <BsHandThumbsUp className="card_icon" />
+            <BsHandThumbsUp className="card_icon" color="green" />
           </div>
-          <h1>{pros}</h1>
+          <h1 className="pros-header">{predictedData.pros}</h1>
         </div>
 
+        {/* Cons Card */}
         <div className="card">
           <div className="card-inner">
             <h3>Cons</h3>
-            <BsHandThumbsDown className="card_icon" />
+            <BsHandThumbsDown className="card_icon" color="red" />
           </div>
-          <h1>{cons}</h1>
+          <h1 className="cons-header">{predictedData.cons}</h1>
         </div>
 
+        {/* Recent Searches Card */}
         <div className="card">
           <div className="card-inner">
             <h3>Recent Searches</h3>
@@ -79,14 +92,20 @@ function Body({ predictedData }) {
             {userData &&
             userData.searchedStocks &&
             userData.searchedStocks.length > 0 ? (
-              <ul>
+              <div className="search-scroll-list">
                 {[...userData.searchedStocks]
                   .slice(-4)
                   .reverse()
                   .map((stock, index) => (
-                    <li key={index}>{stock}</li>
+                    <div
+                      key={index}
+                      className="search-item"
+                      onClick={() => handleStockClick(stock)}
+                    >
+                      {stock}
+                    </div>
                   ))}
-              </ul>
+              </div>
             ) : (
               <p>No recent searches</p>
             )}
@@ -94,19 +113,13 @@ function Body({ predictedData }) {
         </div>
       </div>
 
+      {/* Chart Container */}
       <div className="charts">
-        {hasData ? (
+        {chartData && chartData.length > 0 ? (
           <ResponsiveContainer width="100%" height="80%">
             <LineChart
-              width={400}
-              height={200}
-              data={data}
-              margin={{
-                top: 5,
-                right: 20,
-                left: 20,
-                bottom: 5,
-              }}
+              data={chartData}
+              margin={{ top: 5, right: 20, left: 20, bottom: 5 }}
             >
               <CartesianGrid strokeDasharray="1 10" />
               <XAxis dataKey="date" />
@@ -116,9 +129,9 @@ function Body({ predictedData }) {
               <Line
                 type="natural"
                 dataKey="price"
-                stroke="#8884d8"
+                stroke="#6c63ff"
                 activeDot={{ r: 8 }}
-                strokeWidth={2}
+                strokeWidth={1}
                 dot={false}
               />
             </LineChart>

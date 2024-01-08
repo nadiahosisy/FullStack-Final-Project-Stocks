@@ -113,6 +113,7 @@ export const NavBar = () => {
             <Button
               key={page}
               color="inherit"
+              fontFamily="Normal"
               component={NavLink}
               to={pagePaths[index]}
             >
