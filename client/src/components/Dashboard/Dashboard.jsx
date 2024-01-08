@@ -65,7 +65,7 @@ const Dashboard = () => {
   }, [stockName]);
 
   return (
-    <>
+    <div>
       <div className="grid-container">
         <Header
           onInputChangeDashboard={handleInputChange}
@@ -74,7 +74,7 @@ const Dashboard = () => {
         <Sidebar />
         <Body predictedData={predictedData} />
       </div>
-    </>
+    </div>
   );
 };
 

@@ -7,11 +7,11 @@ import {
   Grid,
   TextField,
 } from "@mui/material";
-import { deepPurple } from "@mui/material/colors";
+
 import { useAuth } from "../../context/AuthProvider";
 import svgImage from "../../../public/images/profile-user.svg";
 import { updateUserData } from "../../api/apiServices";
-import Modal from "../Modal/Modal"; // Import the Modal component
+import Modal from "../Modal/Modal";
 
 const ProfilePage = () => {
   const { userData, setUserData } = useAuth();
@@ -83,7 +83,7 @@ const ProfilePage = () => {
               <Avatar
                 src={userData?.avatarUrl}
                 alt={`${userData?.name} ${userData?.lastName}`}
-                sx={{ bgcolor: deepPurple[500], width: 70, height: 70 }}
+                sx={{ bgcolor: "#6c63ff", width: 70, height: 70 }}
               />
             </Grid>
             <Grid item xs style={{ textAlign: "center" }}>
@@ -152,7 +152,14 @@ const ProfilePage = () => {
               <Button
                 variant="contained"
                 color="primary"
-                sx={{ marginTop: "20px", borderRadius: "20px" }}
+                sx={{
+                  marginTop: "20px",
+                  borderRadius: "20px",
+                  bgcolor: "#6c63ff",
+                  "&:hover": {
+                    bgcolor: "#6c63ff",
+                  },
+                }}
                 onClick={isEditMode ? handleSubmit : handleEditToggle}
               >
                 {isEditMode ? "Save Changes" : "Edit Profile"}
@@ -163,7 +170,15 @@ const ProfilePage = () => {
                 <Button
                   variant="outlined"
                   color="secondary"
-                  sx={{ borderRadius: "20px" }}
+                  sx={{
+                    borderRadius: "20px",
+                    borderColor: "#6c63ff",
+                    color: "#6c63ff",
+                    "&:hover": {
+                      bgcolor: "transparent",
+                      borderColor: "#6c63ff",
+                    },
+                  }}
                   onClick={() => setIsEditMode(false)}
                 >
                   Cancel
