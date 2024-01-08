@@ -2,7 +2,6 @@ import axios from "axios";
 
 const API_YAHOO_STOCKS = "http://localhost:5000/api/v1/yahoo/";
 const API_STOCK_USER_HISTORY = "http://localhost:5000/api/v1/stockHistory/";
-const API_LOGIN = "http://localhost:5000/api/v1/auth/login/";
 const API_REGISTER = "http://localhost:5000/api/v1/auth/register/";
 const API_USERS = "http://localhost:5000/api/v1/users/";
 
@@ -43,16 +42,6 @@ const sendStockDataUserHistory = async (stockSymbol, userId) => {
   }
 };
 
-const loginUser = async (credentials) => {
-  try {
-    const response = await axios.post(API_LOGIN, credentials);
-    return response.data;
-  } catch (error) {
-    console.error("Error logging in:", error);
-    throw error;
-  }
-};
-
 const registerUser = async (credentials) => {
   try {
     const response = await axios.post(API_REGISTER, credentials);
@@ -82,7 +71,6 @@ const updateUserData = async (userId, data) => {
 
 export {
   fetchStockData,
-  loginUser,
   registerUser,
   sendStockDataUserHistory,
   updateUserData,

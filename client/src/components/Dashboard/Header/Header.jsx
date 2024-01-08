@@ -23,7 +23,7 @@ function Header({ OpenSidebar, onInputChangeDashboard, onButtonClick }) {
           boxShadow: "rgb(39, 44, 72)",
         }}
       >
-        <BsSearch className="icon" style={{ background: "rgb(7, 12, 39)" }} />
+        <BsSearch className="icon" />
         <UnderlineInput
           onInputChange={(value) => onInputChangeDashboard(value)}
           onButtonClick={onButtonClick}

@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "../../../public/Images/stoc-vector-2.jpg";
-
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 export default function Home() {
@@ -11,7 +11,12 @@ export default function Home() {
   };
 
   return (
-    <div className="home-container">
+    <motion.div
+      className="home-container"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, transition: { duration: 0.01 } }}
+    >
       <div className="content-wrapper">
         <div className="image-container">
           <img src={Image} alt="Stock Prediction" />
@@ -46,6 +51,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

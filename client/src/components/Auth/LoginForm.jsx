@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import { loginUser } from "../../api/apiServices";
 import ShowChartRoundedIcon from "@mui/icons-material/ShowChartRounded";
 import { useAuth } from "../../context/AuthProvider";
 import Modal from "../Modal/Modal";
 
 const LoginForm = ({ onToggle }) => {
-  const { updateUserData, setIsLoggedIn } = useAuth();
+  const { updateUserData, setIsLoggedIn, loginUser } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [modalInfo, setModalInfo] = useState({
@@ -29,7 +28,7 @@ const LoginForm = ({ onToggle }) => {
       const response = await loginUser({ email, password });
       updateUserData(response.user);
       setIsLoggedIn(true);
-      localStorage.setItem("userData", JSON.stringify(response.user));
+      localStorage.setItem("isLoggedIn", true);
       setModalInfo({
         show: true,
         message: "Login Successful!",

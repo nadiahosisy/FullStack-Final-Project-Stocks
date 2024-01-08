@@ -4,6 +4,7 @@ import { useAuth } from "../../context/AuthProvider";
 
 import Header from "./Header/Header";
 import Body from "../Dashboard/Body";
+import { motion } from "framer-motion";
 
 import {
   fetchStockData,
@@ -65,7 +66,11 @@ const Dashboard = () => {
   }, [stockName]);
 
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <div className="grid-container">
         <Header
           onInputChangeDashboard={handleInputChange}
@@ -74,7 +79,7 @@ const Dashboard = () => {
         <Sidebar />
         <Body predictedData={predictedData} />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

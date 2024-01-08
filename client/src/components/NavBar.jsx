@@ -15,7 +15,7 @@ import ShowChartRoundedIcon from "@mui/icons-material/ShowChartRounded";
 import { useAuth } from "../context/AuthProvider";
 
 export const NavBar = () => {
-  const { userData, logout } = useAuth();
+  const { userData, logout, isLoggedIn } = useAuth();
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -45,10 +45,10 @@ export const NavBar = () => {
 
   return (
     <AppBar
-      style={{ background: "rgba(40, 45, 71, 0.5)", fontFamily: "Normal" }}
+      style={{ background: "rgba(10, 45, 71, 0.3)", fontFamily: "Normal" }}
       position="static"
     >
-      <Toolbar>
+      <Toolbar style={{ minHeight: "30px" }}>
         <IconButton
           size="large"
           edge="start"
@@ -63,7 +63,10 @@ export const NavBar = () => {
         <Typography
           variant="h6"
           component="div"
-          sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
+          sx={{
+            flexGrow: 1,
+            display: { xs: "none", md: "flex", fontFamily: "Normal" },
+          }}
         >
           Stock Prediction App
         </Typography>
@@ -102,6 +105,7 @@ export const NavBar = () => {
                     color: "black",
                     fontFamily: "Bold",
                     backgroundColor: "#fff7f6",
+                    fontFamily: "Normal",
                   }}
                 >
                   Hello, {capitalizeFirstLetter(userData.name)} 👋
@@ -116,12 +120,16 @@ export const NavBar = () => {
               fontFamily="Normal"
               component={NavLink}
               to={pagePaths[index]}
+              style={{ fontFamily: "Normal" }}
             >
               {page}
             </Button>
           ))}
-          <Button onClick={handleLogout} size="large" style={{ color: "red" }}>
-            {userData ? "Logout" : "Login"}
+          <Button
+            onClick={handleLogout}
+            style={{ color: "red", fontFamily: "Normal" }}
+          >
+            {isLoggedIn ? "Logout" : "Login"}
           </Button>
         </Stack>
       </Toolbar>

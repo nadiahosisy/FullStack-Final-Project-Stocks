@@ -16,6 +16,9 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
   const handleNavigateProfile = () => {
     navigate("/myStocks/profile");
   };
+  const handleNavigateDashbard = () => {
+    navigate("/myStocks/myStocks");
+  };
 
   return (
     <aside

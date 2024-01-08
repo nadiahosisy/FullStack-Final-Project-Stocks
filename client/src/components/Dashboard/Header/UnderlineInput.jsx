@@ -35,7 +35,7 @@ export default function UnderlineInput({ onInputChange, onButtonClick }) {
           "--Input-radius": "0px",
           borderBottom: "2px solid",
           borderColor: "neutral.outlinedBorder",
-          background: "rgba(40, 45, 71, 0.5)",
+          background: "rgba(40, 45, 71, 0.1)",
           color: "#ffff",
           "&:hover": {
             borderColor: "neutral.outlinedHoverBorder",
