@@ -376,7 +376,33 @@ body {
   padding-top: 20px;
   padding: 5px 10px;
   border-radius: 20px;
-  font-size: 0.7rem;
+  font-size: 1rem;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  min-width: 80px;
+  text-align: center;
+}
+.pros-header {
+  background-color: #166b2b;
+  color: white;
+  padding-top: 20px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 1rem;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  min-width: 80px;
+  text-align: center;
+}
+.cons-header {
+  background-color: #af260d;
+  color: white;
+  padding-top: 20px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 1rem;
   white-space: nowrap;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   cursor: pointer;

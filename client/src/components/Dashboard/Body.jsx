@@ -20,8 +20,7 @@ import {
 } from "recharts";
 
 function Body({ predictedData, onHistoryButtonClick }) {
-  const { closePricesArray, datesArray, predictionScore, pros, cons } =
-    predictedData;
+  const { closePricesArray, datesArray, score, pros, cons } = predictedData;
 
   const { userData } = useAuth();
 
@@ -61,7 +60,7 @@ function Body({ predictedData, onHistoryButtonClick }) {
               <h3>Prediction Score</h3>
               <BsFillArchiveFill className="card_icon" />
             </div>
-            <h1>{predictionScore}</h1>
+            <h1>{score}</h1>
           </div>
 
           <div className="card">
@@ -69,7 +68,13 @@ function Body({ predictedData, onHistoryButtonClick }) {
               <h3>Pros</h3>
               <BsHandThumbsUp className="card_icon" color="green" />
             </div>
-            <h1 className="pros-header">{pros}</h1>
+            <div className="pros-list">
+              {pros.map((pro, index) => (
+                <p key={index} className="pros-header">
+                  {pro}
+                </p>
+              ))}
+            </div>
           </div>
 
           <div className="card">
@@ -77,7 +82,13 @@ function Body({ predictedData, onHistoryButtonClick }) {
               <h3>Cons</h3>
               <BsHandThumbsDown className="card_icon" color="red" />
             </div>
-            <h1 className="cons-header">{cons}</h1>
+            <div className="cons-list">
+              {cons.map((con, index) => (
+                <p key={index} className="cons-header">
+                  {con}
+                </p>
+              ))}
+            </div>
           </div>
 
           <div className="card">
@@ -89,22 +100,16 @@ function Body({ predictedData, onHistoryButtonClick }) {
               {userData &&
               userData.searchedStocks &&
               userData.searchedStocks.length > 0 ? (
-                <React.Fragment>
-                  <ul>
-                    {[...userData.searchedStocks]
-                      .slice(-4)
-                      .reverse()
-                      .map((stock, index) => (
-                        <li
-                          className="search-item"
-                          key={index}
-                          onClick={() => handleGetStockData(stock)}
-                        >
-                          {stock}
-                        </li>
-                      ))}
-                  </ul>
-                </React.Fragment>
+                <ul>
+                  {[...userData.searchedStocks]
+                    .slice(-4)
+                    .reverse()
+                    .map((stock, index) => (
+                      <li className="search-item" key={index}>
+                        {stock}
+                      </li>
+                    ))}
+                </ul>
               ) : (
                 <p>No recent searches</p>
               )}

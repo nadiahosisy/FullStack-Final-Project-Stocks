@@ -32,22 +32,18 @@ export const getStockCharts = async (req, res) => {
 
     //const predicted = await predictPrices(query, closePricesArray, datesArray);
     //const stockInfoData = await stockInfo(stockName);
-    const predictionScore = 95;
+    // const predictionScore = 95;
 
-    const pros = "Good";
-    const cons = "Bad ";
+    // const pros = "Good";
+    // const cons = "Bad ";
 
-    const recommendation = "I recommend to buy";
+    // const recommendation = "I recommend to buy";
 
     console.log(closePricesArray);
 
     res.json({
       closePricesArray,
       datesArray,
-      predictionScore,
-      pros,
-      cons,
-      recommendation,
     });
   } catch (error) {
     res.status(500).send({ error: error.message });

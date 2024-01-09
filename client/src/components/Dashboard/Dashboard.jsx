@@ -7,6 +7,7 @@ import Body from "../Dashboard/Body";
 import { motion } from "framer-motion";
 
 import {
+  fetchPredictedData,
   fetchStockData,
   sendStockDataUserHistory,
 } from "../../api/apiServices";
@@ -19,10 +20,10 @@ const Dashboard = () => {
     closePricesArray: [],
     datesArray: [],
     stockInfo: "",
-    predictionScore: "",
-    pros: "",
-    cons: "",
-    recommendation: "",
+    score: "",
+    pros: [],
+    cons: [],
+    overall: "",
   });
   const { userData, updateUserData } = useAuth();
 
@@ -42,14 +43,16 @@ const Dashboard = () => {
       if (stockName) {
         try {
           const data = await fetchStockData(stockName);
+          const predictedData = await fetchPredictedData(stockName);
+          console.log(predictedData);
           if (data) {
             setPredictedData({
               closePricesArray: data.closePricesArray || [],
               datesArray: data.datesArray || [],
-              predictionScore: data.predictionScore,
-              pros: data.pros,
-              cons: data.cons,
-              recommendation: data.recommendation,
+              score: predictedData.score,
+              pros: predictedData.pros,
+              cons: predictedData.cons,
+              overal: predictedData.overall,
             });
           }
         } catch (error) {

@@ -4,10 +4,20 @@ const API_YAHOO_STOCKS = "http://localhost:5000/api/v1/yahoo/";
 const API_STOCK_USER_HISTORY = "http://localhost:5000/api/v1/stockHistory/";
 const API_REGISTER = "http://localhost:5000/api/v1/auth/register/";
 const API_USERS = "http://localhost:5000/api/v1/users/";
+const API_PREDICTIONS = "http://localhost:5000/api/v1/prediction/";
 
 const fetchStockData = async (stockSymbol) => {
   try {
     const response = await axios.get(`${API_YAHOO_STOCKS}${stockSymbol}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching stock data:", error);
+    throw error;
+  }
+};
+const fetchPredictedData = async (stockSymbol) => {
+  try {
+    const response = await axios.get(`${API_PREDICTIONS}${stockSymbol}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching stock data:", error);
@@ -74,4 +84,5 @@ export {
   registerUser,
   sendStockDataUserHistory,
   updateUserData,
+  fetchPredictedData,
 };

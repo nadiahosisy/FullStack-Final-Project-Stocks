@@ -13,6 +13,7 @@ dotenv.config({ path: "./config/config.env" });
 import auth from "./routers/auth.js";
 import users from "./routers/users.js";
 import userStockHistory from "./routers/userStockHistory.js";
+import prediction from "./routers/prediction.js";
 
 connectDB();
 
@@ -37,6 +38,7 @@ app.use("/api/v1/stockHistory", userStockHistory);
 
 app.use("/api/v1/auth", auth);
 app.use("/api/v1/users", users);
+app.use("/api/v1/prediction", prediction);
 
 const PORT = process.env.PORT || 5000;
 
