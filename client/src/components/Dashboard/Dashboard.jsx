@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { React, useState, useEffect } from "react";
 
 import { useAuth } from "../../context/AuthProvider";
 
@@ -39,37 +39,37 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      if (stockName) {
-        try {
-          const data = await fetchStockData(stockName);
-          const predictedData = await fetchPredictedData(stockName);
-          console.log(predictedData);
-          if (data) {
-            setPredictedData({
-              closePricesArray: data.closePricesArray || [],
-              datesArray: data.datesArray || [],
-              score: predictedData.score,
-              pros: predictedData.pros,
-              cons: predictedData.cons,
-              overal: predictedData.overall,
-            });
-          }
-        } catch (error) {
-          console.error("Error fetching data:", error);
-        }
-        const respHistory = await sendStockDataUserHistory(
-          stockName,
-          userData._id
-        );
-
-        updateUserData(respHistory.data);
-        console.log(respHistory);
-      }
-    };
-
     fetchData();
   }, [stockName]);
+
+  const fetchData = async () => {
+    if (stockName) {
+      try {
+        const data = await fetchStockData(stockName);
+        const predictedData = await fetchPredictedData(stockName);
+        console.log(predictedData);
+        if (data) {
+          setPredictedData({
+            closePricesArray: data.closePricesArray || [],
+            datesArray: data.datesArray || [],
+            score: predictedData.score,
+            pros: predictedData.pros,
+            cons: predictedData.cons,
+            overal: predictedData.overall,
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+      const respHistory = await sendStockDataUserHistory(
+        stockName,
+        userData._id
+      );
+
+      updateUserData(respHistory.data);
+      console.log(respHistory);
+    }
+  };
 
   return (
     <motion.div
@@ -83,6 +83,7 @@ const Dashboard = () => {
           onButtonClick={handleButtonClick}
         />
         <Sidebar />
+
         <Body
           predictedData={predictedData}
           onHistoryButtonClick={handleButtonClickHist}
