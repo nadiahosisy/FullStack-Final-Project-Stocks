@@ -137,6 +137,7 @@ function Body({ predictedData, onHistoryButtonClick }) {
                   stroke="#6c63ff"
                   activeDot={{ r: 8 }}
                   strokeWidth={1}
+                  animationDuration={"7s"}
                   dot={false}
                 />
               </LineChart>

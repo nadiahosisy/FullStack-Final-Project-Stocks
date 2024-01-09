@@ -61,7 +61,7 @@ const ProfilePage = () => {
   };
 
   const paperStyle = isEditMode
-    ? { padding: "10px", borderRadius: "15px", maxHeight: "auto" }
+    ? { padding: "10px", borderRadius: "15px", maxHeight: "50%" }
     : { padding: "50px", borderRadius: "15px", maxHeight: "30%" };
 
   return (
@@ -81,7 +81,8 @@ const ProfilePage = () => {
         gap={"2rem"}
         alignItems="center"
         style={{
-          maxWidth: "1300px",
+          maxWidth: "1700px",
+          height: "600px",
           margin: "auto",
           marginTop: "70px",
           marginRight: "700px",
@@ -91,7 +92,7 @@ const ProfilePage = () => {
           <img
             src={svgImage}
             alt="Profile Icon"
-            style={{ maxHeight: "400px" }}
+            style={{ maxHeight: "500px" }}
           />
         </Grid>
         <Grid item xs={12} md={3}>
@@ -101,7 +102,7 @@ const ProfilePage = () => {
                 <Avatar
                   src={userData?.avatarUrl}
                   alt={`${userData?.name} ${userData?.lastName}`}
-                  sx={{ bgcolor: "#6c63ff", width: 70, height: 70 }}
+                  sx={{ bgcolor: "#6c63ff", width: 60, height: 60 }}
                 />
               </Grid>
               <Grid item xs style={{ textAlign: "center" }}>

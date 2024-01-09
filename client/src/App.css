@@ -217,6 +217,7 @@ body {
 .main-container {
   grid-area: main;
   overflow-y: auto;
+  min-height: 5000px;
   position: relative;
   justify-content: space-between;
   align-items: end;
@@ -858,6 +859,7 @@ body {
   display: flex;
   align-content: center;
   flex-direction: row;
+  height: 1500px;
   gap: 5rem;
   align-items: center;
   justify-content: center;
@@ -867,10 +869,12 @@ body {
   max-width: 100vw;
   padding-top: 45px;
 }
-
+.stock-prediction {
+  height: 400px;
+  width: 1500px;
+}
 .image-container img {
-  width: 400px;
-
+  width: 500px;
   border-radius: 20px;
 }
 .text-container {
@@ -879,14 +883,14 @@ body {
   flex-direction: column;
   justify-content: center;
   padding: 20px;
-  height: 600px;
+  height: 800px;
 }
 
 .pargraph-home-page {
   text-align: justify;
-  width: 600px;
+  width: 500px;
   hyphens: auto;
-  font-size: 18px;
+  font-size: 20px;
 
   font-family: Normal;
   color: #ffff;
@@ -900,6 +904,10 @@ body {
 }
 
 .header-home-page {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
   color: #ffff;
   font-size: 40px;
   font-family: Normal;
@@ -925,7 +933,7 @@ body {
   font-size: 0.7875rem;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  min-height: 2.25rem;
+  min-height: 2.45rem;
   width: 40%;
   background-color: hsla(261, 51%, 50%, 1);
 }
@@ -1020,3 +1028,6 @@ li.search-item {
   flex-direction: row;
   justify-content: space-around;
 }
+
+/* About page */
+/* Add additional CSS styling as needed */

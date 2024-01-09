@@ -19,12 +19,17 @@ export default function Home() {
     >
       <div className="content-wrapper">
         <div className="image-container">
-          <img src={Image} alt="Stock Prediction" />
+          <img
+            className="stock-prediction"
+            src={Image}
+            alt="Stock Prediction"
+          />
         </div>
         <div className="text-container">
           <h1 className="header-home-page">
-            Welcome To <span className="highlight">Stock World</span>
+            Welcome To&nbsp;<span className="highlight">Stock World</span>
           </h1>
+
           <p className="pargraph-home-page">
             Embark on a journey of financial insight with{" "}
             <strong>Stock World</strong>, your premier destination for stock

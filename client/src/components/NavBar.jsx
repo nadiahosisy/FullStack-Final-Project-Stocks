@@ -48,7 +48,7 @@ export const NavBar = () => {
       style={{ background: "rgba(10, 45, 71, 0.3)", fontFamily: "Normal" }}
       position="static"
     >
-      <Toolbar style={{ minHeight: "30px" }}>
+      <Toolbar style={{ minHeight: "60px" }}>
         <IconButton
           size="large"
           edge="start"
