@@ -51,22 +51,22 @@
 
 @font-face {
   font-family: "Normal";
-  src: url("../public/Fonts/segoe-ui-4-cufonfonts/Segoe\ UI.ttf")
+  src: url("../src/assets/Fonts/segoe-ui-4-cufonfonts/Segoe\ UI.ttf ")
     format("truetype");
 }
 @font-face {
   font-family: "Bold-Italic";
-  src: url("../public/Fonts/segoe-ui-4-cufonfonts/Segoe\ UI\ Bold\ Italic.ttf")
+  src: url("../src/assets/Fonts/segoe-ui-4-cufonfonts/Segoe\ UI\ Bold\ Italic.ttf")
     format("truetype");
 }
 @font-face {
   font-family: "Bold";
-  src: url("../public/Fonts/segoe-ui-4-cufonfonts/Segoe\ UI\ Bold.ttf")
+  src: url("../src/assets/Fonts/segoe-ui-4-cufonfonts/Segoe\ UI\ Bold.ttf")
     format("truetype");
 }
 @font-face {
   font-family: "Italic";
-  src: url("../public/Fonts/segoe-ui-4-cufonfonts/Segoe\ UI\ Italic.ttf")
+  src: url("../src/assets/Fonts/segoe-ui-4-cufonfonts/Segoe\ UI\ Italic.ttf")
     format("truetype");
 }
 

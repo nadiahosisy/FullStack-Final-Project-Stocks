@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "../../../public/Images/stoc-vector-2.jpg";
+import Image from "../../assets/Images/stoc-vector-2.jpg";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
@@ -7,7 +7,7 @@ export default function Home() {
   const navigate = useNavigate();
 
   const navigateToLogin = () => {
-    navigate("/login"); // Assuming '/login' is the path to your login page
+    navigate("/login");
   };
 
   return (

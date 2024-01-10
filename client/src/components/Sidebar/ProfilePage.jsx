@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 
 import { useAuth } from "../../context/AuthProvider";
-import svgImage from "../../../public/images/profile-user.svg";
+import svgImage from "../../assets/Images/profile-user.svg";
 import { updateUserData } from "../../api/apiServices";
 import Modal from "../Modal/Modal";
 import Sidebar from "./Sidebar";

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import LoginForm from "../Auth/LoginForm";
 import RegistrationForm from "../Auth/RegistrationForm";
-import svgLoginPage from "../../../public/Images/sign-up.svg";
+import svgLoginPage from "../../assets/Images/sign-up.svg";
 import { motion } from "framer-motion";
 
 const Login = () => {

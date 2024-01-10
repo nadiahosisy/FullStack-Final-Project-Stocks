@@ -103,7 +103,6 @@ export const NavBar = () => {
                   sx={{
                     p: 2,
                     color: "black",
-                    fontFamily: "Bold",
                     backgroundColor: "#fff7f6",
                     fontFamily: "Normal",
                   }}

@@ -5,8 +5,8 @@ const Modal = ({ show, message, onClose, iconType }) => {
 
   const iconPath =
     iconType === "success"
-      ? "../../public/icons/check.png"
-      : "../../public/icons/error.png";
+      ? "../src/assets/icons/check.png"
+      : "../src/assets/icons/error.png";
 
   return (
     <div className="modal-overlay">

@@ -18,6 +18,7 @@ const fetchStockData = async (stockSymbol) => {
 const fetchPredictedData = async (stockSymbol) => {
   try {
     const response = await axios.get(`${API_PREDICTIONS}${stockSymbol}`);
+
     return response.data;
   } catch (error) {
     console.error("Error fetching stock data:", error);
