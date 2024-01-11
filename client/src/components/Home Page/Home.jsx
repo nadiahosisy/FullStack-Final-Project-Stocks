@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "../../assets/Images/stoc-vector-2.jpg";
+import Image from "../../assets/Images/undraw.svg";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 

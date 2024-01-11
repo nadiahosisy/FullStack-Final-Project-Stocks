@@ -10,7 +10,7 @@ const About = () => {
       exit={{ opacity: 0, transition: { duration: 0.01 } }}
       style={{
         display: "flex",
-        alignItems: "center", // Corrected property
+        alignItems: "center",
         justifyContent: "center",
         flexDirection: "column",
         fontFamily: "Normal",
@@ -18,8 +18,8 @@ const About = () => {
         padding: "5px",
         textAlign: "center",
         maxWidth: "50%",
-        margin: "0 auto", // Added for horizontal centering
-        height: "100%", // Added for vertical centering, adjust as needed
+        margin: "0 auto",
+        height: "100%",
       }}
     >
       <h1 style={{ fontSize: "2.5rem", marginBottom: "20px", color: "white" }}>

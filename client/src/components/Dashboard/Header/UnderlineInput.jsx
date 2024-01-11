@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import Input from "@mui/joy/Input";
 import Stack from "@mui/joy/Stack";
 import Button from "@mui/material/Button";
-import Spinner from "../../Spinner/Spinner"; // Import your Spinner component
+import Spinner from "../../Spinner/Spinner";
+onent;
 
 export default function UnderlineInput({ onInputChange, onButtonClick }) {
   const [inputValue, setInputValue] = useState("");
-  const [isLoading, setIsLoading] = useState(false); // State to track loading status
+  const [isLoading, setIsLoading] = useState(false);
+  atus;
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -20,7 +22,7 @@ export default function UnderlineInput({ onInputChange, onButtonClick }) {
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
-      setIsLoading(false); // Stop loading
+      setIsLoading(false);
     }
   };
 
@@ -62,7 +64,7 @@ export default function UnderlineInput({ onInputChange, onButtonClick }) {
         style={{ backgroundColor: "#6c63ff" }}
         disabled={isLoading}
       >
-        {isLoading ? <Spinner /> : "Get Data"}{" "}
+        Get Data
       </Button>
     </Stack>
   );
