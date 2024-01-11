@@ -30,8 +30,6 @@ export const getStockCharts = async (req, res) => {
       datesArray.push(formattedDate);
     });
 
-    console.log(closePricesArray);
-
     res.json({
       closePricesArray,
       datesArray,
