@@ -16,10 +16,13 @@ import Sidebar from "../Sidebar/Sidebar";
 const Dashboard = () => {
   const [inputValue, setInputValue] = useState("");
   const [stockName, setstockName] = useState("");
-  const [predictedData, setPredictedData] = useState({
+  const [stockData, setStockData] = useState({
     closePricesArray: [],
     datesArray: [],
     stockInfo: "",
+  });
+
+  const [predictionData, setPredictionData] = useState({
     score: "",
     pros: [],
     cons: [],
@@ -38,38 +41,77 @@ const Dashboard = () => {
     setstockName(value);
   };
 
+  // useEffect(() => {
+  //   fetchData();
+  // }, [stockName]);
+
+  // const fetchData = async () => {
+  //   if (stockName) {
+  //     try {
+  //       const data = await fetchStockData(stockName);
+  //       const predictedData = await fetchPredictedData(stockName);
+  //       console.log(predictedData);
+  //       if (data) {
+  //         setPredictedData({
+  //           closePricesArray: data.closePricesArray || [],
+  //           datesArray: data.datesArray || [],
+  //           score: predictedData.score,
+  //           pros: predictedData.pros,
+  //           cons: predictedData.cons,
+  //           overal: predictedData.overall,
+  //         });
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     }
+  //     const respHistory = await sendStockDataUserHistory(
+  //       stockName,
+  //       userData._id
+  //     );
+
+  //     updateUserData(respHistory.data);
+  //     console.log(respHistory);
+  //   }
+  // };
+
   useEffect(() => {
-    fetchData();
-  }, [stockName]);
-
-  const fetchData = async () => {
-    if (stockName) {
-      try {
-        const data = await fetchStockData(stockName);
-        const predictedData = await fetchPredictedData(stockName);
-        console.log(predictedData);
-        if (data) {
-          setPredictedData({
-            closePricesArray: data.closePricesArray || [],
-            datesArray: data.datesArray || [],
-            score: predictedData.score,
-            pros: predictedData.pros,
-            cons: predictedData.cons,
-            overal: predictedData.overall,
-          });
+    const fetchAndSetStockData = async () => {
+      if (stockName) {
+        try {
+          const data = await fetchStockData(stockName);
+          if (data) {
+            setStockData({
+              closePricesArray: data.closePricesArray || [],
+              datesArray: data.datesArray || [],
+            });
+          }
+        } catch (error) {
+          console.error("Error fetching stock data:", error);
         }
-      } catch (error) {
-        console.error("Error fetching data:", error);
       }
-      const respHistory = await sendStockDataUserHistory(
-        stockName,
-        userData._id
-      );
+    };
 
-      updateUserData(respHistory.data);
-      console.log(respHistory);
-    }
-  };
+    const fetchAndSetPredictionData = async () => {
+      if (stockName) {
+        try {
+          const predictedData = await fetchPredictedData(stockName);
+          if (predictedData) {
+            setPredictionData({
+              score: predictedData.score || "",
+              pros: predictedData.pros || [],
+              cons: predictedData.cons || [],
+              overall: predictedData.overall || "",
+            });
+          }
+        } catch (error) {
+          console.error("Error fetching predicted data:", error);
+        }
+      }
+    };
+
+    fetchAndSetStockData();
+    fetchAndSetPredictionData();
+  }, [stockName]);
 
   return (
     <motion.div
@@ -85,7 +127,8 @@ const Dashboard = () => {
         <Sidebar />
 
         <Body
-          predictedData={predictedData}
+          stockData={stockData}
+          predictionData={predictionData}
           onHistoryButtonClick={handleButtonClickHist}
         />
       </div>

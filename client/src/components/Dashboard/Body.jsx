@@ -17,8 +17,9 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-function Body({ predictedData, onHistoryButtonClick }) {
-  const { closePricesArray, datesArray, score, pros, cons } = predictedData;
+function Body({ stockData, predictionData, onHistoryButtonClick }) {
+  const { closePricesArray, datesArray } = stockData;
+  const { score, pros, cons } = predictionData;
 
   const { userData } = useAuth();
 
@@ -32,7 +33,7 @@ function Body({ predictedData, onHistoryButtonClick }) {
   const data = hasData
     ? datesArray.map((date, index) => ({
         date: date,
-        price: closePricesArray[index],
+        price: parseFloat(closePricesArray[index]),
       }))
     : [];
 
@@ -50,6 +51,15 @@ function Body({ predictedData, onHistoryButtonClick }) {
     if (score >= 65 && score < 75) return "orangeRed";
     return "red";
   };
+
+  // Calculate the min value for graph and max value
+  const tickMax = Math.max(closePricesArray);
+  const tickMin = Math.min(closePricesArray);
+
+  const customTicks = [];
+  for (let i = tickMin; i <= tickMax; i += 1000) {
+    customTicks.push(i);
+  }
 
   return (
     <div>
@@ -109,7 +119,7 @@ function Body({ predictedData, onHistoryButtonClick }) {
               userData.searchedStocks.length > 0 ? (
                 <ul>
                   {[...userData.searchedStocks]
-                    .slice(-4)
+                    .slice(-8)
                     .reverse()
                     .map((stock, index) => (
                       <li className="search-item" key={index}>
@@ -126,10 +136,10 @@ function Body({ predictedData, onHistoryButtonClick }) {
 
         <div className="charts">
           {hasData ? (
-            <ResponsiveContainer width="100%" height="80%">
+            <ResponsiveContainer width="100%" height="90%">
               <LineChart
                 width={400}
-                height={200}
+                height={800}
                 data={data}
                 margin={{
                   top: 5,
@@ -140,16 +150,17 @@ function Body({ predictedData, onHistoryButtonClick }) {
               >
                 <CartesianGrid strokeDasharray="1 10" />
                 <XAxis dataKey="date" />
-                <YAxis tickCount={10} tickFormatter={(value) => `$ ${value}`} />
+                <YAxis domain={[tickMax, tickMin]} ticks={customTicks} />
+
                 <Tooltip formatter={(value) => `$${value}`} />
                 <Legend />
                 <Line
                   type="natural"
                   dataKey="price"
-                  stroke="#6c63ff"
+                  stroke="#3fbdb4"
                   activeDot={{ r: 8 }}
-                  strokeWidth={1}
-                  dot={false}
+                  strokeWidth={2}
+                  dot={true}
                 />
               </LineChart>
             </ResponsiveContainer>

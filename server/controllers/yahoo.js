@@ -6,7 +6,7 @@ export const getStockCharts = async (req, res) => {
 
     const currentDate = new Date();
     const eightMonthsAgo = new Date(
-      currentDate.setMonth(currentDate.getMonth() - 12)
+      currentDate.setMonth(currentDate.getMonth() - 15)
     )
       .toISOString()
       .split("T")[0];

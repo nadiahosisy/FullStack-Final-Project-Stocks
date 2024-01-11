@@ -251,10 +251,21 @@ body {
   flex: 1;
   border-radius: 5px;
   max-width: 40rem;
+  max-height: 22.5rem;
+}
+
+.card::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
+
+.card {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+  overflow-y: auto;
 }
 
 .card:hover {
-  transform: scale(1.008);
+  transform: scale(1.002);
 }
 .main-container-div-balance {
   position: absolute;
@@ -400,7 +411,7 @@ body {
   white-space: nowrap;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  min-width: 25rem;
+  min-width: 10rem;
   text-align: center;
 }
 .pros-header {
