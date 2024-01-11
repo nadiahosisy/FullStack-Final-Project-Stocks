@@ -30,15 +30,6 @@ export const getStockCharts = async (req, res) => {
       datesArray.push(formattedDate);
     });
 
-    //const predicted = await predictPrices(query, closePricesArray, datesArray);
-    //const stockInfoData = await stockInfo(stockName);
-    // const predictionScore = 95;
-
-    // const pros = "Good";
-    // const cons = "Bad ";
-
-    // const recommendation = "I recommend to buy";
-
     console.log(closePricesArray);
 
     res.json({

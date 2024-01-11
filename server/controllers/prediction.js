@@ -35,7 +35,59 @@ export const makePrediction = asyncHandler(async (req, res, next) => {
       modelConfig,
     });
 
-    console.log(response);
+    // Extract the desired information from the AI response
+    // const outputText = aiResponse.data.output;
+    // const scoreRegex = /(\d+) out of 100/;
+    // const scoreMatch = outputText.match(scoreRegex);
+    // const predictionScore = scoreMatch ? scoreMatch[1] : "Not found";
+
+    // console.log(scoreMatch);
+
+    // if (scoreRegex == null) {
+    //   scoreRegex = /(\d+)\//;
+    //   scoreMatch = outputText.match(scoreRegex);
+    //   predictionScore = scoreMatch ? scoreMatch[1] : "Not found";
+    // }
+
+    // // Extract Pros
+    // const prosStart = outputText.indexOf("Pros:\n");
+    // const consStart = outputText.indexOf("Cons:\n");
+
+    // const prosText = outputText
+    //   .substring(
+    //     prosStart + 5,
+    //     consStart || outputText.indexOf(outputText.length - 1)
+    //   )
+    //   .trim();
+    // const pros = prosText
+    //   .split("\n")
+    //   .map((line) => line.trim())
+    //   .filter(
+    //     (line) =>
+    //       line.startsWith("1.") ||
+    //       line.startsWith("*") ||
+    //       parseInt(line.split(".")[0])
+    //   );
+
+    // // Extract Cons and Overall
+    // const overallStart = outputText.indexOf("Overall,");
+    // const consText = outputText.substring(consStart + 5).trim();
+    // const cons = consText
+    //   .split("\n")
+    //   .map((line) => line.trim())
+    //   .filter(
+    //     (line) =>
+    //       line.startsWith("1.") ||
+    //       line.startsWith("*") ||
+    //       parseInt(line.split(".")[0])
+    //   );
+
+    // const overallText = outputText
+    //   .substring(overallStart)
+    //   .split(/[\n:]/)[0]
+    //   .trim();
+
+    // console.log(response);
 
     const score = response.data.predictionScore;
     const pros = response.data.pros;
