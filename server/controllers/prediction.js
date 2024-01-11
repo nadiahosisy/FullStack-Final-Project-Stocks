@@ -35,6 +35,8 @@ export const makePrediction = asyncHandler(async (req, res, next) => {
       modelConfig,
     });
 
+    console.log(response);
+
     const score = response.data.predictionScore;
     const pros = response.data.pros;
     const cons = response.data.cons;
