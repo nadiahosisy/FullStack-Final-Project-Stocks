@@ -247,10 +247,10 @@ body {
   flex-direction: column;
   align-items: center;
   align-content: center;
-  justify-content: space-evenly;
   padding: 8px 8px;
   flex: 1;
   border-radius: 5px;
+  max-width: 40rem;
 }
 
 .card:hover {
@@ -327,7 +327,6 @@ body {
   display: flex;
   align-items: center;
   gap: 1rem;
-  justify-content: space-evenly;
 }
 
 .card-inner > .card_icon {
@@ -361,6 +360,27 @@ body {
   scrollbar-color: #6c63ff white;
 }
 
+.p-prediction-score {
+  font-size: 110px;
+  font-family: Bold;
+}
+
+.p-prediction-score.green {
+  color: green;
+}
+
+.p-prediction-score.orange {
+  color: orange;
+}
+
+.p-prediction-score.orangeRed {
+  color: darkorange;
+}
+
+.p-prediction-score.red {
+  color: red;
+}
+
 .search-scroll-list::-webkit-scrollbar {
   height: 8px;
 }
@@ -380,7 +400,7 @@ body {
   white-space: nowrap;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  min-width: 80px;
+  min-width: 25rem;
   text-align: center;
 }
 .pros-header {
@@ -390,10 +410,10 @@ body {
   padding: 5px 10px;
   border-radius: 20px;
   font-size: 1rem;
-  white-space: nowrap;
+  white-space: wrap;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  min-width: 80px;
+  max-width: 35rem;
   text-align: center;
 }
 .cons-header {
@@ -403,10 +423,10 @@ body {
   padding: 5px 10px;
   border-radius: 20px;
   font-size: 1rem;
-  white-space: nowrap;
+  white-space: wrap;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  min-width: 80px;
+  max-width: 35rem;
   text-align: center;
 }
 

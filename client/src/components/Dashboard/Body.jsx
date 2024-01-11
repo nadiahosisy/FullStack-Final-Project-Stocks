@@ -44,6 +44,13 @@ function Body({ predictedData, onHistoryButtonClick }) {
     }
   };
 
+  const getScoreColor = (score) => {
+    if (score >= 85) return "green";
+    if (score >= 75 && score < 85) return "orange";
+    if (score >= 65 && score < 75) return "orangeRed";
+    return "red";
+  };
+
   return (
     <React.Fragment>
       <div>
@@ -59,7 +66,9 @@ function Body({ predictedData, onHistoryButtonClick }) {
                 <h3>Prediction Score</h3>
                 <BsFillArchiveFill className="card_icon" />
               </div>
-              <h1>{score}</h1>
+              <p className={`p-prediction-score ${getScoreColor(score)}`}>
+                {score}
+              </p>
             </div>
 
             <div className="card">
@@ -144,7 +153,6 @@ function Body({ predictedData, onHistoryButtonClick }) {
                     stroke="#6c63ff"
                     activeDot={{ r: 8 }}
                     strokeWidth={1}
-                    animationDuration={"7s"}
                     dot={false}
                   />
                 </LineChart>
