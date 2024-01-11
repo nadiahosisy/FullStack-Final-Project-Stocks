@@ -5,14 +5,14 @@ export const getStockCharts = async (req, res) => {
     const stockName = req.params.yahooStock;
 
     const currentDate = new Date();
-    const eightMonthsAgo = new Date(
+    const yearAndHalfAgo = new Date(
       currentDate.setMonth(currentDate.getMonth() - 15)
     )
       .toISOString()
       .split("T")[0];
 
     const queryOptions = {
-      period1: eightMonthsAgo,
+      period1: yearAndHalfAgo,
       period2: new Date().toISOString().split("T")[0],
     };
     const resultFromYahoo = await yahooFinance.chart(stockName, queryOptions);
