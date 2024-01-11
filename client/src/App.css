@@ -894,11 +894,47 @@ body {
 
 .home-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  max-height: 530px;
-  align-content: center;
   align-items: center;
+  align-content: center;
+  max-height: 550px;
   padding: 20px;
+  text-align: center;
+  background: linear-gradient(
+    135deg,
+    rgba(6, 11, 41, 0.8),
+    rgba(30, 39, 89, 0.8)
+  );
+  background-size: 200% 200%;
+  animation: gradientShift 10s ease infinite;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.home-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: url("path/to/your/stock-related-pattern.png") no-repeat center
+    center;
+  background-size: cover;
+  opacity: 0.1;
+}
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .content-wrapper {
@@ -934,19 +970,21 @@ body {
 
 .pargraph-home-page {
   text-align: justify;
-  width: 500px;
+  width: 550px;
   hyphens: auto;
   font-size: 20px;
-
+  color: #dcdcdc;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin: 0 auto 20px;
   font-family: Normal;
-  color: #ffff;
   margin: 1em 0;
   overflow-wrap: break-word;
 }
 
 .highlight {
-  color: hsla(261, 51%, 50%, 1);
-  font-family: Normal;
+  color: #4fd1c5;
+  font-family: "Bold", sans-serif;
 }
 
 .header-home-page {
@@ -966,6 +1004,25 @@ body {
   align-content: center;
 }
 
+.feature-section {
+  color: #fff;
+  text-align: left;
+}
+
+.feature-section h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.feature-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.feature-section li {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
 .login-button-home {
   box-align: center;
   align-items: center;
@@ -981,7 +1038,11 @@ body {
   text-transform: uppercase;
   min-height: 2.45rem;
   width: 40%;
-  background-color: hsla(261, 51%, 50%, 1);
+  background-color: #3fbdb4;
+}
+
+.login-button-home:hover {
+  transform: scale(1.05);
 }
 
 @media screen and (max-width: 1024px) {
