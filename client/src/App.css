@@ -303,8 +303,9 @@ body {
 }
 
 .card:first-child {
-  background-color: #6c63ff;
-  color: white;
+  background: linear-gradient(-45deg, #e6e6e6, #a0daa9);
+  animation: gradient 15s ease infinite;
+  color: black;
   font-family: Normal;
   width: 80%;
   font-size: 22px;
@@ -324,12 +325,15 @@ body {
 
 .card:nth-child(4) {
   background-color: #e6e6e6;
+  background: linear-gradient(-35deg, #6c63ff, #e6e6e6);
+  animation: gradient 15s ease infinite;
   color: black;
   font-family: Normal;
 }
 .card:nth-child(5) {
   color: white;
   font-family: Normal;
+
   background-color: #6c63ff;
 }
 /* Balance */

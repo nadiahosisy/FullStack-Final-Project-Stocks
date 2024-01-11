@@ -88,6 +88,14 @@ const Dashboard = () => {
         } catch (error) {
           console.error("Error fetching stock data:", error);
         }
+
+        const respHistory = await sendStockDataUserHistory(
+          stockName,
+          userData._id
+        );
+
+        updateUserData(respHistory.data);
+        console.log(respHistory);
       }
     };
 
