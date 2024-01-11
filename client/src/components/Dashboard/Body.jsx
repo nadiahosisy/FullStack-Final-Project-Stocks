@@ -45,14 +45,32 @@ function Body({ stockData, predictionData, onHistoryButtonClick }) {
     }
   };
 
-  const getScoreColor = (score) => {
-    if (score >= 85) return "green";
-    if (score >= 75 && score < 85) return "orange";
-    if (score >= 65 && score < 75) return "orangeRed";
-    return "red";
+  const getScoreStyles = (score) => {
+    if (score >= 85) {
+      return {
+        color: "green",
+        background: "linear-gradient(-45deg, #e6e6e6, #a0daa9)",
+      };
+    }
+    if (score >= 75 && score < 85) {
+      return {
+        color: "orange",
+        background: "linear-gradient(-45deg, #e6e6e6, #f0b267)",
+      };
+    }
+    if (score >= 65 && score < 75) {
+      return {
+        color: "orangeRed",
+        background: "linear-gradient(-45deg, #e6e6e6, #f28567)",
+      };
+    }
+    return {
+      color: "red",
+      background: "linear-gradient(-45deg, #e6e6e6, #f26767)",
+    };
   };
+  const scoreStyles = getScoreStyles(score);
 
-  // Calculate the min value for graph and max value
   const tickMax = Math.max(closePricesArray);
   const tickMin = Math.min(closePricesArray);
 
@@ -70,12 +88,15 @@ function Body({ stockData, predictionData, onHistoryButtonClick }) {
 
         <div className="main-cards">
           {/* Other Cards */}
-          <div className="card">
+          <div className="card" style={{ background: scoreStyles.background }}>
             <div className="card-inner">
               <h3>Prediction Score</h3>
               <BsFillArchiveFill className="card_icon" />
             </div>
-            <p className={`p-prediction-score ${getScoreColor(score)}`}>
+            <p
+              className={`p-prediction-score`}
+              style={{ color: scoreStyles.color }}
+            >
               {score}
             </p>
           </div>
@@ -119,10 +140,14 @@ function Body({ stockData, predictionData, onHistoryButtonClick }) {
               userData.searchedStocks.length > 0 ? (
                 <ul>
                   {[...userData.searchedStocks]
-                    .slice(-8)
+                    .slice(-50)
                     .reverse()
                     .map((stock, index) => (
-                      <li className="search-item" key={index}>
+                      <li
+                        className="search-item"
+                        key={index}
+                        onClick={() => handleGetStockData(stock)}
+                      >
                         {stock}
                       </li>
                     ))}
