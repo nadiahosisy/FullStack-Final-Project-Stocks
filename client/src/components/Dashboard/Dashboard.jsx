@@ -57,7 +57,7 @@ const Dashboard = () => {
         } catch (error) {
           console.error("Error fetching stock data:", error);
         } finally {
-          setTimeout(() => setIsLoading(false), 5000);
+          setTimeout(() => setIsLoading(false), 4000);
         }
 
         const respHistory = await sendStockDataUserHistory(
