@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuth } from "../../context/AuthProvider";
+import { sendStockDataUserHistory } from "../../api/apiServices";
 import {
   BsFillArchiveFill,
   BsSearch,
@@ -20,8 +21,7 @@ import {
 function Body({ stockData, predictionData, onHistoryButtonClick }) {
   const { closePricesArray, datesArray } = stockData;
   const { score, pros, cons } = predictionData;
-
-  const { userData } = useAuth();
+  const { userData, updateUserData } = useAuth();
 
   // Check if there is data
   const hasData =
@@ -45,32 +45,15 @@ function Body({ stockData, predictionData, onHistoryButtonClick }) {
     }
   };
 
-  const getScoreStyles = (score) => {
-    if (score >= 85) {
-      return {
-        color: "green",
-        background: "linear-gradient(-45deg, #e6e6e6, #a0daa9)",
-      };
-    }
-    if (score >= 75 && score < 85) {
-      return {
-        color: "orange",
-        background: "linear-gradient(-45deg, #e6e6e6, #f0b267)",
-      };
-    }
-    if (score >= 65 && score < 75) {
-      return {
-        color: "orangeRed",
-        background: "linear-gradient(-45deg, #e6e6e6, #f28567)",
-      };
-    }
-    return {
-      color: "red",
-      background: "linear-gradient(-45deg, #e6e6e6, #f26767)",
-    };
+  const getScoreColor = (score) => {
+    if (score >= 90) return "green";
+    if (score >= 85 && score < 90) return "yellow";
+    if (score >= 75 && score < 85) return "orange";
+    if (score >= 65 && score < 75) return "orangeRed";
+    return "red";
   };
-  const scoreStyles = getScoreStyles(score);
 
+  // Calculate the min value for graph and max value
   const tickMax = Math.max(closePricesArray);
   const tickMin = Math.min(closePricesArray);
 
@@ -78,6 +61,14 @@ function Body({ stockData, predictionData, onHistoryButtonClick }) {
   for (let i = tickMin; i <= tickMax; i += 1000) {
     customTicks.push(i);
   }
+  const handleDeleteHistory = async () => {
+    const deletHistResp = await sendStockDataUserHistory(
+      "delete",
+      userData._id
+    );
+    updateUserData(deletHistResp.data);
+    console.log(deletHistResp);
+  };
 
   return (
     <div>
@@ -88,15 +79,12 @@ function Body({ stockData, predictionData, onHistoryButtonClick }) {
 
         <div className="main-cards">
           {/* Other Cards */}
-          <div className="card" style={{ background: scoreStyles.background }}>
+          <div className={`card ${getScoreColor(score)}`}>
             <div className="card-inner">
               <h3>Prediction Score</h3>
               <BsFillArchiveFill className="card_icon" />
             </div>
-            <p
-              className={`p-prediction-score`}
-              style={{ color: scoreStyles.color }}
-            >
+            <p className={`p-prediction-score ${getScoreColor(score)}`}>
               {score}
             </p>
           </div>
@@ -130,17 +118,25 @@ function Body({ stockData, predictionData, onHistoryButtonClick }) {
           </div>
 
           <div className="card">
-            <div className="card-inner">
-              <h3>Recent Searches</h3>
-              <BsSearch className="card_icon" />
+            <div className="card-inner-div">
+              <div className="card-inner-first">
+                <h3>Recent Searches</h3>
+                <BsSearch className="card_icon" />
+              </div>
+              <div className="main-div-btn-clear">
+                <button className="clear-btn" onClick={handleDeleteHistory}>
+                  <span className="clear-btn-span">Clear</span>
+                </button>
+              </div>
             </div>
+
             <div className="card-content">
               {userData &&
               userData.searchedStocks &&
               userData.searchedStocks.length > 0 ? (
                 <ul>
                   {[...userData.searchedStocks]
-                    .slice(-50)
+                    .slice(-15)
                     .reverse()
                     .map((stock, index) => (
                       <li

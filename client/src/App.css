@@ -303,10 +303,8 @@ body {
 }
 
 .card:first-child {
-  background: linear-gradient(-45deg, #e6e6e6, #a0daa9);
-  animation: gradient 15s ease infinite;
-  color: black;
   font-family: Normal;
+  background-size: 200% 100%;
   width: 80%;
   font-size: 22px;
 }
@@ -328,6 +326,7 @@ body {
   background: linear-gradient(-70deg, #6c63ff, #e6e6e6);
   animation: gradient 15s ease infinite;
   color: black;
+  background-size: 300% 300%;
   font-family: Normal;
 }
 .card:nth-child(5) {
@@ -338,9 +337,32 @@ body {
 }
 /* Balance */
 
+.card-inner-first {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.5rem;
+}
+
+.card-inner-div {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 2rem;
+  width: 80%;
+  color: black;
+  padding-left: 5rem;
+  gap: 1rem;
+}
 .card-inner {
   display: flex;
   align-items: center;
+  flex-direction: row;
+  color: black;
   gap: 1rem;
 }
 
@@ -390,17 +412,48 @@ body {
 .p-prediction-score.green {
   color: green;
 }
+.card.green {
+  background: linear-gradient(-45deg, #e6e6e6, #a0daa9);
+  animation: gradient 15s ease infinite;
+  background-size: 300% 300%;
+}
+
+.card.yellow {
+  background: linear-gradient(-45deg, #e6e6e6, #f9f871);
+  animation: gradient 15s ease infinite;
+  background-size: 300% 300%;
+}
+
+.p-prediction-score.yellow {
+  color: rgb(173, 173, 55);
+}
 
 .p-prediction-score.orange {
   color: orange;
+}
+.card.orange {
+  background: linear-gradient(-45deg, #e6e6e6, #f0b267);
+  animation: gradient 15s ease infinite;
+  background-size: 300% 300%;
 }
 
 .p-prediction-score.orangeRed {
   color: darkorange;
 }
+.card.orangeRed {
+  background: linear-gradient(-45deg, #e6e6e6, #f28567);
+  animation: gradient 15s ease infinite;
+  background-size: 300% 300%;
+}
 
 .p-prediction-score.red {
   color: red;
+}
+
+.card.red {
+  background: linear-gradient(-45deg, #e6e6e6, #f26767);
+  animation: gradient 15s ease infinite;
+  background-size: 300% 300%;
 }
 
 .search-scroll-list::-webkit-scrollbar {
@@ -410,6 +463,30 @@ body {
 .search-scroll-list::-webkit-scrollbar-thumb {
   background-color: #6c63ff;
   border-radius: 10px;
+}
+.main-div-btn-clear {
+  display: flex;
+  align-items: flex-end;
+  justify-content: end;
+  align-content: end;
+}
+.clear-btn {
+  border: 0px;
+  cursor: pointer;
+  background-size: 300% 300%;
+  background: linear-gradient(-70deg, #6c63ff, #e6e6e6);
+  animation: gradient 15s ease infinite;
+  border-radius: 0.375rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  min-height: 1.65rem;
+  background-color: #6c63ff;
+}
+.clear-btn-span {
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: Bold;
+  color: black;
 }
 
 .search-item {

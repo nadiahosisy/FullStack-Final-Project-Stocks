@@ -15,9 +15,14 @@ export const updateUserStockHistory = asyncHandler(async (req, res, next) => {
     if (!user) {
       return next(new ErrorResponse(`No user with the id of ${userId}`, 404));
     }
-
-    user.searchedStocks.push(stockData);
-    await user.save();
+    if (stockData === "delete") {
+      console.log(stockData);
+      user.searchedStocks = [];
+      await user.save();
+    } else {
+      user.searchedStocks.push(stockData);
+      await user.save();
+    }
 
     res.status(200).json({
       success: true,

@@ -39,6 +39,7 @@ const sendStockDataUserHistory = async (stockSymbol, userId) => {
     const payload = {
       stockSymbol: stockSymbol,
     };
+    console.log(stockSymbol, "Api");
 
     const response = await axios.put(
       `${API_STOCK_USER_HISTORY}${userId}`,
