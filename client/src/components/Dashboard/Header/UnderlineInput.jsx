@@ -61,7 +61,6 @@ export default function UnderlineInput({ onInputChange, onButtonClick }) {
         style={{ backgroundColor: "#6c63ff" }}
         disabled={isLoading}
       >
-        {/* {isLoading ? <Spinner /> : "Get Data"}{" "} */}
         Get Data
       </Button>
     </Stack>

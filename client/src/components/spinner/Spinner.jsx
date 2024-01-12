@@ -11,7 +11,7 @@ const Spinner = () => {
         height: "100%",
       }}
     >
-      <CircularProgress />
+      <CircularProgress size={50} style={{ color: "rgb(30, 39, 89" }} />{" "}
     </div>
   );
 };

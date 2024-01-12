@@ -16,6 +16,7 @@ import Sidebar from "../Sidebar/Sidebar";
 const Dashboard = () => {
   const [inputValue, setInputValue] = useState("");
   const [stockName, setstockName] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [stockData, setStockData] = useState({
     closePricesArray: [],
     datesArray: [],
@@ -41,42 +42,10 @@ const Dashboard = () => {
     setstockName(value);
   };
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, [stockName]);
-
-  // const fetchData = async () => {
-  //   if (stockName) {
-  //     try {
-  //       const data = await fetchStockData(stockName);
-  //       const predictedData = await fetchPredictedData(stockName);
-  //       console.log(predictedData);
-  //       if (data) {
-  //         setPredictedData({
-  //           closePricesArray: data.closePricesArray || [],
-  //           datesArray: data.datesArray || [],
-  //           score: predictedData.score,
-  //           pros: predictedData.pros,
-  //           cons: predictedData.cons,
-  //           overal: predictedData.overall,
-  //         });
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //     }
-  //     const respHistory = await sendStockDataUserHistory(
-  //       stockName,
-  //       userData._id
-  //     );
-
-  //     updateUserData(respHistory.data);
-  //     console.log(respHistory);
-  //   }
-  // };
-
   useEffect(() => {
     const fetchAndSetStockData = async () => {
       if (stockName) {
+        setIsLoading(true);
         try {
           const data = await fetchStockData(stockName);
           if (data) {
@@ -87,6 +56,8 @@ const Dashboard = () => {
           }
         } catch (error) {
           console.error("Error fetching stock data:", error);
+        } finally {
+          setTimeout(() => setIsLoading(false), 5000);
         }
 
         const respHistory = await sendStockDataUserHistory(
@@ -138,6 +109,7 @@ const Dashboard = () => {
           stockData={stockData}
           predictionData={predictionData}
           onHistoryButtonClick={handleButtonClickHist}
+          isLoading={isLoading}
         />
       </div>
     </motion.div>

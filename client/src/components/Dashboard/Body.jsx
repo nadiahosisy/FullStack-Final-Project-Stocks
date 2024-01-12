@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuth } from "../../context/AuthProvider";
 import { sendStockDataUserHistory } from "../../api/apiServices";
+import Spinner from "../spinner/Spinner";
 import {
   BsFillArchiveFill,
   BsSearch,
@@ -18,7 +19,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-function Body({ stockData, predictionData, onHistoryButtonClick }) {
+function Body({ stockData, predictionData, onHistoryButtonClick, isLoading }) {
   const { closePricesArray, datesArray } = stockData;
   const { score, pros, cons } = predictionData;
   const { userData, updateUserData } = useAuth();
@@ -78,43 +79,60 @@ function Body({ stockData, predictionData, onHistoryButtonClick }) {
         </div>
 
         <div className="main-cards">
-          {/* Other Cards */}
           <div className={`card ${getScoreColor(score)}`}>
-            <div className="card-inner">
-              <h3>Prediction Score</h3>
-              <BsFillArchiveFill className="card_icon" />
-            </div>
-            <p className={`p-prediction-score ${getScoreColor(score)}`}>
-              {score}
-            </p>
+            {isLoading ? (
+              <Spinner />
+            ) : (
+              <div>
+                <div className="card-inner">
+                  <h3>Prediction Score</h3>
+                  <BsFillArchiveFill className="card_icon" />
+                </div>
+                <p className={`p-prediction-score ${getScoreColor(score)}`}>
+                  {score}
+                </p>
+              </div>
+            )}
           </div>
 
           <div className="card">
-            <div className="card-inner">
-              <h3>Pros</h3>
-              <BsHandThumbsUp className="card_icon" color="green" />
-            </div>
-            <div className="pros-list">
-              {pros.map((pro, index) => (
-                <p key={index} className="pros-header">
-                  {pro}
-                </p>
-              ))}
-            </div>
+            {isLoading ? (
+              <Spinner />
+            ) : (
+              <div>
+                <div className="card-inner">
+                  <h3>Pros</h3>
+                  <BsHandThumbsUp className="card_icon" color="green" />
+                </div>
+                <div className="pros-list">
+                  {pros.map((pro, index) => (
+                    <p key={index} className="pros-header">
+                      {pro}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="card">
-            <div className="card-inner">
-              <h3>Cons</h3>
-              <BsHandThumbsDown className="card_icon" color="red" />
-            </div>
-            <div className="cons-list">
-              {cons.map((con, index) => (
-                <p key={index} className="cons-header">
-                  {con}
-                </p>
-              ))}
-            </div>
+            {isLoading ? (
+              <Spinner />
+            ) : (
+              <div>
+                <div className="card-inner">
+                  <h3>Cons</h3>
+                  <BsHandThumbsDown className="card_icon" color="red" />
+                </div>
+                <div className="cons-list">
+                  {cons.map((con, index) => (
+                    <p key={index} className="cons-header">
+                      {con}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="card">
