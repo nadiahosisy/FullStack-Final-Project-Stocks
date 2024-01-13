@@ -9,36 +9,16 @@ const url = "https://cooperative-gabardine-bass.cyclic.app/analyzeStock";
 export const makePrediction = asyncHandler(async (req, res, next) => {
   const stockName = req.params.stockName;
 
-  const systemMessage = `
-  You are an AI expert in stock analysis. Analyze the current financial data to rate the stock on a scale from 1 to 100, where 1 indicates a potential decrease in price, and 100 indicates a potential increase. 
-  
-  Your response should:
-  - Provide the prediction score, example : (number out of number)
-  - Clearly list the top 3 pros (advantages) and top 3 cons (disadvantages) that influenced your rating.
-  - Provide a concise, one-sentence explanation of your overall reasoning.
-  "Please analyze Stock and provide a structured response outlining the top three pros and cons.
-
-  List the pros as:
-  Pros:
-  1: [Brief Description]
-  2: [Brief Description]
-  3: [Brief Description]
-
-  List the cons as:
-  Cons: 
-  1: [Brief Description]
-  2: [Brief Description]
-  3: [Brief Description]
-  Your detailed analysis is appreciated for a balanced understanding of Stock Market."
-  `;
+  const systemMessage =
+    "You are stock AI Expert, analyze the info about the stock, try to predict if to buy or not to buy by giving sore (number out of number) from 1 to 100, give 3 pros and 3 cons";
 
   const modelConfig = {
-    max_new_tokens: 30000,
+    max_new_tokens: 20000,
     temperature: 0.7,
     top_k: 50,
     top_p: 0.7,
     repetition_penalty: 1.2,
-    batch_size: 100,
+    batch_size: 50,
   };
 
   console.log(stockName);
