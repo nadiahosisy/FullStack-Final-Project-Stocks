@@ -51,7 +51,11 @@ function Body({ stockData, predictionData, onHistoryButtonClick, isLoading }) {
     if (score >= 85 && score < 90) return "yellow";
     if (score >= 75 && score < 85) return "orange";
     if (score >= 65 && score < 75) return "orangeRed";
-    return "red";
+    if (score >= 1 && score < 65) {
+      return "red";
+    } else {
+      return "white";
+    }
   };
 
   // Calculate the min value for graph and max value
@@ -88,9 +92,11 @@ function Body({ stockData, predictionData, onHistoryButtonClick, isLoading }) {
                   <h3>Prediction Score</h3>
                   <BsFillArchiveFill className="card_icon" />
                 </div>
-                <p className={`p-prediction-score ${getScoreColor(score)}`}>
-                  {score}
-                </p>
+                <div className="card-inner-div-p-score">
+                  <p className={`p-prediction-score ${getScoreColor(score)}`}>
+                    {score}
+                  </p>
+                </div>
               </div>
             )}
           </div>
