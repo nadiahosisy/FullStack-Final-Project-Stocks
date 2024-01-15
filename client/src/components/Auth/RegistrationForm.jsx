@@ -66,7 +66,7 @@ const RegistrationForm = ({ onToggle }) => {
   return (
     <div className="main-div-register">
       <ShowChartRoundedIcon
-        style={{ color: "#6c63ff", fontSize: 30, marginLeft: "10px" }}
+        style={{ color: "#4FD1C5", fontSize: 30, marginLeft: "10px" }}
       />{" "}
       <h2 className="register-header">Create your account</h2>
       <form className="register-form" onSubmit={handleSubmit}>

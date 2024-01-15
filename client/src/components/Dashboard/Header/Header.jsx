@@ -37,9 +37,26 @@ function Header({ OpenSidebar, onInputChangeDashboard, onButtonClick }) {
       <div className="balance-display">
         <div className="balance-div">
           <h3>Balance</h3>
+          <h3 className="balance-amount">1000$</h3>
         </div>
-        {/* <h1 className="balance-amount">{userBalance}$</h1> */}
-        <h3 className="balance-amount">500$</h3>
+
+        {/* <div className="stock-purchase">
+          <select
+            id="stockPercentage"
+            name="stockPercentage"
+            className="select-percentage"
+            // onChange={handleStockPurchase}
+          >
+            <option className="option" value="0">
+              Select Percentage
+            </option>
+            <option value="10">10%</option>
+            <option value="20">20%</option>
+            <option value="30">30%</option>
+            <option value="40">40%</option>
+            <option value="50">50%</option>
+          </select>
+        </div> */}
       </div>
     </header>
   );

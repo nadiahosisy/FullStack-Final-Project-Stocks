@@ -1,7 +1,9 @@
-import React from "react";
+import { React, useState } from "react";
 import { useAuth } from "../../context/AuthProvider";
 import { sendStockDataUserHistory } from "../../api/apiServices";
 import Spinner from "../spinner/Spinner";
+import buyVideo from "../../assets/Icons/buy.png";
+import BalanceModal from "../Modal/Balance-Modal";
 import {
   BsFillArchiveFill,
   BsSearch,
@@ -19,10 +21,18 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-function Body({ stockData, predictionData, onHistoryButtonClick, isLoading }) {
+function Body({
+  stockData,
+  predictionData,
+  onHistoryButtonClick,
+  isLoading,
+  currentStockName,
+}) {
   const { closePricesArray, datesArray } = stockData;
   const { score, pros, cons } = predictionData;
   const { userData, updateUserData } = useAuth();
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [modalContent, setModalContent] = useState("");
 
   // Check if there is data
   const hasData =
@@ -75,11 +85,38 @@ function Body({ stockData, predictionData, onHistoryButtonClick, isLoading }) {
     console.log(deletHistResp);
   };
 
+  const handleBuyClick = () => {
+    const modalMessage = `Stock: ${currentStockName}\nBalance: $1000`;
+    setModalContent(modalMessage);
+    setIsModalVisible(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalVisible(false);
+  };
+  const handleBuyAction = () => {
+    console.log("Buy logic executed");
+  };
+
   return (
     <div>
       <main className="main-container">
         <div className="main-title">
           <h3>Stock Data</h3>
+          <div className="stock-name-main-div">
+            {currentStockName ? (
+              <div className="stock-name-center">
+                <h3>{currentStockName}</h3>
+                <button className="buy-button" onClick={handleBuyClick}>
+                  <img src={buyVideo} alt="Buy" className="buy-icon" />
+                </button>
+              </div>
+            ) : (
+              <div className="stock-name-div">
+                <h3 className="header-selected">No Stock Selected...</h3>
+              </div>
+            )}
+          </div>
         </div>
 
         <div className="main-cards">
@@ -183,20 +220,27 @@ function Body({ stockData, predictionData, onHistoryButtonClick, isLoading }) {
           {hasData ? (
             <ResponsiveContainer width="100%" height="90%">
               <LineChart
-                width={400}
-                height={800}
                 data={data}
                 margin={{
                   top: 5,
-                  right: 20,
+                  right: 30,
                   left: 20,
-                  bottom: 5,
+                  bottom: 20,
                 }}
               >
                 <CartesianGrid strokeDasharray="1 10" />
-                <XAxis dataKey="date" />
-                <YAxis domain={[tickMax, tickMin]} ticks={customTicks} />
-
+                <XAxis
+                  dataKey="date"
+                  angle={-45}
+                  textAnchor="end"
+                  tick={{ fill: "#3fbdb4" }}
+                />
+                <YAxis
+                  domain={[tickMax, tickMin]}
+                  ticks={customTicks}
+                  tick={{ fill: "gold" }}
+                  tickFormatter={(value) => `$${value}`}
+                />
                 <Tooltip formatter={(value) => `$${value}`} />
                 <Legend />
                 <Line
@@ -213,6 +257,14 @@ function Body({ stockData, predictionData, onHistoryButtonClick, isLoading }) {
             <p>No data available to display the chart.</p>
           )}
         </div>
+        <BalanceModal
+          show={isModalVisible}
+          message={modalContent}
+          onClose={handleCloseModal}
+          onBuy={handleBuyAction}
+          stockName={currentStockName}
+          balance={1000}
+        />
       </main>
     </div>
   );

@@ -110,6 +110,7 @@ const Dashboard = () => {
           predictionData={predictionData}
           onHistoryButtonClick={handleButtonClickHist}
           isLoading={isLoading}
+          currentStockName={stockName}
         />
       </div>
     </motion.div>

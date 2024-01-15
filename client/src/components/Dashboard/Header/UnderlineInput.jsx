@@ -58,7 +58,7 @@ export default function UnderlineInput({ onInputChange, onButtonClick }) {
       <Button
         variant="contained"
         onClick={handleButtonClick}
-        style={{ backgroundColor: "#6c63ff" }}
+        style={{ backgroundColor: "#3fbdb4" }}
         disabled={isLoading}
       >
         Get Data

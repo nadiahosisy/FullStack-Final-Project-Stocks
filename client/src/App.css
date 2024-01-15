@@ -82,8 +82,7 @@ body {
   padding: 0;
   color: #9e9ea4;
   font-family: "Normal";
-  background: linear-gradient(-45deg, rgb(6, 11, 41), rgb(30, 39, 89));
-
+  background: linear-gradient(-45deg, rgb(6, 11, 41), rgb(27, 35, 81));
   height: 100vh;
   width: 100vw;
   overflow: hidden;
@@ -229,8 +228,52 @@ body {
 
 .main-title {
   display: flex;
+  gap: 40rem;
   padding-left: 1.5rem;
-  justify-content: space-between;
+}
+
+.stock-name-main-div {
+  max-width: 60rem;
+  text-align: center;
+}
+.header-selected {
+  border: none;
+  min-width: 0;
+  outline: 0;
+  padding: 0;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  color: inherit;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  text-overflow: ellipsis;
+}
+.stock-name-center {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 100%;
+  align-content: center;
+  padding: 5px;
+  background: linear-gradient(-45deg, rgb(6, 11, 41), rgb(30, 39, 89));
+  box-shadow: rgb(39, 44, 72) 1px 0px 0px;
+  border-radius: 10px;
+}
+
+.stock-name-center h3 {
+  margin: 0;
+  font-size: 1.5em;
+  font-family: Normal;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .main-cards {
@@ -284,6 +327,7 @@ body {
   background-color: rgba(40, 45, 71, 0.01);
   color: white;
   font-family: Normal;
+  justify-content: space-between;
   border-radius: 5px;
   align-items: center;
   gap: 15px;
@@ -291,11 +335,12 @@ body {
 }
 
 .balance-icon {
-  font-size: 1.5rem; /* Icon size */
+  font-size: 1.5rem;
 }
 
 .balance-amount {
-  color: #ffd700; /* Gold color */
+  gap: 50px;
+  color: #ffd700;
 }
 .balance-div {
   display: flex;
@@ -304,6 +349,52 @@ body {
   font-family: Normal;
   gap: 1rem;
   flex-direction: row;
+}
+
+.stock-purchase {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.buy-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.buy-icon:hover {
+  opacity: 0.9;
+}
+.buy-icon {
+  height: 35px;
+  width: 35px;
+}
+
+.select-percentage {
+  color: #000;
+  font-family: "Normal";
+  padding: 5px 5px;
+  font-size: 14px;
+  font-weight: bold;
+  background: linear-gradient(-70deg, #ffd700, #e6e6e6);
+  animation: gradient 15s ease infinite;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.select-percentage .option {
+  background-color: #cccbc6;
+  color: #000;
+}
+.select-percentage .option:checked {
+  color: #ffd700;
+  color: #000;
 }
 
 .card:first-child {
@@ -328,7 +419,7 @@ body {
 
 .card:nth-child(4) {
   background-color: #e6e6e6;
-  background: linear-gradient(-70deg, #6c63ff, #e6e6e6);
+  background: linear-gradient(-70deg, #3fbdb4, #e6e6e6);
   animation: gradient 15s ease infinite;
   color: black;
   background-size: 300% 300%;
@@ -402,6 +493,19 @@ body {
   margin-top: 60px;
   height: 300px;
 }
+
+.recharts-default-legend {
+  padding: 0px;
+  margin: 0px;
+
+  text-align: start !important;
+}
+.recharts-legend-wrapper {
+  bottom: 28px !important;
+}
+.recharts-cartesian-axis-ticks {
+  color: #3fbdb4 !important ;
+}
 .search-scroll-list {
   display: flex;
   flex-direction: column;
@@ -409,7 +513,7 @@ body {
   gap: 0.2rem;
   padding: 10px 0;
   scrollbar-width: thin;
-  scrollbar-color: #6c63ff white;
+  scrollbar-color: #3fbdb4 white;
 }
 
 .card-inner-div-p-score {
@@ -501,7 +605,7 @@ body {
 }
 
 .search-scroll-list::-webkit-scrollbar-thumb {
-  background-color: #6c63ff;
+  background-color: #3fbdb4;
   border-radius: 10px;
 }
 .main-div-btn-clear {
@@ -514,13 +618,13 @@ body {
   border: 0px;
   cursor: pointer;
   background-size: 300% 300%;
-  background: linear-gradient(-70deg, #6c63ff, #e6e6e6);
+  background: linear-gradient(-70deg, #3fbdb4, #e6e6e6);
   animation: gradient 15s ease infinite;
   border-radius: 0.375rem;
   letter-spacing: 0.5px;
   text-transform: uppercase;
   min-height: 1.65rem;
-  background-color: #6c63ff;
+  background-color: #3fbdb4;
 }
 .clear-btn-span {
   font-weight: 600;
@@ -530,7 +634,7 @@ body {
 }
 
 .search-item {
-  background-color: #6c63ff;
+  background-color: #3fbdb4;
   color: white;
   padding-top: 20px;
   padding: 5px 10px;
@@ -630,7 +734,7 @@ body {
   max-width: 30rem;
 }
 .login-img {
-  width: 100%;
+  width: 35rem;
 }
 
 .main-div-login {
@@ -718,7 +822,7 @@ body {
   transition: border-color 0.3s, outline-color 0.3s;
 
   &:focus {
-    border-color: #6c63ff;
+    border-color: #4fd1c5;
   }
 }
 
@@ -750,7 +854,7 @@ body {
   transition: border-color 0.3s, outline-color 0.3s;
 
   &:focus {
-    border-color: #6c63ff;
+    border-color: #4fd1c5;
   }
 }
 
@@ -769,7 +873,7 @@ body {
   text-transform: uppercase;
   min-height: 2.25rem;
   width: 100%;
-  background-color: #6c63ff;
+  background-color: #4fd1c5;
 }
 
 .register-pargraph {
@@ -796,7 +900,7 @@ body {
   text-transform: uppercase;
   min-height: 2.25rem;
   width: 27%;
-  background-color: #6c63ff;
+  background-color: #4fd1c5;
 }
 
 /* Modal.css */
@@ -981,7 +1085,7 @@ body {
   transition: border-color 0.3s, outline-color 0.3s;
 
   &:focus {
-    border-color: #6c63ff;
+    border-color: #4fd1c5;
   }
 }
 
@@ -1000,7 +1104,7 @@ body {
   text-transform: uppercase;
   min-height: 2.25rem;
   width: 100%;
-  background-color: #6c63ff;
+  background-color: #4fd1c5;
 }
 
 .login-btn {
@@ -1016,7 +1120,7 @@ body {
   text-transform: uppercase;
   min-height: 2.25rem;
   width: 40%;
-  background-color: #6c63ff;
+  background-color: #4fd1c5;
 }
 .pargraph-register-page {
   margin: 0;
@@ -1267,4 +1371,321 @@ li.search-item {
 }
 
 /* About page */
-/* Add additional CSS styling as needed */
+
+.about-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding: 20px;
+  height: 550px;
+  gap: 5rem;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(
+    135deg,
+    rgba(6, 11, 41, 0.8),
+    rgba(30, 39, 89, 0.8)
+  );
+  background-size: 300% 300%;
+  animation: gradientShift 10s ease infinite;
+  position: relative;
+  overflow: hidden;
+}
+.photo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: center;
+  width: 520px;
+  max-height: 20%;
+}
+
+.photo-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+.about-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: Normal;
+  flex: 2;
+  justify-content: center;
+  padding: 10px;
+  height: 800px;
+  font-size: 5px;
+  text-align: center;
+  max-width: 30%;
+}
+.paragraph-about-page {
+  max-width: 60%;
+}
+.header-about-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffff;
+  font-size: 40px;
+  font-family: Normal;
+}
+
+.balance-modal-div {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.btn-buy-me {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-div {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  background: linear-gradient(-70deg, #e0dcc3, #e6e6e6);
+  animation: gradient 15s ease infinite;
+  transition: all 0.3s ease-in-out;
+  width: 490px;
+  text-align: center;
+  overflow: hidden;
+}
+.header-stock-name {
+  margin-top: 0;
+  color: #333;
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+}
+
+.paragraph-balance {
+  margin-top: 0;
+  color: #333;
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 20px;
+  text-decoration: none;
+
+  color: black;
+  border-radius: 5px;
+  transition: all 0.25s;
+
+  span-buy-me {
+    margin-top: 20px;
+    text-transform: uppercase;
+    color: #0e0e0e;
+    font-weight: lighter;
+    font-family: "Normal";
+    font-family: Helvetica;
+    letter-spacing: 3px;
+    font-size: 13px;
+  }
+
+  svg {
+    height: 64px;
+    width: 64px;
+    overflow: visible;
+    transition: all 0.5s;
+  }
+
+  .eyes * {
+    animation: grow 2s ease infinite;
+    transform-origin: center center;
+  }
+
+  &:hover {
+    background-color: rgba(lime, 0.15);
+    border: 1px solid rgba(lime, 0.5);
+
+    .eyes * {
+      animation: growShake 0.5s ease 2;
+    }
+
+    .eyes #eye-left {
+      animation-delay: 0.1s;
+    }
+
+    .eyes #eye-right {
+    }
+
+    .tongue {
+      animation: growTongue 1.5s ease 1;
+      transform-origin: top center;
+    }
+  }
+}
+
+@keyframes grow {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.05);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes growShake {
+  0% {
+    transform: scale(1) rotate(0);
+  }
+  25% {
+    transform: scale(1.1) rotate(25deg);
+  }
+  50% {
+    transform: scale(1) rotate(-15deg);
+  }
+  75% {
+    transform: scale(1.2) rotate(10deg);
+  }
+  100% {
+    transform: scale(1) rotate(0);
+  }
+}
+
+@keyframes growTongue {
+  0% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.5);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+/* main container */
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: auto;
+  z-index: 10;
+}
+
+.loader {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.loader span {
+  display: inline-block;
+
+  margin: -280px 40px 54px -34px;
+  background: url("https://cdn.theatlantic.com/assets/media/img/posts/Screen%20Shot%202013-10-08%20at%209.13.38%20AM.png");
+  background-size: contain;
+
+  -webkit-animation: loader 10s infinite linear;
+  -moz-animation: loader 10s infinite linear;
+}
+.loader span:nth-child(5n + 5) {
+  -webkit-animation-delay: 1.3s;
+  -moz-animation-delay: 1.3s;
+}
+.loader span:nth-child(3n + 2) {
+  -webkit-animation-delay: 1.5s;
+  -moz-animation-delay: 1.5s;
+}
+.loader span:nth-child(2n + 5) {
+  -webkit-animation-delay: 1.7s;
+  -moz-animation-delay: 1.7s;
+}
+
+.loader span:nth-child(3n + 10) {
+  -webkit-animation-delay: 2.7s;
+  -moz-animation-delay: 2.7s;
+}
+.loader span:nth-child(7n + 2) {
+  -webkit-animation-delay: 3.5s;
+  -moz-animation-delay: 3.5s;
+}
+.loader span:nth-child(4n + 5) {
+  -webkit-animation-delay: 5.5s;
+  -moz-animation-delay: 5.5s;
+}
+.loader span:nth-child(3n + 7) {
+  -webkit-animation-delay: 8s;
+  -moz-animation-delay: 8s;
+}
+@-webkit-keyframes loader {
+  0% {
+    width: 80px;
+    height: 80px;
+    opacity: 1;
+
+    -webkit-transform: translate(0, 0px) rotateZ(0deg);
+  }
+  75% {
+    width: 80px;
+    height: 80px;
+    opacity: 1;
+
+    -webkit-transform: translate(100px, 600px) rotateZ(270deg);
+  }
+  100% {
+    width: 80px;
+    height: 80px;
+    opacity: 0;
+
+    -webkit-transform: translate(150px, 800px) rotateZ(360deg);
+  }
+}
+@-moz-keyframes loader {
+  0% {
+    width: 80px;
+    height: 80px;
+    opacity: 1;
+
+    -webkit-transform: translate(0, 0px) rotateZ(0deg);
+  }
+  75% {
+    width: 80px;
+    height: 80px;
+    opacity: 1;
+
+    -webkit-transform: translate(100px, 600px) rotateZ(270deg);
+  }
+  100% {
+    width: 80px;
+    height: 80px;
+    opacity: 0;
+
+    -webkit-transform: translate(150px, 800px) rotateZ(360deg);
+  }
+}

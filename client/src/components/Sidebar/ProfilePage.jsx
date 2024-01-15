@@ -92,7 +92,7 @@ const ProfilePage = () => {
           <img
             src={svgImage}
             alt="Profile Icon"
-            style={{ maxHeight: "500px" }}
+            style={{ maxHeight: "400px" }}
           />
         </Grid>
         <Grid item xs={12} md={3}>
@@ -102,7 +102,7 @@ const ProfilePage = () => {
                 <Avatar
                   src={userData?.avatarUrl}
                   alt={`${userData?.name} ${userData?.lastName}`}
-                  sx={{ bgcolor: "#6c63ff", width: 60, height: 60 }}
+                  sx={{ bgcolor: "#3FBDB4", width: 60, height: 60 }}
                 />
               </Grid>
               <Grid item xs style={{ textAlign: "center" }}>
@@ -174,9 +174,9 @@ const ProfilePage = () => {
                   sx={{
                     marginTop: "20px",
                     borderRadius: "20px",
-                    bgcolor: "#6c63ff",
+                    bgcolor: "#3FBDB4",
                     "&:hover": {
-                      bgcolor: "#6c63ff",
+                      bgcolor: "#3FBDB4",
                     },
                   }}
                   onClick={isEditMode ? handleSubmit : handleEditToggle}
@@ -191,11 +191,11 @@ const ProfilePage = () => {
                     color="secondary"
                     sx={{
                       borderRadius: "20px",
-                      borderColor: "#6c63ff",
-                      color: "#6c63ff",
+                      borderColor: "#3FBDB4",
+                      color: "#3FBDB4",
                       "&:hover": {
                         bgcolor: "transparent",
-                        borderColor: "#6c63ff",
+                        borderColor: "#3FBDB4",
                       },
                     }}
                     onClick={() => setIsEditMode(false)}

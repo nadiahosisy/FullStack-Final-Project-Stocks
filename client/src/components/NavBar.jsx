@@ -55,7 +55,7 @@ export const NavBar = () => {
           aria-label="logo"
           sx={{
             display: { xs: "none", md: "flex" },
-            color: "hsla(261, 51%, 50%, 1)",
+            color: "#3fbdb4",
           }}
         >
           <ShowChartRoundedIcon />

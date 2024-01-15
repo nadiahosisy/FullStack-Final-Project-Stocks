@@ -47,7 +47,7 @@ const LoginForm = ({ onToggle }) => {
     <div className="login-form-container">
       <ShowChartRoundedIcon
         style={{
-          color: "#6c63ff",
+          color: "#4FD1C5",
           fontSize: 30,
           marginLeft: "5px",
         }}
