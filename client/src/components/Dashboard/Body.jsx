@@ -48,6 +48,9 @@ function Body({
       }))
     : [];
 
+  // Take the last price in the array of the prices
+  const lastPrice = data.length > 0 ? data[data.length - 1].price : null;
+
   const handleGetStockData = async (stockName) => {
     try {
       await onHistoryButtonClick(stockName);
@@ -264,6 +267,7 @@ function Body({
           onBuy={handleBuyAction}
           stockName={currentStockName}
           balance={1000}
+          lastPrice={lastPrice}
         />
       </main>
     </div>

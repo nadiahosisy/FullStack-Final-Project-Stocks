@@ -5,6 +5,7 @@ const API_STOCK_USER_HISTORY = "http://localhost:5000/api/v1/stockHistory/";
 const API_REGISTER = "http://localhost:5000/api/v1/auth/register/";
 const API_USERS = "http://localhost:5000/api/v1/users/";
 const API_PREDICTIONS = "http://localhost:5000/api/v1/prediction/";
+const API_PURCHASE = "http://localhost:5000/api/v1/purchase/";
 
 const fetchStockData = async (stockSymbol) => {
   try {
@@ -81,10 +82,34 @@ const updateUserData = async (userId, data) => {
   }
 };
 
+const purchaseStocks = async (userId, stockSymbol, quantity, totalCost) => {
+  try {
+    const payload = {
+      userId,
+      stockSymbol,
+      quantity,
+      totalCost,
+    };
+
+    const purchaseEndpoint = `${API_PURCHASE}`;
+    const response = await axios.post(purchaseEndpoint, payload);
+
+    if (response.data.success) {
+      return response.data.updatedBalance;
+    } else {
+      throw new Error(response.data.message || "Purchase failed");
+    }
+  } catch (error) {
+    console.error("Error during stock purchase:", error);
+    throw error;
+  }
+};
+
 export {
   fetchStockData,
   registerUser,
   sendStockDataUserHistory,
   updateUserData,
   fetchPredictedData,
+  purchaseStocks,
 };

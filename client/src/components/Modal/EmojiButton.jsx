@@ -43,12 +43,12 @@ const EmojiButton = () => {
         </g>
       </svg>
       <div className="btn-buy-me">
-        <button onClick={handleBuy} className="span-buy-me">
+        {/* <button onClick={handleBuy} className="span-buy-me">
           Buy Me
-        </button>
+        </button> */}
       </div>
 
-      {showAnimation && (
+      {/* {showAnimation && (
         <div className="container">
           <div className="loader">
             <span></span>
@@ -81,7 +81,7 @@ const EmojiButton = () => {
             <span></span>
           </div>
         </div>
-      )}
+      )} */}
     </a>
   );
 };

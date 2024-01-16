@@ -16,6 +16,7 @@ export const getStockCharts = async (req, res) => {
       period2: new Date().toISOString().split("T")[0],
     };
     const resultFromYahoo = await yahooFinance.chart(stockName, queryOptions);
+    console.log(resultFromYahoo);
 
     const closePricesArray = [];
     const datesArray = [];
