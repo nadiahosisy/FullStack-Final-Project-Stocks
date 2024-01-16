@@ -14,6 +14,7 @@ import auth from "./routers/auth.js";
 import users from "./routers/users.js";
 import userStockHistory from "./routers/userStockHistory.js";
 import prediction from "./routers/prediction.js";
+import purchase from "./routers/purchase.js";
 
 connectDB();
 
@@ -39,6 +40,7 @@ app.use("/api/v1/stockHistory", userStockHistory);
 app.use("/api/v1/auth", auth);
 app.use("/api/v1/users", users);
 app.use("/api/v1/prediction", prediction);
+app.use("/api/v1/purchase", purchase);
 
 const PORT = process.env.PORT || 5000;
 

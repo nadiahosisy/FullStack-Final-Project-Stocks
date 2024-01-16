@@ -7,10 +7,10 @@ const url = "https://cooperative-gabardine-bass.cyclic.app/analyzeStock";
 // @route     GET /api/v1/predictio
 // @access    Private
 export const makePrediction = asyncHandler(async (req, res, next) => {
-  const stockName = req.params.stockName;
+  const stockName = req.params.stockName.toUpperCase();
 
   const systemMessage =
-    "You are stock AI Expert, analyze the info about the stock, try to predict if to buy or not to buy by giving sore (number out of number) from 1 to 100, give 3 pros and 3 cons";
+    "You are stock AI Expert, analyze all information you have about the stock, try to predict if to buy or not to buy by giving sore (number out of number) from 1 to 100, give always 3 pros and 3 cons";
 
   const modelConfig = {
     max_new_tokens: 20000,

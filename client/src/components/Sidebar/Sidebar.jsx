@@ -9,15 +9,21 @@ import {
   BsFillGearFill,
 } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthProvider";
 
 function Sidebar({ openSidebarToggle, OpenSidebar }) {
+  const { userData } = useAuth();
+
   const navigate = useNavigate();
 
   const handleNavigateProfile = () => {
-    navigate("/mystocks/profile");
+    navigate("/myDashboard/profile");
+  };
+  const handleNavigateMyStocks = () => {
+    navigate("/myDashboard/myStocks");
   };
   const handleNavigateDashboard = () => {
-    navigate("/mystocks/");
+    navigate("/myDashboard/");
   };
 
   return (
@@ -40,6 +46,11 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
             <BsGrid1X2Fill className="icon" /> Dashboard
           </a>
         </li>
+        {userData.role === "Investor" && (
+          <li className="sidebar-list-item" onClick={handleNavigateMyStocks}>
+            <BsFillArchiveFill className="icon" /> My Stocks
+          </li>
+        )}
         <li className="sidebar-list-item" onClick={handleNavigateProfile}>
           <BsFillArchiveFill className="icon" /> Profile
         </li>

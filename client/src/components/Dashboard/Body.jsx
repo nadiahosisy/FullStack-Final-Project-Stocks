@@ -34,6 +34,8 @@ function Body({
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [modalContent, setModalContent] = useState("");
 
+  const userBalance = userData ? userData.balance : 0;
+
   // Check if there is data
   const hasData =
     datesArray &&
@@ -89,8 +91,6 @@ function Body({
   };
 
   const handleBuyClick = () => {
-    const modalMessage = `Stock: ${currentStockName}\nBalance: $1000`;
-    setModalContent(modalMessage);
     setIsModalVisible(true);
   };
 
@@ -110,9 +110,11 @@ function Body({
             {currentStockName ? (
               <div className="stock-name-center">
                 <h3>{currentStockName}</h3>
-                <button className="buy-button" onClick={handleBuyClick}>
-                  <img src={buyVideo} alt="Buy" className="buy-icon" />
-                </button>
+                {userData.role === "Investor" && (
+                  <button className="buy-button" onClick={handleBuyClick}>
+                    <img src={buyVideo} alt="Buy" className="buy-icon" />
+                  </button>
+                )}
               </div>
             ) : (
               <div className="stock-name-div">
@@ -266,7 +268,7 @@ function Body({
           onClose={handleCloseModal}
           onBuy={handleBuyAction}
           stockName={currentStockName}
-          balance={1000}
+          balance={userBalance}
           lastPrice={lastPrice}
         />
       </main>

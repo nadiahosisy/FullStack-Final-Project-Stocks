@@ -40,8 +40,8 @@ export const NavBar = () => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
-  const pages = ["Home", "About", "My Stocks"];
-  const pagePaths = ["/", "/About", "/mystocks"];
+  const pages = ["Home", "About", "My Dashboard"];
+  const pagePaths = ["/", "/About", "/myDashboard"];
 
   return (
     <AppBar

@@ -18,7 +18,7 @@ const LoginForm = ({ onToggle }) => {
   const handleModalClose = () => {
     setModalInfo({ show: false, message: "", iconType: null });
     if (modalInfo.message === "Login Successful!") {
-      navigate("/mystocks");
+      navigate("/myDashboard");
     }
   };
 

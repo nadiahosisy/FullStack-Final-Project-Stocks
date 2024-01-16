@@ -82,25 +82,26 @@ const updateUserData = async (userId, data) => {
   }
 };
 
-const purchaseStocks = async (userId, stockSymbol, quantity, totalCost) => {
+const purchaseStocks = async (
+  userId,
+  stockName,
+  lastPrice,
+  newBalance,
+  amountOfStocks
+) => {
   try {
     const payload = {
-      userId,
-      stockSymbol,
-      quantity,
-      totalCost,
+      stockName,
+      lastPrice,
+      newBalance,
+      amountOfStocks,
     };
 
-    const purchaseEndpoint = `${API_PURCHASE}`;
-    const response = await axios.post(purchaseEndpoint, payload);
-
-    if (response.data.success) {
-      return response.data.updatedBalance;
-    } else {
-      throw new Error(response.data.message || "Purchase failed");
-    }
+    const purchaseEndpoint = `${API_PURCHASE}${userId}`;
+    const response = await axios.put(purchaseEndpoint, payload);
+    return response.data;
   } catch (error) {
-    console.error("Error during stock purchase:", error);
+    console.error("Error editing user :", error);
     throw error;
   }
 };

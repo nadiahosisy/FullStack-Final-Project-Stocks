@@ -15,7 +15,7 @@ export default function UnderlineInput({ onInputChange, onButtonClick }) {
   const handleButtonClick = async () => {
     setIsLoading(true); // Start loading
     try {
-      await onButtonClick(inputValue); // Assuming onButtonClick is a function that returns a Promise
+      await onButtonClick(inputValue.toLocaleUpperCase()); // Assuming onButtonClick is a function that returns a Promise
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {

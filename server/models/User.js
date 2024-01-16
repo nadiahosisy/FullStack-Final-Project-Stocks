@@ -41,8 +41,16 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  balance: {
+    type: Number,
+    default: 10000,
+  },
   searchedStocks: {
     type: [String],
+    default: [],
+  },
+  purchasedStocks: {
+    type: [Object],
     default: [],
   },
 });
