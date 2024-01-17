@@ -6,7 +6,7 @@ import {
   BsJustify,
 } from "react-icons/bs";
 import { useAuth } from "../../../context/AuthProvider";
-import UnderlineInput from "./UnderLineInput";
+import UnderlineInput from "../../UnderlineInput";
 
 function Header({ OpenSidebar, onInputChangeDashboard, onButtonClick }) {
   const { userData } = useAuth();
