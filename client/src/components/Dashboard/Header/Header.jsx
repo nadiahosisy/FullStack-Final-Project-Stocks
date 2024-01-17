@@ -5,8 +5,8 @@ import {
   BsSearch,
   BsJustify,
 } from "react-icons/bs";
-import UnderlineInput from "./UnderLineInput";
 import { useAuth } from "../../../context/AuthProvider";
+import UnderlineInput from "./UnderLineInput";
 
 function Header({ OpenSidebar, onInputChangeDashboard, onButtonClick }) {
   const { userData } = useAuth();
@@ -41,7 +41,7 @@ function Header({ OpenSidebar, onInputChangeDashboard, onButtonClick }) {
             <h3 className="balance-amount">{userBalance}$</h3>
           </div>
         ) : (
-          <></> 
+          <></>
         )}
       </div>
     </header>
