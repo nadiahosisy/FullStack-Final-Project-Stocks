@@ -41,7 +41,7 @@ function Header({ OpenSidebar, onInputChangeDashboard, onButtonClick }) {
             <h3 className="balance-amount">{userBalance}$</h3>
           </div>
         ) : (
-          <></> // This is an empty fragment, representing "do nothing" in the else part.
+          <></> 
         )}
       </div>
     </header>

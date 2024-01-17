@@ -4,6 +4,10 @@ import { sendStockDataUserHistory } from "../../api/apiServices";
 import Spinner from "../spinner/Spinner";
 import buyVideo from "../../assets/Icons/buy.png";
 import BalanceModal from "../Modal/Balance-Modal";
+import { Button } from "@mui/material";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import PaymentIcon from "@mui/icons-material/Payment";
 import {
   BsFillArchiveFill,
   BsSearch,
@@ -106,22 +110,7 @@ function Body({
       <main className="main-container">
         <div className="main-title">
           <h3>Stock Data</h3>
-          <div className="stock-name-main-div">
-            {currentStockName ? (
-              <div className="stock-name-center">
-                <h3>{currentStockName}</h3>
-                {userData.role === "Investor" && (
-                  <button className="buy-button" onClick={handleBuyClick}>
-                    <img src={buyVideo} alt="Buy" className="buy-icon" />
-                  </button>
-                )}
-              </div>
-            ) : (
-              <div className="stock-name-div">
-                <h3 className="header-selected">No Stock Selected...</h3>
-              </div>
-            )}
-          </div>
+          {/* ... (other elements in your main-title if any) */}
         </div>
 
         <div className="main-cards">
@@ -139,10 +128,25 @@ function Body({
                     {score}
                   </p>
                 </div>
+                {currentStockName && userData.role === "Investor" && (
+                  <div className="stock-name-main">
+                    <div className="stock-name-paragrapg-header">
+                      <p className="pargraph-stock-name">Stock Name:</p>
+                      <h3 className={`stock-name ${getScoreColor(score)}`}>
+                        {currentStockName}
+                      </h3>
+                    </div>
+
+                    <div>
+                      <button className="buy-button" onClick={handleBuyClick}>
+                        <ShoppingCartIcon className="icon" /> Buy
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             )}
           </div>
-
           <div className="card">
             {isLoading ? (
               <Spinner />
@@ -190,9 +194,9 @@ function Body({
                 <BsSearch className="card_icon" />
               </div>
               <div className="main-div-btn-clear">
-                <button className="clear-btn" onClick={handleDeleteHistory}>
+                <Button className="clear-btn" onClick={handleDeleteHistory}>
                   <span className="clear-btn-span">Clear</span>
-                </button>
+                </Button>
               </div>
             </div>
 

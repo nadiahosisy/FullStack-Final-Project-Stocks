@@ -28,10 +28,10 @@ const MyStocksPage = () => {
 
   // Function to calculate bubble size
   const calculateBubbleSize = (price, amount) => {
-    const baseSize = 200; // Minimum size for the bubble
-    const maxSize = 400; // Maximum size for the bubble
+    const baseSize = 200;
+    const maxSize = 400;
     const value = price * amount;
-    const normalized = (value - minVal) / (maxVal - minVal); // Normalize value between 0 and 1
+    const normalized = (value - minVal) / (maxVal - minVal);
     const size = normalized * (maxSize - baseSize) + baseSize;
     return size;
   };
@@ -43,7 +43,7 @@ const MyStocksPage = () => {
         height: containerRef.current.offsetHeight,
       });
     }
-  }, []); // Empty dependency array ensures this runs once after initial render
+  }, []);
 
   return (
     <motion.div
@@ -72,15 +72,15 @@ const MyStocksPage = () => {
                 left: position.left,
               }}
             >
-              <p>Stock Name: {stock.stockName}</p>
-              <p>Stock Purchase Price: ${stock.lastPrice}</p>
-              <p>Purchased Amount: {stock.amountOfStocks}</p>
-              <Button
-                style={{ width: "50%", background: "rgb(63, 189, 180)" }}
-                variant="contained"
-              >
-                Sell
-              </Button>
+              <p className="paragraph-my-stocks-page">
+                Stock Name: {stock.stockName}
+              </p>
+              <p className="stock-purchase-my-stocks-page">
+                Stock Purchase Price: ${stock.lastPrice}
+              </p>
+              <p className="purchased-amount-my-stocks-page">
+                Purchased Amount: {stock.amountOfStocks}
+              </p>
             </div>
           );
         })}

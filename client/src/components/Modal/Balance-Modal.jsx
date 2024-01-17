@@ -48,13 +48,13 @@ const BalanceModal = ({ show, stockName, balance, lastPrice, onClose }) => {
         </h2>
         <p className="paragraph-price" style={{ color: "black" }}>
           Current Price:{" "}
-          <span style={{ color: "purple", fontWeight: "bolder" }}>
+          <span style={{ color: "#ccac00", fontWeight: "800" }}>
             ${lastPrice}
           </span>
         </p>
         <p className="paragraph-balance">
           Remaning Balance:{" "}
-          <span style={{ color: "teal", fontWeight: "bolder" }}>
+          <span style={{ color: "#ccac00", fontWeight: "800" }}>
             ${balanceValue}
           </span>
         </p>

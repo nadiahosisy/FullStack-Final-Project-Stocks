@@ -16,10 +16,6 @@ const About = () => {
         exit={{ opacity: 0, transition: { duration: 0.01 } }}
       >
         {" "}
-        <h1 className="header-about-page">
-          Welcome to&nbsp;
-          <span className="highlight"> Finance Frontier</span>
-        </h1>
         <p style={{ fontSize: "1.2rem", lineHeight: "1.1" }}>
           Join Stock World for innovative financial insights. Our application
           uses advanced algorithms to provide accurate stock forecasts,

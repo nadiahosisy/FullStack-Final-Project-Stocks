@@ -11,7 +11,7 @@ const EmojiButton = () => {
   };
   return (
     <a className="button">
-      <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 64 64">
+      <svg xmlns="http://www.w3.org/2000/svg" enableBackground="new 0 0 64 64">
         <circle fill="#ffdd67" cx="32" cy="32" r="30" />
         <g fill="#664e27">
           <path d="m48 37.5c0 6.461-5.314 14-16 14-10.688 0-16-7.539-16-14 0 0 5.311 0 16 0 10.686 0 16 0 16 0" />

@@ -8,6 +8,8 @@ import {
   BsMenuButtonWideFill,
   BsFillGearFill,
 } from "react-icons/bs";
+import { FaRegChartBar, FaUser } from "react-icons/fa";
+import { MdOutlineInventory, MdAccountCircle } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthProvider";
 
@@ -46,14 +48,19 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
             <BsGrid1X2Fill className="icon" /> Dashboard
           </a>
         </li>
-        {userData.role === "Investor" && (
-          <li className="sidebar-list-item" onClick={handleNavigateMyStocks}>
-            <BsFillArchiveFill className="icon" /> My Stocks
+        <>
+          {userData.role === "Investor" && (
+            <li className="sidebar-list-item" onClick={handleNavigateMyStocks}>
+              <FaRegChartBar className="icon" /> My Stocks
+              {/* Or <MdOutlineInventory className="icon" /> My Stocks */}
+            </li>
+          )}
+
+          <li className="sidebar-list-item" onClick={handleNavigateProfile}>
+            <FaUser className="icon" /> Profile
+            {/* Or <MdAccountCircle className="icon" /> Profile */}
           </li>
-        )}
-        <li className="sidebar-list-item" onClick={handleNavigateProfile}>
-          <BsFillArchiveFill className="icon" /> Profile
-        </li>
+        </>
       </ul>
     </aside>
   );
