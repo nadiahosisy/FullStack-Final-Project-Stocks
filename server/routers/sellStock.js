@@ -1,9 +1,13 @@
 import express from "express";
 
-import { sellStock } from "../controllers/sellStock.js";
+import {
+  sellStock,
+  getUserLatestStockPrices,
+} from "../controllers/sellStock.js";
 
 const router = express.Router();
 
 router.route("/:id").put(sellStock);
+router.route("/:id").get(getUserLatestStockPrices);
 
 export default router;

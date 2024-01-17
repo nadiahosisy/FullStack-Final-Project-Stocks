@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
-console.log(BASE_URL);
 const API_YAHOO_STOCKS = `${BASE_URL}yahoo/`;
 const API_STOCK_USER_HISTORY = `${BASE_URL}stockHistory/`;
 const API_REGISTER = `${BASE_URL}auth/register/`;
@@ -123,6 +122,16 @@ const sellStock = async (userId, newStocksArray, newBalance) => {
     throw error;
   }
 };
+const getUserLatestStockPrices = async (userId) => {
+  try {
+    const sellStockEndpoint = `${API_SELLSTOCK}${userId}`;
+    const response = await axios.get(sellStockEndpoint);
+    return response.data;
+  } catch (error) {
+    console.error("Error selling stock:", error);
+    throw error;
+  }
+};
 
 export {
   fetchStockData,
@@ -132,4 +141,5 @@ export {
   fetchPredictedData,
   purchaseStocks,
   sellStock,
+  getUserLatestStockPrices,
 };

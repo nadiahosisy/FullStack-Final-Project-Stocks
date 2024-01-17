@@ -11,19 +11,23 @@ export const getStockCharts = async (req, res) => {
       .toISOString()
       .split("T")[0];
 
+    // Add one day to the current date for period2 to include today's data
+    const tomorrowDate = new Date();
+    tomorrowDate.setDate(currentDate.getDate() + 1);
+
     const queryOptions = {
       period1: yearAndHalfAgo,
-      period2: new Date().toISOString().split("T")[0],
+      period2: tomorrowDate.toISOString().split("T")[0], // adjusted to include today
+      interval: "1d",
     };
     const resultFromYahoo = await yahooFinance.chart(stockName, queryOptions);
-    console.log(resultFromYahoo);
 
     const closePricesArray = [];
     const datesArray = [];
 
     resultFromYahoo.quotes.forEach((quote) => {
       //Extract close prices
-      const formattedClosePrice = quote.close.toFixed(3);
+      const formattedClosePrice = quote.close.toFixed(2);
       closePricesArray.push(formattedClosePrice);
 
       // Extract and format the date
