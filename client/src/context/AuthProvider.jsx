@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
   const loginUser = async (credentials) => {
     try {
       const response = await axios.post(API_LOGIN, credentials);
-
+      setIsLoggedIn(true);
       return response.data;
     } catch (error) {
       console.error("Error logging in:", error);

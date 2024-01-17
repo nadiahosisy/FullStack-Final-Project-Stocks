@@ -1,10 +1,11 @@
 import React from "react";
+import checkImage from "../../assets/Icons/check.png";
+import errorImage from "../../assets/Icons/error.png";
 
 const Modal = ({ show, message, onClose, iconType }) => {
   if (!show) return null;
 
-  const iconPath =
-    iconType === "success" ? "/icons/check.png" : "/icons/error.png";
+  const iconPath = iconType === "success" ? checkImage : errorImage;
 
   return (
     <div className="modal-overlay">

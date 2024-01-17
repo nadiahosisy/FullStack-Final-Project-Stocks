@@ -28,8 +28,8 @@ const MyStocksPage = () => {
 
   // Function to calculate bubble size
   const calculateBubbleSize = (price, amount) => {
-    const baseSize = 200;
-    const maxSize = 400;
+    const baseSize = 250;
+    const maxSize = 450;
     const value = price * amount;
     const normalized = (value - minVal) / (maxVal - minVal);
     const size = normalized * (maxSize - baseSize) + baseSize;

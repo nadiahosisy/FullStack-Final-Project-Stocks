@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
-
+console.log(BASE_URL);
 const API_YAHOO_STOCKS = `${BASE_URL}yahoo/`;
 const API_STOCK_USER_HISTORY = `${BASE_URL}stockHistory/`;
 const API_REGISTER = `${BASE_URL}auth/register/`;
