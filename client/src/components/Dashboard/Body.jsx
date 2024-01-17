@@ -13,6 +13,7 @@ import {
   BsSearch,
   BsHandThumbsUp,
   BsHandThumbsDown,
+  BsTrash,
 } from "react-icons/bs";
 import {
   LineChart,
@@ -194,9 +195,11 @@ function Body({
                 <BsSearch className="card_icon" />
               </div>
               <div className="main-div-btn-clear">
-                <Button className="clear-btn" onClick={handleDeleteHistory}>
-                  <span className="clear-btn-span">Clear</span>
-                </Button>
+                <BsTrash
+                  className="card_icon-trash"
+                  onClick={handleDeleteHistory}
+                  style={{ color: "red", width: "30px", height: "25px" }}
+                />
               </div>
             </div>
 

@@ -8,6 +8,7 @@ const API_REGISTER = `${BASE_URL}auth/register/`;
 const API_USERS = `${BASE_URL}users/`;
 const API_PREDICTIONS = `${BASE_URL}prediction/`;
 const API_PURCHASE = `${BASE_URL}purchase/`;
+const API_SELLSTOCK = `${BASE_URL}sellStock/`;
 
 const fetchStockData = async (stockSymbol) => {
   try {
@@ -103,7 +104,22 @@ const purchaseStocks = async (
     const response = await axios.put(purchaseEndpoint, payload);
     return response.data;
   } catch (error) {
-    console.error("Error editing user :", error);
+    console.error("Error purchasng stock:", error);
+    throw error;
+  }
+};
+const sellStock = async (userId, newStocksArray, newBalance) => {
+  try {
+    const payload = {
+      newStocksArray,
+      newBalance,
+    };
+
+    const sellStockEndpoint = `${API_SELLSTOCK}${userId}`;
+    const response = await axios.put(sellStockEndpoint, payload);
+    return response.data;
+  } catch (error) {
+    console.error("Error selling stock:", error);
     throw error;
   }
 };
@@ -115,4 +131,5 @@ export {
   updateUserData,
   fetchPredictedData,
   purchaseStocks,
+  sellStock,
 };

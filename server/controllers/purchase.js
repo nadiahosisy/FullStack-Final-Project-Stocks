@@ -1,5 +1,6 @@
 import asyncHandler from "../middleware/async.js";
 import User from "../models/User.js";
+import { v4 as uuidv4 } from "uuid";
 
 // @desc      Purchase stock
 // @route     PUT /api/v1/purchase
@@ -19,6 +20,7 @@ export const purchaseStock = asyncHandler(async (req, res, next) => {
     }
 
     user.purchasedStocks.push({
+      _id: uuidv4(), // This will generate a unique ID
       stockName: stockName,
       lastPrice: lastPrice,
       amountOfStocks: amountOfStocks,

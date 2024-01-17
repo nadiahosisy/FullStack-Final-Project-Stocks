@@ -9,6 +9,7 @@ const BalanceModal = ({ show, stockName, balance, lastPrice, onClose }) => {
   const [error, setError] = useState("");
   const [balanceValue, setBalanceValue] = useState(balance);
   const [newBalance, seNewBalance] = useState(0);
+  const [total, setTotal] = useState(0);
 
   const { userData, updateUserData } = useAuth();
 
@@ -24,10 +25,15 @@ const BalanceModal = ({ show, stockName, balance, lastPrice, onClose }) => {
 
   const handleSliderChange = (event, newValue) => {
     const balanceToRemove = parseFloat(lastPrice * newValue).toFixed(2);
+    setTotal(balanceToRemove);
     setBalanceValue(parseFloat(balance - balanceToRemove).toFixed(2));
   };
 
   const submitBuy = async () => {
+    if (curValue === 0) {
+      alert("You cannot buy 0 stocks.");
+      return;
+    }
     const userDataAfterPurchase = await purchaseStocks(
       userData._id,
       stockName,
@@ -37,6 +43,7 @@ const BalanceModal = ({ show, stockName, balance, lastPrice, onClose }) => {
     );
     console.log(userDataAfterPurchase.data);
     updateUserData(userDataAfterPurchase.data);
+    alert(`You bought ${curValue} ${stockName} stocks`);
     onClose();
   };
 
@@ -77,7 +84,10 @@ const BalanceModal = ({ show, stockName, balance, lastPrice, onClose }) => {
           </p>
           {error && <p className="error-message">{error}</p>}
         </div>
-
+        <p className="total-amount">
+          Total :{" "}
+          <span style={{ color: "green", fontWeight: "bolder" }}>${total}</span>
+        </p>
         <Button
           className="buy-btn"
           variant="contained"
