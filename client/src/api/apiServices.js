@@ -1,11 +1,13 @@
 import axios from "axios";
 
-const API_YAHOO_STOCKS = "http://localhost:5000/api/v1/yahoo/";
-const API_STOCK_USER_HISTORY = "http://localhost:5000/api/v1/stockHistory/";
-const API_REGISTER = "http://localhost:5000/api/v1/auth/register/";
-const API_USERS = "http://localhost:5000/api/v1/users/";
-const API_PREDICTIONS = "http://localhost:5000/api/v1/prediction/";
-const API_PURCHASE = "http://localhost:5000/api/v1/purchase/";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
+const API_YAHOO_STOCKS = `${BASE_URL}yahoo/`;
+const API_STOCK_USER_HISTORY = `${BASE_URL}stockHistory/`;
+const API_REGISTER = `${BASE_URL}auth/register/`;
+const API_USERS = `${BASE_URL}users/`;
+const API_PREDICTIONS = `${BASE_URL}prediction/`;
+const API_PURCHASE = `${BASE_URL}purchase/`;
 
 const fetchStockData = async (stockSymbol) => {
   try {
