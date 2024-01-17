@@ -198,7 +198,12 @@ function Body({
                 <BsTrash
                   className="card_icon-trash"
                   onClick={handleDeleteHistory}
-                  style={{ color: "red", width: "30px", height: "25px" }}
+                  style={{
+                    color: "red",
+                    width: "30px",
+                    height: "25px",
+                    cursor: "pointer",
+                  }}
                 />
               </div>
             </div>
