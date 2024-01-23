@@ -25,7 +25,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
     navigate("/myDashboard/myStocks");
   };
   const handleNavigateDashboard = () => {
-    navigate("/myDashboard/myDashboard");
+    navigate("/myDashboard");
   };
 
   return (
@@ -44,9 +44,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
 
       <ul className="sidebar-list">
         <li className="sidebar-list-item" onClick={handleNavigateDashboard}>
-          <a href="">
-            <BsGrid1X2Fill className="icon" /> Dashboard
-          </a>
+          <BsGrid1X2Fill className="icon" /> Dashboard
         </li>
         <>
           {userData.role === "Investor" && (

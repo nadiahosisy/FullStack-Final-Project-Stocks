@@ -20,7 +20,7 @@ function AnimatedRoues() {
         <Route path="/" element={<Home />} />
         <Route path="/About" element={<About />} />
         <Route
-          path="/myDashboard/myDashboard"
+          path="/myDashboard"
           element={
             <ProtectedRoute>
               <Dashboard />
@@ -46,7 +46,6 @@ function AnimatedRoues() {
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/myStock" element={<MyStockPages />} />
-        {/* Add other routes as needed */}
       </Routes>
     </AnimatePresence>
   );
