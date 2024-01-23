@@ -25,7 +25,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
     navigate("/myDashboard/myStocks");
   };
   const handleNavigateDashboard = () => {
-    navigate("/myDashboard");
+    navigate("/myDashboard/myDashboard");
   };
 
   return (

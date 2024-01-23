@@ -20,7 +20,7 @@ function AnimatedRoues() {
         <Route path="/" element={<Home />} />
         <Route path="/About" element={<About />} />
         <Route
-          path="/myDashboard"
+          path="/myDashboard/myDashboard"
           element={
             <ProtectedRoute>
               <Dashboard />
