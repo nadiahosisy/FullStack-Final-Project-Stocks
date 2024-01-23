@@ -1,10 +1,4 @@
-import {
-  BsFillBellFill,
-  BsFillEnvelopeFill,
-  BsPersonCircle,
-  BsSearch,
-  BsJustify,
-} from "react-icons/bs";
+import { BsSearch, BsJustify } from "react-icons/bs";
 import { useAuth } from "../../../context/AuthProvider";
 import UnderlineInput from "../../UnderlineInput";
 
