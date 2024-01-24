@@ -1505,7 +1505,6 @@ li.search-item {
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  flex-direction: column;
 }
 
 .btn-buy-me {
@@ -1514,23 +1513,53 @@ li.search-item {
   align-items: center;
 }
 
+.close-btn-balance-modal {
+  background-color: #f44336 !important;
+}
+.buy-btn {
+  background-color: #388e3c !important;
+}
+
+.buy-btn:hover {
+  background-color: #388e3c !important;
+}
+
+.close-btn-balance-modal:hover {
+  background-color: #d32f2f;
+}
+
+.Slider {
+  color: #2c3e50; /* A deep, navy blue */
+}
+
+.error-message {
+  color: red;
+  font-size: 16px;
+}
 .modal-div {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  min-height: 500px;
+  max-height: 100vh;
+  text-align: center;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  background: white;
-  padding: 40px;
-  border-radius: 10px;
-  /* Adjust the gradient with color stops */
-  background: linear-gradient(to top, #e6e6e6 0%, #e6e6e6 80%, #3fbdb4 100%);
-  animation: gradient 15s ease infinite;
-  transition: all 0.3s ease-in-out;
-  width: 490px;
-  text-align: center;
-  animation: slideIn 0.5s ease forwards;
-  overflow: hidden;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 50px;
+}
+
+/* Adjust the child elements as needed */
+.modal-div > * {
+  margin-bottom: 15px;
+}
+
+/* Last child margin adjustment */
+.modal-div > *:last-child {
+  margin-bottom: 0;
 }
 @keyframes slideIn {
   from {
@@ -1542,36 +1571,15 @@ li.search-item {
     transform: translateY(0);
   }
 }
-.header-stock-name {
-  margin: 0;
-  color: #333;
-  font-family: "Normal";
-  font-size: 24px;
-}
-
-.paragraph-balance {
-  margin: 0;
-  color: #333;
-  font-family: "Normal";
-  font-size: 24px;
-}
-.paragraph-price {
-  margin: 0;
-  color: #333;
-  font-family: "Normal";
-  font-size: 24px;
-}
-.paragraph-amount {
-  margin: 0;
-  color: #333;
-  font-family: "Normal";
-  font-size: 24px;
-}
+.header-stock-name,
+.paragraph-balance,
+.paragraph-price,
+.paragraph-amount,
 .total-amount {
-  margin: 0;
   color: #333;
-  font-family: "Normal";
-  font-size: 24px;
+  font-family: Normal;
+  font-size: 18px;
+  margin: 10px 0;
 }
 
 .button {
@@ -1620,9 +1628,6 @@ li.search-item {
 
     .eyes #eye-left {
       animation-delay: 0.1s;
-    }
-
-    .eyes #eye-right {
     }
 
     .tongue {
