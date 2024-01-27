@@ -1799,10 +1799,15 @@ li.search-item {
   }
 }
 
-@media (max-width: 844px) {
+@media (max-width: 932px) {
+  .body {
+    width: 100vw;
+    height: 100vh;
+  }
+  .main-div-login,
   .login-container {
-    width: 20%;
-    margin-right: 1rem;
+    width: 100%;
+    margin-right: 5rem;
   }
 
   .input-email-address,
@@ -1810,10 +1815,6 @@ li.search-item {
     width: 50%;
   }
 
-  .login-form-container,
-  .login-form {
-    padding: 1rem;
-  }
   .main-div-img-login,
   .login-img {
     display: none;
