@@ -1816,7 +1816,7 @@ li.search-item {
   }
   .main-div-img-login,
   .login-img {
-    width: 80%;
+    display: none;
   }
   .main-div-login {
     gap: 0;
