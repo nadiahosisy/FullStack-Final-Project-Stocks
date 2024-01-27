@@ -748,50 +748,6 @@ body {
 
 /* End Main  */
 
-/* Medium <= 992px */
-
-@media screen and (max-width: 992px) {
-  .grid-container {
-    grid-template-columns: 1fr;
-    grid-template-rows: 0.2fr 3fr;
-    grid-template-areas:
-      "header"
-      "main";
-  }
-
-  #sidebar {
-    display: none;
-  }
-
-  .menu-icon {
-    display: inline;
-  }
-
-  .sidebar-title > span {
-    display: inline;
-  }
-}
-/* Small <= 768px */
-
-@media screen and (max-width: 768px) {
-  .main-cards {
-    grid-template-columns: 1fr;
-    gap: 10px;
-    margin-bottom: 0;
-  }
-
-  .charts {
-    grid-template-columns: 1fr;
-    margin-top: 30px;
-  }
-}
-
-@media screen and (max-width: 576px) {
-  .hedaer-left {
-    display: none;
-  }
-}
-
 /* Login */
 
 .main-div-img-login {
@@ -1033,61 +989,6 @@ body {
   justify-content: center;
   align-items: center;
 } */
-
-@media (max-width: 768px) {
-  .login-container {
-    width: 90%;
-    margin-left: 2.5rem;
-  }
-
-  .input-email-address,
-  .input-login-password {
-    width: 90%;
-  }
-
-  .login-form-container,
-  .login-form {
-    padding: 1rem;
-  }
-
-  .register-pargraph,
-  .login-register-button {
-    margin-top: 1rem;
-  }
-
-  .login-button {
-    width: 80%;
-  }
-}
-
-@media screen and (max-width: 576px) {
-  .login-container {
-    width: 90%;
-    margin-left: 1rem;
-    margin-right: 1rem;
-  }
-
-  .header-left {
-    display: none;
-  }
-  .login-button {
-    width: 90%;
-  }
-}
-
-@media (max-width: 480px) {
-  .login-container {
-    width: 87%;
-    margin-left: 1.8rem;
-  }
-  .input-email-address,
-  .input-login-password {
-    width: 80%;
-  }
-  .login-button {
-    width: 90%;
-  }
-}
 
 /* Register*/
 .main-div-register {
@@ -1348,66 +1249,6 @@ body {
   transform: scale(1.05);
 }
 
-@media screen and (max-width: 1024px) {
-  .content-wrapper {
-    flex-direction: column;
-  }
-
-  .image-container,
-  .text-container {
-    width: 100px;
-  }
-}
-
-/* Landscape phones and smaller devices */
-@media screen and (max-width: 768px) {
-  .text-container {
-    width: 5px;
-  }
-
-  .header-home-page {
-    font-size: 2rem;
-  }
-
-  .pargraph-home-page {
-    font-size: 1.2rem;
-  }
-}
-
-/* iPhones and smaller devices */
-@media screen and (max-width: 576px) {
-  .header-home-page {
-    font-size: 1.5rem;
-  }
-
-  .pargraph-home-page {
-    font-size: 1rem;
-  }
-
-  .image-container,
-  .text-container {
-    width: 1200px;
-  }
-}
-
-/* Specific adjustments for iPhones */
-@media screen and (max-width: 375px) {
-  .header-home-page {
-    font-size: 1.2rem;
-  }
-
-  .pargraph-home-page {
-    font-size: 0.9rem;
-  }
-
-  .home-container,
-  .text-container {
-    width: 80px;
-  }
-  .image-containe {
-    width: 100px;
-  }
-}
 /* Footer */
 
 .footer-app-bar {
@@ -1876,4 +1717,211 @@ li.search-item {
 
 .buy-button .icon svg {
   font-size: 24px;
+}
+
+/* Media query */
+
+@media only screen and (max-width: 768px) {
+  body {
+    max-width: 768px;
+  }
+}
+
+/* Add responsive styles for smaller screens (like iPhones) */
+/* @media only screen and (max-width: 768px) {
+  .grid-container {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    max-width: 768px;
+  }
+  .main-cards {
+    flex-direction: column;
+    height: auto;
+    overflow-y: scroll;
+    max-width: 768px;
+  }
+} */
+/* 
+@media only screen and (max-width: 480px) {
+  .main-title {
+    gap: 10rem;
+  }
+
+  .stock-name-center h3 {
+    font-size: 1em;
+  }
+} */
+
+/* Small <= 768px */
+/* 
+@media screen and (max-width: 768px) {
+  .main-cards {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 0;
+  }
+
+  .charts {
+    grid-template-columns: 1fr;
+    margin-top: 30px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .hedaer-left {
+    display: none;
+  }
+} */
+
+/* Medium <= 992px */
+
+@media screen and (max-width: 992px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.2fr 3fr;
+    grid-template-areas:
+      "header"
+      "main";
+  }
+
+  #sidebar {
+    display: none;
+  }
+
+  .menu-icon {
+    display: inline;
+  }
+
+  .sidebar-title > span {
+    display: inline;
+  }
+}
+
+@media (max-width: 844px) {
+  .login-container {
+    width: 20%;
+    margin-right: 1rem;
+  }
+
+  .input-email-address,
+  .input-login-password {
+    width: 50%;
+  }
+
+  .login-form-container,
+  .login-form {
+    padding: 1rem;
+  }
+  .main-div-img-login,
+  .login-img {
+    width: 80%;
+  }
+  .main-div-login {
+    gap: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .register-pargraph,
+  .login-register-button {
+    margin-top: 1rem;
+  }
+
+  .login-button {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .login-container {
+    width: 90%;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .header-left {
+    display: none;
+  }
+  .login-button {
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    width: 87%;
+    margin-left: 1.8rem;
+  }
+  .input-email-address,
+  .input-login-password {
+    width: 80%;
+  }
+  .login-button {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .content-wrapper {
+    flex-direction: column;
+  }
+
+  .image-container,
+  .text-container {
+    width: 100px;
+  }
+}
+
+/* Landscape phones and smaller devices */
+@media screen and (max-width: 844px) {
+  .text-container {
+    width: 5px;
+  }
+
+  .header-home-page {
+    font-size: 2rem;
+  }
+
+  .pargraph-home-page {
+    font-size: 1.2rem;
+  }
+  .stock-prediction,
+  .image-container {
+    font-size: 20px;
+  }
+}
+
+/* iPhones and smaller devices */
+@media screen and (max-width: 576px) {
+  .header-home-page {
+    font-size: 1.5rem;
+  }
+
+  .pargraph-home-page {
+    font-size: 1rem;
+  }
+
+  .image-container,
+  .text-container {
+    width: 500px;
+  }
+}
+
+/* Specific adjustments for iPhones */
+@media screen and (max-width: 375px) {
+  .header-home-page {
+    font-size: 1.2rem;
+  }
+
+  .pargraph-home-page {
+    font-size: 0.9rem;
+  }
+
+  .home-container,
+  .text-container {
+    width: 80px;
+  }
+  .image-containe {
+    width: 20px;
+  }
 }
